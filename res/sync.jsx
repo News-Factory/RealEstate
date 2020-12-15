@@ -34,8 +34,11 @@ function moveMarker(layer,newTime){
         }
     }
     var marker=layer.marker;
-    marker.removeKey(1);
-    marker.setValueAtTime(newTime, markerComment);
+    if (marker.numKeys > 0){
+        marker.removeKey(1);
+        marker.setValueAtTime(newTime, markerComment);
+    }
+    
 }
 
 function locateMarkerIndex(marker,name){
