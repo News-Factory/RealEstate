@@ -18,7 +18,6 @@ var cyan = 14;
 var sandstone = 15;
 var darkGreen = 16;
 
-
 function labelledLayers_InAComp(comp,label){
     //var layers = comp.numlayers;
     var res=[];
@@ -41,5 +40,33 @@ function layerHasLabel(layer,label){
     return false;
 }
 
+function numberToLabelColorName(number){
+    var labels=[null,'red','yellow','aqua','pink','lavender','peach',
+    'seaFoam','blue','green','purple','orange','brown','fuchsia','cyan','sandstone','darkGreen'];
+    return labels[number];
+}
+
+function labels_getAll(x){
+    //var allLayers=[];
+    var allLabels=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+    //var allLabels=[null,'red','yellow','aqua','pink','lavender','peach','seaFoam','blue','green','purple','orange','brown','fuchsia','cyan','sandstone','darkGreen'];
+    for (var i=0; i<x.comps.length; i++){
+        var layers=x.comps[i].layers;
+        for (var j=1; j<=layers.length; j++){
+            //allLayers.push(layers[j]);
+            var label=layers[j].label;
+            allLabels[label]++;
+        }
+    }
+    //alert(allLayers.length);
+    var res='labels found:\n';
+    for (var i=1; i<allLabels.length; i++){
+        //if (allLabels[i]>0){
+            var labelName=numberToLabelColorName(i);
+            res+=labelName+' exists: '+allLabels[i]+'\n';
+        //}
+    }
+    alert(res);
+}
 
 
