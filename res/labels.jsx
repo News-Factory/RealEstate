@@ -40,14 +40,14 @@ function layerHasLabel(layer,label){
     return false;
 }
 
-function numberToLabelColorName(number){
+function labels_numberToLabelColorName(number){
     var labels=[null,'red','yellow','aqua','pink','lavender','peach',
     'seaFoam','blue','green','purple','orange','brown','fuchsia','cyan','sandstone','darkGreen'];
     return labels[number];
 }
 
 function labels_getAll(x){
-    //var allLayers=[];
+    //var allLayers=getAllLayers(x);
     var allLabels=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
     //var allLabels=[null,'red','yellow','aqua','pink','lavender','peach','seaFoam','blue','green','purple','orange','brown','fuchsia','cyan','sandstone','darkGreen'];
     for (var i=0; i<x.comps.length; i++){
@@ -62,11 +62,24 @@ function labels_getAll(x){
     var res='labels found:\n';
     for (var i=1; i<allLabels.length; i++){
         //if (allLabels[i]>0){
-            var labelName=numberToLabelColorName(i);
+            var labelName=labels_numberToLabelColorName(i);
             res+=labelName+' exists: '+allLabels[i]+'\n';
         //}
     }
     alert(res);
+}
+
+function labels_getAllLayersWithLabel(x,labelNum){
+    //returns ALL layers in the project with given label 15/12/2020
+    var allLayers=getAllLayers(x); //array of labels
+    var res=[];
+    for (var i=0; i<allLayers.length; i++){
+        var layer=allLayers[i];
+        if (layer.label==labelNum){
+            res.push(layer);
+        }
+    }
+    return res;
 }
 
 
