@@ -20,11 +20,11 @@
 
 {
     var x=defineMainProjectItems();
-    labels_getAll(x);
-    /*realEstate(x);
+    // labels_getAll(x);
+    realEstate(x);
 
-    formatPhotosComp(x);
-    fitSoundOnPhotosComp();*/
+    // formatPhotosComp(x);
+    // fitSoundOnPhotosComp();
 
 }
 

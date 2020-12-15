@@ -26,8 +26,12 @@ function moveMarker(layer,newTime){
     var markers=getMarkers(layer);
     if (markers){
         var markerComment=markers[0].comment;
-        if (markerComment){markerComment=new MarkerValue(markerComment);}
-        else {markerComment=new MarkerValue('');}
+        if (markerComment){
+            markerComment=new MarkerValue(markerComment);
+        }
+        else {
+            markerComment=new MarkerValue('');
+        }
     }
     var marker=layer.marker;
     marker.removeKey(1);
