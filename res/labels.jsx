@@ -40,6 +40,31 @@ function layerHasLabel(layer,label){
     return false;
 }
 
+function getAllByLabel(layers,label){
+    //returns array
+    var res = [];
+    for (var i=1; i<=layers.length; i++){
+        if (layers[i].label==label){
+            res.push(layers[i]);
+            }
+            alert(layers[i].name);
+        }
+    return res;
+}
+
+function getSeveralLabels(layers,labelArray){
+    //returns array
+    var res = [];
+    for (var i=1; i<=layers.length; i++){
+        for (var j=0; j<labelArray.length; j++){
+            if (layers[i].label==labelArray[j]){
+                res.push(layers[i]);
+                break;
+                }
+            }
+        }
+    return res;
+}
 function numberToLabelColorName(number){
     var labels=[null,'red','yellow','aqua','pink','lavender','peach',
     'seaFoam','blue','green','purple','orange','brown','fuchsia','cyan','sandstone','darkGreen'];
