@@ -21,10 +21,15 @@
 {
     var x=defineMainProjectItems();
     // labels_getAll(x);
-    realEstate(x);
+    // realEstate(x);
 
-    formatPhotosComp(x);
+    // formatPhotosComp(x);
     // fitSoundOnPhotosComp();
+    var layer = x.allLayers['Photos Comp']['Room_Photo_1'];
+    var pic = layer(4);
+    var type = getLayerType(layer);
+
+    alert(type);
 
 }
 

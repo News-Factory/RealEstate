@@ -108,32 +108,6 @@ function getAllLayersByType(allComps){
     return all;
 }
 
-function getAllByLabel(layers,label){
-    //returns array
-    var res = [];
-    for (var i=1; i<=layers.length; i++){
-        if (layers[i].label==label){
-            res.push(layers[i]);
-            }
-            alert(layers[i].name);
-        }
-    return res;
-}
-
-function getSeveralLabels(layers,labelArray){
-    //returns array
-    var res = [];
-    for (var i=1; i<=layers.length; i++){
-        for (var j=0; j<labelArray.length; j++){
-            if (layers[i].label==labelArray[j]){
-                res.push(layers[i]);
-                break;
-                }
-            }
-        }
-    return res;
-}
-
 function getByName(inArray,name){
     try {
         //for (var i=0; i<inArray.length; i++) ~~ inArray[0] dosen`t exist, itg starts from index 1        
