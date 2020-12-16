@@ -9,7 +9,7 @@
 #include "./res/format.jsx";
 #include "./res/fade.jsx";
 #include "./res/labels.jsx";
-
+#include "./res/sheetConstruct.jsx";
 
 //Stage01 Match - match the titles in the sheet to layers in the project
 //Stage02 Import files into the project

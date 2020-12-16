@@ -128,7 +128,7 @@ function getByName(inArray,name){
     }
 }
 
-function getLayerType(layer){    
+function getLayerType(layer){ //strange, needs checking O.M. 15/12/2020
     if(isCompLayer(layer)){return "comp";} 
     else 
     {
@@ -155,6 +155,18 @@ function getLayer(comp,layerName){
     //gets a layer from a given comp with a given name
     var layers = comp.layers;
     return getByName(layers,layerName);
+}
+
+function getAllLayers(x){
+    //returns an array containing all layers in a given project 15/12/2020
+    var allLayers=[];
+    for (var i=0; i<x.comps.length; i++){
+        var layers=x.comps[i].layers;
+        for (var j=1; j<=layers.length; j++){
+            allLayers.push(layers[j]);
+        }
+    }
+    return allLayers;
 }
 
 /*
