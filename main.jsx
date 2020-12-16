@@ -20,16 +20,16 @@
 
 {
     var x=defineMainProjectItems();
+    // array = labels_getAllLayersWithLabel(x, 9);
     // labels_getAll(x);
     // realEstate(x);
+    sc_constructGS(x)
 
     // formatPhotosComp(x);
     // fitSoundOnPhotosComp();
-    var layer = x.allLayers['Photos Comp']['Room_Photo_1'];
-    var pic = layer(4);
-    var type = getLayerType(layer);
-
-    alert(type);
+    // var layer = x.allLayers['Photos Comp']['Room_Photo_1'];
+    // var pic = layer(4);
+    // var type = getLayerType(layer);
 
 }
 
@@ -65,8 +65,7 @@ function realEstate(x){
    // RQaddActiveItem(x);
 
    app.endUndoGroup();
-    
-         
+     
 }
 
 function onOffProcedure(found){

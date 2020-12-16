@@ -94,4 +94,17 @@ function labels_getAll(x){
     alert(res);
 }
 
-
+function labels_getAllLayersWithLabel(x, lableNum){
+    var res = [];
+    for (var i=0; i<x.comps.length; i++){
+        var layers=x.comps[i].layers;
+        for (var j=1; j<=layers.length; j++){
+            //allLayers.push(layers[j]);
+            var label=layers[j].label;
+            if (label == lableNum){
+                res.push(layers[j]);
+            }            
+        }
+    }
+    return res;
+}

@@ -1,3 +1,5 @@
+#include "labels.jsx"
+
 //Here we'll be using specific labels to construct the google sheet
 function sc_constructGS(x){
     var selectedLabels=[6,10,12,13]; //peach, purple, brown, fuchsia
