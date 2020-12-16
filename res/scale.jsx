@@ -5,13 +5,22 @@ function setScaleDurationMarkersForPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
+    // alert(layers.length);
     //params
-        //durations:
-        var vidDur=10;
-        var picDur=5;
-        var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
-        //scales:
-        var scaleFactor=1.05;
+    //durations:
+    var vidDur=10;
+    var picDur=5;
+    var padding = 1;
+    //scales:
+    var scaleFactor=1.05;
+
+    // setting a conditional statement based on how many photo layers there are 16/12/2020
+    if (layers.length <= 5){
+        picDur = 7;
+        padding = 2;
+    }
+
+    var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
     //var i=1;
     for (var i=1; i<layers.length; i++){
@@ -35,7 +44,6 @@ function setScaleDurationMarkersForPhotosComp(x){
         if (i > 1){
             var layerB = layers[i];
             var layerA = layers[i-1];
-            var padding = 1;
             syncOutPointToInPoint(layerA,layerB,padding);
         }
     }

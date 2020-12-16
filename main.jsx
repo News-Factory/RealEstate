@@ -22,8 +22,8 @@
     var x=defineMainProjectItems();
     // array = labels_getAllLayersWithLabel(x, 9);
     // labels_getAll(x);
-    // realEstate(x);
-    sc_constructGS(x)
+    realEstate(x);
+    // sc_constructGS(x);
 
     // formatPhotosComp(x);
     // fitSoundOnPhotosComp();
