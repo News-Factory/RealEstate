@@ -18,6 +18,7 @@ function setScaleDurationMarkersForPhotosComp(x){
         var roomPx=layers[i].name; //CompLayer
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
+        // alert(innerLayer.name);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
         setCompAndLayerDuration(innerComp,dur);
@@ -59,6 +60,7 @@ function setCompAndLayerDuration(comp,dur){
     //sets the comp and its layers to a given duration
     comp.duration=dur;
     for (var j=1; j<=comp.layers.length; j++){
+        comp.layers[j].locked = false;
         comp.layers[j].outPoint=dur;
     }
 }

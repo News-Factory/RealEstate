@@ -20,14 +20,11 @@
 
 {
     var x=defineMainProjectItems();
-    //var greenLabels=labels_getAllLayersWithLabel(x,8);
-    //alert(greenLabels.length);
-    //constructGS(x);
-    labels_getAll(x);
-    /*realEstate(x);
-    
+    // labels_getAll(x);
+    realEstate(x);
+
     formatPhotosComp(x);
-    fitSoundOnPhotosComp();*/
+    // fitSoundOnPhotosComp();
 
 }
 
