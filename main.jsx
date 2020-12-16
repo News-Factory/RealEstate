@@ -21,9 +21,9 @@
 {
     var x=defineMainProjectItems();
     // labels_getAll(x);
-    // realEstate(x);
+    realEstate(x);
 
-    // formatPhotosComp(x);
+    formatPhotosComp(x);
     // fitSoundOnPhotosComp();
 
 }
