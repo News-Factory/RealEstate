@@ -20,17 +20,12 @@
 
 {
     var x=defineMainProjectItems();
-    // array = labels_getAllLayersWithLabel(x, 9);
+    // array = labels_getAllLayersWithLabel(x, 6);
     // labels_getAll(x);
     realEstate(x);
     // sc_constructGS(x);
 
-    // formatPhotosComp(x);
-    // fitSoundOnPhotosComp();
-    // var layer = x.allLayers['Photos Comp']['Room_Photo_1'];
-    // var pic = layer(4);
-    // var type = getLayerType(layer);
-
+    // alert(array.length);
 }
 
 function realEstate(x){

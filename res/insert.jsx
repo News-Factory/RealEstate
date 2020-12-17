@@ -28,11 +28,15 @@ function insertAll_footage(x,found){
         var arr=found[avtypes[j]];
         for (var i=0; i<arr.length; i++){
             //Parameters:
-            if (x.tog.alertWhereWeAre){arr[i].containingComp.openInViewer();}
+            if (x.tog.alertWhereWeAre){
+                arr[i].containingComp.openInViewer();
+            }
             setFootage(arr[i].layer,arr[i].file);
             fitToComp(arr[i].layer);
             //setDurationByType(arr[i]);
-            if (x.tog.alertWhereWeAre){alert('Footage was inserted in layer: '+layer.name);}
+            if (x.tog.alertWhereWeAre){
+                alert('Footage was inserted in layer: '+layer.name);
+            }
         }
     }
 }

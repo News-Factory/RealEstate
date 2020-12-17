@@ -10,7 +10,7 @@
             "request": "launch",
             "name": "Ask for script name",
             "program": "${workspaceFolder}/main.jsx",
-            "stopOnEntry": false
+            "stopOnEntry": false,
         }
     ]
 }

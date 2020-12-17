@@ -10,9 +10,9 @@ function sc_constructGS(x){
     for (var i=0; i<selectedLabels.length; i++){
         var labelNum=selectedLabels[i]; //6/10/12/13
         var labelType=labelTypes[labelNum].type; //text,vid,pic,audio
-        var allLayers_inSelectedLabel=labels_getAllLayersWithLabel(x,labelNum);
-        for (var j=0; j<allLayers_inSelectedLabel.length; j++){
-            var layerName=allLayers_inSelectedLabel[j].name;
+        var allLayers_ofLabel=labels_getAllLayersWithLabel(x,labelNum);
+        for (var j=0; j<allLayers_ofLabel.length; j++){
+            var layerName=allLayers_ofLabel[j].name;
             resTitleRow.push(layerName);
             resLabelTypeRow.push(labelType);
         }

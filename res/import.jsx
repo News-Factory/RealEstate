@@ -37,8 +37,12 @@
 }
 
 function importSingleFile(fileOrPath,bin){
-    if (typeof fileOrPath=="string"){var file = new File(fileOrPath);}
-    else {var file = fileOrPath;}
+    if (typeof fileOrPath=="string"){
+        var file = new File(fileOrPath);
+    }
+    else {
+        var file = fileOrPath;
+    }
     if (file.exists){
         //alert("fileExists");
         var importOptions = new ImportOptions(file);
