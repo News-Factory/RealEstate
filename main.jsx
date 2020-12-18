@@ -21,10 +21,9 @@
 {
     var x=defineMainProjectItems();
     // array = labels_getAllLayersWithLabel(x, 6);
-    // labels_getAll(x);
     realEstate(x);
+    // formatPhotosComp(x)
     // sc_constructGS(x);
-
     // alert(array.length);
 }
 
@@ -52,6 +51,8 @@ function realEstate(x){
 
     //Stage04
     setScaleDurationMarkersForPhotosComp(x);
+    // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
+    setScaleDurationMarkersForVideosComp(x);
     
 
     slicer(x);
