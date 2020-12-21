@@ -63,8 +63,6 @@ function setScaleDurationMarkersForVideosComp(x){
     var vidDur=10;
     var picDur=5;
     var padding = 1;
-    //scales:
-    // var scaleFactor=1.05;
 
     // setting a conditional statement based on how many photo layers there are 16/12/2020
     if (layers.length <= 5){
@@ -84,10 +82,6 @@ function setScaleDurationMarkersForVideosComp(x){
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
         setCompAndLayerDuration(innerComp,dur);
-
-        var scaleA=getLayerScale(innerLayer)['x'];
-        var scaleB=scaleA*scaleFactor;
-        setScaleFromTo(innerLayer,0,dur,scaleA,scaleB);
         
         var newMarkerTime=layers[i].startTime+dur-1;
         moveMarker(layers[i],newMarkerTime);
