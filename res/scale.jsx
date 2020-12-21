@@ -50,24 +50,19 @@ function setScaleDurationMarkersForPhotosComp(x){
     //This procedure will be done inside sync.jsx
 }
 
-// this function is the same as the one above but it targets a [Videos Comp] for project 2  18/12/2020
+// this function is the same as above but targets a ['Videos Comp'] for project 2 18/12/2020
 function setScaleDurationMarkersForVideosComp(x){
-    for (c=0; c < x.comps.length; c++){       // loop through all the comps to check if there is a ['Video Comp']
+    // looping through all the comps to check if there is a ['Video Comp']
+    for (c=0; c < x.comps.length; c++){       
         if(x.comps[c].name == 'Videos Comp'){
             var VideosComp=x.allLayers['Videos Comp'].comp;
             var layers=VideosComp.layers;
             // alert(layers.length);
             
             //durations:
-            var vidDur=10;
-            var picDur=5;
-            var padding = 1;
-            // setting a conditional statement based on how many photo layers there are 16/12/2020
-            if (layers.length <= 5){
-                vidDur = 7;
-                picDur = 7;
-                padding = 2;
-            }
+            var vidDur=7;
+            var picDur=7;
+            var padding = 2;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
             //var i=1;
@@ -92,8 +87,6 @@ function setScaleDurationMarkersForVideosComp(x){
             }
         }
     }      
-    //Once we're done scaling and setting durations it's time to relocate the markers
-    //This procedure will be done inside sync.jsx
 }
 
 function setDurationDefByFileType(videoDur,restDur){
@@ -124,6 +117,7 @@ function setScaleFromTo(layer,t1,t2,s1,s2){
     layer.property("scale").setValueAtTime(t2,[s2,s2,s2]);
 }
 
+// this function is used into "insert.jsx"
 function fitToComp(layer){ //meant for layer to fill all of the screen
     //define golden ratio
     var goldenW=1920;
