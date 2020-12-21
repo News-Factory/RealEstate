@@ -21,7 +21,7 @@
 {
     var x=defineMainProjectItems();
     realEstate(x);
-    formatPhotosComp(x);
+    // formatPhotosComp(x);
     // sc_constructGS(x);
 
     // var PhotosComp=x.allLayers['Photos Comp'].comp;
@@ -97,8 +97,7 @@ function slicer(x){
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        alert(howMany_Pictures);
-
+        // alert(howMany_Pictures);
 
         var locTestPhoto = getLoc_TestPhoto(x);
         ///// finding a different way to cut the end of the "Photos Comp"  14/12/2020
@@ -110,33 +109,35 @@ function slicer(x){
         }
 
         pcLayer = getByName(mainLayers,"1_Photos Comp");
-        pcLayer.outPoint = lastPic.outPoint;
+        pcLayer.outPoint = lastPic.outPoint-1;
+        alert(pcLayer.outPoint);
 
         /////for (var i=5; i>1; i--){
-        for (var i=4; i>1; i--){
+        for (var i=1; i<=4; i++){
             var layer = mainLayers[i];
             // alert(layer.name);
             var marker = layer.property("Marker");
-            var numMarkers = marker.numKeys; //either 2 or 1
-            var firstComment = marker.keyValue(1).comment;
-            var secondComment = marker.keyValue(numMarkers).comment;
-            var firstMarkerTime = marker.keyTime(1);
-            var secondMarkerTime = marker.keyTime(numMarkers);
+            // var numMarkers = marker.numKeys; //either 2 or 1
+            // var firstComment = marker.keyValue(1).comment;
+            // var secondComment = marker.keyValue(numMarkers).comment;
+            // var firstMarkerTime = marker.keyTime(1);
+            // var secondMarkerTime = marker.keyTime(numMarkers);
     
             //define previous layer marker params
-            var prevLayer = mainLayers[i+1];
-            var prevLayerMarker = prevLayer.property("Marker");
-            var prevNumMarkers = prevLayerMarker.numKeys; //either 2 or 1
-            var prevLayerMarkerLastComment = prevLayerMarker.keyValue(prevNumMarkers).comment;
+            var nextLayer = mainLayers[i+1];
+            // var prevLayerMarker = prevLayer.property("Marker");
+            // var prevNumMarkers = prevLayerMarker.numKeys; //either 2 or 1
+            // var prevLayerMarkerFirstComment = prevLayerMarker.keyValue(1).comment;
+            // var prevLayerMarkerLastComment = prevLayerMarker.keyValue(prevNumMarkers).comment;
         
             //set locations based on marker comments
-            if (prevLayerMarkerLastComment==firstComment){
-                var prevLayerMarkerTime = prevLayerMarker.keyTime(prevNumMarkers);
-                var gap = firstMarkerTime-layer.startTime; //gap is calculated because layer starting point may differ from entry marker point
-                layer.startTime=prevLayerMarkerTime-gap;
-            } else{
-                layer.startTime=prevLayer.outPoint;
-            }
+            // if (prevLayerMarkerLastComment==firstComment){
+            //     var prevLayerMarkerTime = prevLayerMarker.keyTime(prevNumMarkers);
+            //     var gap = firstMarkerTime-layer.startTime; //gap is calculated because layer starting point may differ from entry marker point
+            //     layer.startTime=prevLayerMarkerTime-gap;
+            // } else{
+                nextLayer.startTime=layer.outPoint;
+            // }
             
         } // end for stage 2 
     } else { //If naming hasn't been done correctly sound the alarm
