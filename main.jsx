@@ -21,14 +21,12 @@
 {
     var x=defineMainProjectItems();
     realEstate(x);
-    // formatPhotosComp(x);
+    formatPhotosComp(x);
     // sc_constructGS(x);
 
-    // var PhotosComp=x.allLayers['Room_Photo_1'].comp;
-    // var layer=PhotosComp.layers[2];
-    // var layerType = getFileType(layer.source.name);
-    // alert(layer.name);
-    // alert(layerType);
+    // var PhotosComp=x.allLayers['Photos Comp'].comp;
+    // var layer=PhotosComp.layers[5];
+    // alert(layer.outPoint);
 }
 
 function realEstate(x){
@@ -99,14 +97,21 @@ function slicer(x){
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
+        alert(howMany_Pictures);
+
 
         var locTestPhoto = getLoc_TestPhoto(x);
         ///// finding a different way to cut the end of the "Photos Comp"  14/12/2020
-
-        var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto -1)];
+        ///// modifying it to work also without "Test Photo"  21/12/2020 
+        if(locTestPhoto){
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto -1)];        
+        } else {
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(howMany_Pictures)];
+        }
 
         pcLayer = getByName(mainLayers,"1_Photos Comp");
-        pcLayer.outPoint = lastPic.outPoint;  //tpMarkerTime;
+        pcLayer.outPoint = lastPic.outPoint;
+
         /////for (var i=5; i>1; i--){
         for (var i=4; i>1; i--){
             var layer = mainLayers[i];
