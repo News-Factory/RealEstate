@@ -20,11 +20,16 @@
 
 {
     var x=defineMainProjectItems();
-    // array = labels_getAllLayersWithLabel(x, 6);
+    // vdcomp = x.allLayers['Videos Comp'].comp;
+    // alert(vdcomp.name);
+
     realEstate(x);
-    // formatPhotosComp(x)
+    // formatPhotosComp(x);
     // sc_constructGS(x);
-    // alert(array.length);
+    // alert(x.comps.length);
+    // var what = x.comps[19].name;
+    // alert(what);
+    
 }
 
 function realEstate(x){
@@ -60,8 +65,7 @@ function realEstate(x){
     //checkLayersMarker(x.comps);
    // RQaddActiveItem(x);
 
-   app.endUndoGroup();
-     
+   app.endUndoGroup();   
 }
 
 function onOffProcedure(found){

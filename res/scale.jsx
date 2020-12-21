@@ -19,7 +19,6 @@ function setScaleDurationMarkersForPhotosComp(x){
         picDur = 7;
         padding = 2;
     }
-
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
     //var i=1;
@@ -52,48 +51,47 @@ function setScaleDurationMarkersForPhotosComp(x){
 }
 
 // this function is the same as the one above but it targets a [Videos Comp] for project 2  18/12/2020
-
 function setScaleDurationMarkersForVideosComp(x){
-    //Main function in scale.jsx
-    var VideosComp=x.allLayers['Videos Comp'].comp;
-    var layers=VideosComp.layers;
-    // alert(layers.length);
-    //params
-    //durations:
-    var vidDur=10;
-    var picDur=5;
-    var padding = 1;
+    for (c=0; c < x.comps.length; c++){       // loop through all the comps to check if there is a ['Video Comp']
+        if(x.comps[c].name == 'Videos Comp'){
+            var VideosComp=x.allLayers['Videos Comp'].comp;
+            var layers=VideosComp.layers;
+            // alert(layers.length);
+            
+            //durations:
+            var vidDur=10;
+            var picDur=5;
+            var padding = 1;
+            // setting a conditional statement based on how many photo layers there are 16/12/2020
+            if (layers.length <= 5){
+                vidDur = 7;
+                picDur = 7;
+                padding = 2;
+            }
+            var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-    // setting a conditional statement based on how many photo layers there are 16/12/2020
-    if (layers.length <= 5){
-        vidDur = 7;
-        picDur = 7;
-        padding = 2;
-    }
+            //var i=1;
+            for (var i=1; i<layers.length; i++){
+                var video_x=layers[i].name; //CompLayer
+                var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
+                var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
+                // alert(innerLayer.name);
+                var sourceType=getFileType(innerLayer.source.name);
+                var dur=durTypes[sourceType];
+                setCompAndLayerDuration(innerComp,dur);
+                
+                var newMarkerTime=layers[i].startTime+dur-1;
+                moveMarker(layers[i],newMarkerTime);
 
-    var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
-
-    //var i=1;
-    for (var i=1; i<layers.length; i++){
-        var video_x=layers[i].name; //CompLayer
-        var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
-        var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
-        // alert(innerLayer.name);
-        var sourceType=getFileType(innerLayer.source.name);
-        var dur=durTypes[sourceType];
-        setCompAndLayerDuration(innerComp,dur);
-        
-        var newMarkerTime=layers[i].startTime+dur-1;
-        moveMarker(layers[i],newMarkerTime);
-
-        setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
-
-        if (i > 1){
-            var layerB = layers[i];
-            var layerA = layers[i-1];
-            syncOutPointToInPoint(layerA,layerB,padding);
+                setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
+                if (i > 1){
+                    var layerB = layers[i];
+                    var layerA = layers[i-1];
+                    syncOutPointToInPoint(layerA,layerB,padding);
+                }
+            }
         }
-    }
+    }      
     //Once we're done scaling and setting durations it's time to relocate the markers
     //This procedure will be done inside sync.jsx
 }
