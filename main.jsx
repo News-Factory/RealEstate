@@ -20,15 +20,14 @@
 
 {
     var x=defineMainProjectItems();
-    // vdcomp = x.allLayers['Videos Comp'].comp;
-    // alert(vdcomp.name);
-
     realEstate(x);
     // formatPhotosComp(x);
     // sc_constructGS(x);
-    // alert(x.comps.length);
-    // var what = x.comps[19].name;
-    // alert(what);
+
+    // var PhotosComp=x.allLayers['Photos Comp'].comp;
+    // var layers=PhotosComp.layers;
+    // alert(layers.length);
+    
     
 }
 

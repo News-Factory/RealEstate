@@ -22,7 +22,7 @@ function setScaleDurationMarkersForPhotosComp(x){
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
     //var i=1;
-    for (var i=1; i<layers.length; i++){
+    for (var i=1; i<=layers.length; i++){
         var roomPx=layers[i].name; //CompLayer
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
@@ -66,7 +66,7 @@ function setScaleDurationMarkersForVideosComp(x){
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
             //var i=1;
-            for (var i=1; i<layers.length; i++){
+            for (var i=1; i<=layers.length; i++){
                 var video_x=layers[i].name; //CompLayer
                 var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
                 var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
