@@ -66,10 +66,26 @@ function fitSoundOnPhotosComp(){
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Loop Sound'];
-
+    // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
     xFadeIn(backgroundSong, photoCompStart, 4, -60, -20);
     xFadeOut(backgroundSong, photoCompEnd, 4, -20, -60);
+}
+
+function fitSoundOnAll(){
+    var introComp = x.allLayers['0_Main Comp']['Intro'];
+    var outroComp = x.allLayers['0_Main Comp']['Outro'];
+    var introCompStart = introComp.inPoint; //intro inPoint
+    var outroCompEnd = outroComp.outPoint; //outro outPoint
+
+    // select the layer for the background song
+    var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
+    // clear the eventual keyframes on the layer
+    clearKeys(backgroundSong, 'Audio Levels');
+
+    // apply the fade in / fade out
+    xFadeIn(backgroundSong, introCompStart, 4, -60, -20);
+    xFadeOut(backgroundSong, outroCompEnd, 4, -20, -60);
 }

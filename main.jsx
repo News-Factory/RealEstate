@@ -21,8 +21,9 @@
 {
     var x=defineMainProjectItems();
     realEstate(x);
-    formatPhotosComp(x);
-    fitSoundOnPhotosComp();
+    // formatPhotosComp(x);
+    // fitSoundOnPhotosComp();
+    fitSoundOnAll();
 
     // sc_constructGS(x);  // this function creates the google
 }
@@ -106,16 +107,25 @@ function slicer(x){
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             pcLayer.outPoint = lastPic.outPoint - gap*2;     
             // alert(lastPic.outPoint);
+
+            for (var i=1; i<4; i++){
+            var layer = mainLayers[i];
+            var nextLayer = mainLayers[i+1];
+            nextLayer.startTime=layer.outPoint;           
+            } 
+
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_1'];
             gap = gap*2; 
+
+            for (var i=2; i<4; i++){
+            var layer = mainLayers[i];
+            var nextLayer = mainLayers[i+1];         
+            nextLayer.startTime=layer.outPoint -gap;
+            }
         }
 
-        for (var i=1; i<4; i++){
-            var layer = mainLayers[i];
-            var nextLayer = mainLayers[i+1];
-            nextLayer.startTime=layer.outPoint; // -gap; 
-        }
+        
  
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");

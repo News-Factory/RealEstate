@@ -35,7 +35,7 @@ function definePaths(newsfactoryBoolean){
         //News factory paths:
         paths['drive']='G';
         paths['realEstate']=paths['drive']+':/My Drive/Real Estate Project/';
-        paths['txtFile']=paths['realEstate']+'old/OneRow/export2.txt'; //Varies according to computer;
+        paths['txtFile']=paths['realEstate']+'old/OneRow/sharonH.txt'; //Varies according to computer;
         //paths['updateFile']=paths['realEstate']+'OneRow/whenUpdated.txt';    
         paths['footageFolder']=paths['drive'] + ':/My Drive/Programming/real-estate/Realestate Project 121020/(Footage)/importFolder';
     } else {
