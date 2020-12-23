@@ -1,5 +1,5 @@
 
-//returns the found layers, alerts the lost ones and kills offLayers
+//returns found layers, alerts for lost ones and kills offLayers
 function matchAllTitlesToLayers(x){
 
     var avtypes=defineAVTypes();

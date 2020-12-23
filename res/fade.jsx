@@ -18,12 +18,7 @@ function fade(layer,startAt,endAt,duration,startVal,endVal){
     layer.property('Audio Levels').setValueAtTime(relativeEndTime,[endVal,endVal]);
 }
 
-function xFade(layer,startAt,endAt,duration,startVal,endVal){ // it's the same concept as fade but applied as if it was an Xfade
-    //Only ONE of params startAt and endAt should be inputted
-    //startAt is the time to ADD to the beginning of the audio file- this is where fade will begin
-    //endAt is the time to SUBTRACT from the end of the audio file- this is where fade will end
-    //the irrelevant value should be null
-    //it's best to use functions fadeIn and fadeOut which use this function
+function xFade(layer,startAt,endAt,duration,startVal,endVal){ // same function as ABOVE but as MIXING X FADE
     if (startAt!=null){
         var relativeStartTime=layer.inPoint+startAt - duration/2;
         var relativeEndTime=relativeStartTime+duration;

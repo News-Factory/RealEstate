@@ -15,7 +15,7 @@ function defineMainProjectItems(){
     x.mainComp=getMainComp(x.comps);
     x.photoComp=getByName(x.comps,"1_Photos Comp");
 
-    x.paths = definePaths(true); //true is script is in News Factory
+    x.paths = definePaths(true); //TRUE is script is in News Factory
     x.sym = defineSymbols();
     x.data = defineMasterObj(x.paths, x.sym); //An array of objects with title, value and type
     x.dataByType=getData_byTitleValueType(x.data);
@@ -35,7 +35,7 @@ function definePaths(newsfactoryBoolean){
         //News factory paths:
         paths['drive']='G';
         paths['realEstate']=paths['drive']+':/My Drive/Real Estate Project/';
-        paths['txtFile']=paths['realEstate']+'old/OneRow/sharonH.txt'; //Varies according to computer;
+        paths['txtFile']=paths['realEstate']+'old/OneRow/sharonH.txt'; //Varies according to computer, CHANGE TXT HERE according on project
         //paths['updateFile']=paths['realEstate']+'OneRow/whenUpdated.txt';    
         paths['footageFolder']=paths['drive'] + ':/My Drive/Programming/real-estate/Realestate Project 121020/(Footage)/importFolder';
     } else {

@@ -25,10 +25,7 @@
             alert(lostFiles[i])
             lostFiles_log+='\n'+lostFiles[i];
         }
-        //for (var i=0; i<lostFiles_log.length; i++){
-        //    alert(lostFiles[i])
-        //    lostFiles_log+='\n'+lostFiles[i];
-        //}
+     
         lostFiles_log+='Please insert the files into the import folder and restart the function';
         alert(lostFiles_log);
         return false;
@@ -44,7 +41,7 @@ function importSingleFile(fileOrPath,bin){
         var file = fileOrPath;
     }
     if (file.exists){
-        //alert("fileExists");
+
         var importOptions = new ImportOptions(file);
         var importedFile = app.project.importFile(importOptions);
         importedFile.parentFolder = bin;

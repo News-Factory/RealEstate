@@ -169,43 +169,6 @@ function getAllLayers(x){
     return allLayers;
 }
 
-/*
-function getAllLayersByNameAndType(allComps,layerName,layerType,logFile){
-    //logFile.write("function getAllLayersByNameAndType");
-    //logFile.write('\n');
-    var res = [];
-    for (var i=0; i<allComps.length; i++){
-        var comp = allComps[i];
-        var layers = comp.layers;
-        for (var j=1; j<=layers.length; j++){
-            var layer = layers[j];
-            //logFile.write("comp: "+comp.name+". layer:"+layer.name);
-            //logFile.write('\n');
-            var type = getLayerType(layer);
-            if (layer.name==layerName && type==layerType){
-                res.push(layer);
-                }
-            }
-        }
-    if (res.length==0){
-        return false;
-        }
-    return res;
-}*/
-
-/*
-function getLayerByNameAndType(comp,layerName,layerType){
-    var layers = comp.layers;
-    for (var i=1; i<=layers.length; i++){
-        if(layers[i].name==layerName){
-            var type = getLayerType(layers[i]);
-            if (type==layerType){return layers[i];}
-        }
-    }
-    return false;
-}
-*/
-
 //GET AUDIO ANALYSIS 13/06/20
 
 function getAudioAnalysis(layer,containingComp,threshold){

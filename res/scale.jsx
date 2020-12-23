@@ -1,11 +1,9 @@
 #include "get.jsx"   
-//Gonna try and work with main functions and then their assisting functions
 
 function setScaleDurationMarkersForPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
-    // alert(layers.length);
     //params
     //durations:
     var vidDur=10;
@@ -14,7 +12,8 @@ function setScaleDurationMarkersForPhotosComp(x){
     //scales:
     var scaleFactor=1.05;
 
-    // setting a conditional statement based on how many photo layers there are 16/12/2020
+    ///// setting conditional statement based on how many photo layers there are 16/12/2020
+    //// this is done to make the function work both on R&B and TRANSPARENT
     if (layers.length <= 5){
         picDur = 7.4;
         padding = 2;
@@ -50,14 +49,15 @@ function setScaleDurationMarkersForPhotosComp(x){
     //This procedure will be done inside sync.jsx
 }
 
-// this function is the same as above but targets a ['Videos Comp'] for project 2 18/12/2020
+
+///// atm this function DOES NOT GET USED but could come back useful later    // 23/12/2020
+// this function is the same as above but targets a ['Videos Comp'] for project 2 
 function setScaleDurationMarkersForVideosComp(x){
-    // looping through all the comps to check if there is a ['Video Comp']
+    // looping through the comps to check if there is a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
         if(x.comps[c].name == 'Videos Comp'){
             var VideosComp=x.allLayers['Videos Comp'].comp;
             var layers=VideosComp.layers;
-            // alert(layers.length);
             
             //durations:
             var vidDur=6;
@@ -65,7 +65,6 @@ function setScaleDurationMarkersForVideosComp(x){
             var padding = 2;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-            //var i=1;
             for (var i=layers.length; i>0; i--){
                 var video_x=layers[i].name; //CompLayer
                 var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
@@ -127,11 +126,10 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
     //alert(goldenRatio); //0.5625
     var comp=layer.containingComp;
     //alert('comp.name '+comp.name+' layer.name '+layer.name);
-    var compW=comp.width;//*comp.pixelAspect;
-    var compH=comp.height;//*comp.pixelAspect;
-    var layerW=layer.width;//*layer.source.pixelAspect;
-    var layerH=layer.height;//*layer.source.pixelAspect;
-    //
+    var compW=comp.width;
+    var compH=comp.height;
+    var layerW=layer.width;
+    var layerH=layer.height;
 
     // if the composition is NOT logo resize to fill the screen, otherwise only rescale 40%
     if (comp.name !== 'logo') {
@@ -139,15 +137,12 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
         //alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
             var ratio=layerH/layerW;
             if (ratio>=goldenRatio){
-            //   alert('bigger, resizing by width');
                 var scaleValue=100*(compW/layerW);
             } else {
-            //    alert('smaller, adjusting by height');
                 var scaleValue=100*(compH/layerH);
             } 
         //  alert(scaleValue + " scaleValue for " + layer.name);      
             layer.property('Scale').setValueAtTime(1,[scaleValue,scaleValue]);
-            // layer.property('Scale').setValueAtKey([scaleValue,scaleValue]);
         }
     } else {
         if(layerH!=compH || layerW!=compW){

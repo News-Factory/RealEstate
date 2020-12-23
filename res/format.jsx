@@ -4,7 +4,6 @@
 
 function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
-    //should only need to be run once
 
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
@@ -51,12 +50,12 @@ function formatPhotosComp(x){
         // this function is in the style.jsx file
         centerText_BackGroundPadding(roomPhotoLayerName);
     }
-
+    // this function is in the style.jsx file
     topScrollingText_SpaceBetween();
 }
 
-  // sets the right fade in/out for the music going on Photos Comp  08/12/2020
 
+// sets the right fade in/out for the music going on Photos Comp  08/12/2020
 function fitSoundOnPhotosComp(){
     // Select 1_Photos Comp start and end points
     var photoComp=x.allLayers['0_Main Comp']['1_Photos Comp'];

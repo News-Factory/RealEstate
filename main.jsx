@@ -21,11 +21,15 @@
 {
     var x=defineMainProjectItems();
     realEstate(x);
+
+    ///// ADDITIONAL functions to call in RED&BLUE
     // formatPhotosComp(x);
     // fitSoundOnPhotosComp();
+
+    ///// ADDITIONAL functions to call in TRANSPARENT
     fitSoundOnAll();
 
-    // sc_constructGS(x);  // this function creates the google
+    // sc_constructGS(x);  // this function creates the google sheet thingy
 }
 
 function realEstate(x){
@@ -92,7 +96,7 @@ function slicer(x){
     // alert(mainLayers.length);
 
     if (x.photoComp) {//if naming was done correctly start
-        // var pcLayer = getByName(x.photoComp.layers,"Photos Comp");
+        
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
@@ -100,8 +104,8 @@ function slicer(x){
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
 
-        ///// finding a different way to cut the end of the "Photos Comp"  14/12/2020
-        ///// modifying it to work also without Marker Comments  21/12/2020 
+        ///// This if statement arranges the layers in [0_Main Comp] in different ways
+        ///// depending if the AE project has test pictures or not   23/12/2020
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
@@ -123,10 +127,8 @@ function slicer(x){
             var nextLayer = mainLayers[i+1];         
             nextLayer.startTime=layer.outPoint -gap;
             }
-        }
+        } 
 
-        
- 
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
     }
@@ -134,10 +136,9 @@ function slicer(x){
 
 // END ARRANGE SCLICER003    
 
-///// getLoc_TestPhoto has been modified on 9/12/2020 to take into account the double
-///// length of the video layer
+///// modified on 9/12/2020 to take into account the double length of the video layer
 
-function getLoc_TestPhoto(x){//get the composition number where test photo is at
+function getLoc_TestPhoto(x){//get the layer number where test photo is at
 
     var pcLayer=x.allLayers['Photos Comp'].comp;
     var photoLayers = pcLayer.layers;

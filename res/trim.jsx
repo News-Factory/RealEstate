@@ -1,8 +1,8 @@
 ﻿#include "sync.jsx";
-//#include "get.jsx";
+#include "get.jsx";
 
 function trimByAudio(containingComp,layer,threshold,inPadding,outPadding,maxBool){
-    //The maxBool boolean will determin if we're going to work with a maximum limit
+    //The maxBool boolean will determine if we're going to work with a maximum limit
     //With limitations on in and out
     //inPadding,outPadding are in keyFrames, not seconds
     var audioInOut = getAudioAnalysis(layer,containingComp,threshold);
@@ -131,7 +131,7 @@ function trimComplexIntroLayer(mainComp,introLayer,introComp,padding){ //310520 
     
     var audioData = getAudioAnalysis(introLayer,mainComp,padding.threshold);
     var audioOut = audioData["out"];
-    setOutPoint_B(introLayer,audioOut,padding.presentorOut,audioOut+100); //setOutPoint_B(layer,threshOut,outPadding,maxOut) //inside: get.jsx
+    setOutPoint_B(introLayer,audioOut,padding.presentorOut,audioOut+100);  //inside: get.jsx
     //alert("Done with complex intro");
 }
 
