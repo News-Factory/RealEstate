@@ -16,13 +16,13 @@ function setScaleDurationMarkersForPhotosComp(x){
 
     // setting a conditional statement based on how many photo layers there are 16/12/2020
     if (layers.length <= 5){
-        picDur = 7;
+        picDur = 7.4;
         padding = 2;
     }
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
     //var i=1;
-    for (var i=1; i<=layers.length; i++){
+    for (var i=layers.length; i>0; i--){
         var roomPx=layers[i].name; //CompLayer
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
@@ -43,7 +43,7 @@ function setScaleDurationMarkersForPhotosComp(x){
         if (i > 1){
             var layerB = layers[i];
             var layerA = layers[i-1];
-            syncOutPointToInPoint(layerA,layerB,padding);
+            syncOutPointToInPoint(layerB,layerA,padding);
         }
     }
     //Once we're done scaling and setting durations it's time to relocate the markers
@@ -60,13 +60,13 @@ function setScaleDurationMarkersForVideosComp(x){
             // alert(layers.length);
             
             //durations:
-            var vidDur=7;
+            var vidDur=6;
             var picDur=7;
             var padding = 2;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
             //var i=1;
-            for (var i=1; i<=layers.length; i++){
+            for (var i=layers.length; i>0; i--){
                 var video_x=layers[i].name; //CompLayer
                 var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
                 var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
@@ -83,7 +83,7 @@ function setScaleDurationMarkersForVideosComp(x){
                 if (i > 1){
                     var layerB = layers[i];
                     var layerA = layers[i-1];
-                    syncOutPointToInPoint(layerA,layerB,padding);
+                    syncOutPointToInPoint(layerB,layerA,padding);
                 }
             }
         }
