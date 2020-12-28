@@ -53,8 +53,3 @@ function insertAll_onoff(x,found){
         if (x.tog.alertWhereWeAre){alert('Footage visibility in layer: '+layer.name+' was set to: '+onoffBoolean.toString());}
     }
 }
-/*
-function apartmentIconsSwitch(x){
-    var layers=x.allLayers['Apartment Icons'].comp.layers;
-
-}*/

@@ -21,12 +21,15 @@
 {
     var x=defineMainProjectItems();
     realEstate(x);
-    formatPhotosComp(x);
-    // sc_constructGS(x);
 
-    // var PhotosComp=x.allLayers['Photos Comp'].comp;
-    // var layer=PhotosComp.layers[5];
-    // alert(layer.outPoint);
+    ///// ADDITIONAL functions to call in RED&BLUE
+    formatPhotosComp(x);
+    fitSoundOnPhotosComp();
+
+    ///// ADDITIONAL functions to call in TRANSPARENT
+    // fitSoundOnAll();
+
+    // sc_constructGS(x);  // this function creates the google sheet thingy
 }
 
 function realEstate(x){
@@ -53,6 +56,7 @@ function realEstate(x){
 
     //Stage04
     setScaleDurationMarkersForPhotosComp(x);
+    
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
     
@@ -90,55 +94,42 @@ function onOffProcedure(found){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
-    //var photosComp = getByName(x.comps,"Photos Comp");
+    // alert(mainLayers.length);
 
     if (x.photoComp) {//if naming was done correctly start
-        // var pcLayer = getByName(x.photoComp.layers,"Photos Comp");
+        
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        alert(howMany_Pictures);
-
-
+        var gap = 0.75;
         var locTestPhoto = getLoc_TestPhoto(x);
-        ///// finding a different way to cut the end of the "Photos Comp"  14/12/2020
-        ///// modifying it to work also without "Test Photo"  21/12/2020 
+        // alert(locTestPhoto);
+
+        ///// This if statement arranges the layers in [0_Main Comp] in different ways
+        ///// depending if the AE project has test pictures or not   23/12/2020
         if(locTestPhoto){
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto -1)];        
-        } else {
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(howMany_Pictures)];
-        }
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
+            pcLayer = getByName(mainLayers,"1_Photos Comp");  
+            pcLayer.outPoint = lastPic.outPoint - gap*2;     
+            // alert(lastPic.outPoint);
 
-        pcLayer = getByName(mainLayers,"1_Photos Comp");
-        pcLayer.outPoint = lastPic.outPoint;
-
-        /////for (var i=5; i>1; i--){
-        for (var i=4; i>1; i--){
+            for (var i=1; i<4; i++){
             var layer = mainLayers[i];
-            // alert(layer.name);
-            var marker = layer.property("Marker");
-            var numMarkers = marker.numKeys; //either 2 or 1
-            var firstComment = marker.keyValue(1).comment;
-            var secondComment = marker.keyValue(numMarkers).comment;
-            var firstMarkerTime = marker.keyTime(1);
-            var secondMarkerTime = marker.keyTime(numMarkers);
-    
-            //define previous layer marker params
-            var prevLayer = mainLayers[i+1];
-            var prevLayerMarker = prevLayer.property("Marker");
-            var prevNumMarkers = prevLayerMarker.numKeys; //either 2 or 1
-            var prevLayerMarkerLastComment = prevLayerMarker.keyValue(prevNumMarkers).comment;
-        
-            //set locations based on marker comments
-            if (prevLayerMarkerLastComment==firstComment){
-                var prevLayerMarkerTime = prevLayerMarker.keyTime(prevNumMarkers);
-                var gap = firstMarkerTime-layer.startTime; //gap is calculated because layer starting point may differ from entry marker point
-                layer.startTime=prevLayerMarkerTime-gap;
-            } else{
-                layer.startTime=prevLayer.outPoint;
+            var nextLayer = mainLayers[i+1];
+            nextLayer.startTime=layer.outPoint;           
+            } 
+
+        } else {
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_1'];
+            gap = gap*2; 
+
+            for (var i=2; i<4; i++){
+            var layer = mainLayers[i];
+            var nextLayer = mainLayers[i+1];         
+            nextLayer.startTime=layer.outPoint -gap;
             }
-            
-        } // end for stage 2 
+        } 
+
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
     }
@@ -146,16 +137,15 @@ function slicer(x){
 
 // END ARRANGE SCLICER003    
 
-///// getLoc_TestPhoto has been modified on 9/12/2020 to take into account the double
-///// length of the video layer
+///// modified on 9/12/2020 to take into account the double length of the video layer
 
-function getLoc_TestPhoto(x){//get the composition number where test photo is at
+function getLoc_TestPhoto(x){//get the layer number where test photo is at
 
     var pcLayer=x.allLayers['Photos Comp'].comp;
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
-    for (var j=1; j<= howMany_Pictures; j++){
+    for (var j=howMany_Pictures; j>1; j--){
         var compName = "Room_Photo_"+j;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;

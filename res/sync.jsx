@@ -1,8 +1,8 @@
-﻿//The second section of sync.jsx will be specified functions dealing with specific cases
+﻿//The second section of sync.jsx will be specific functions dealing with specific cases
 //The first section will be a function that maps out the markers of a given layer
 
 function getMarkers(layer){
-    //A marker can have a name and cannot have a name, there can be more than one and there can be none
+    //A marker can have a name or not, there can be more than one or none
     //All of these options should be covered in this function
     //If there are no markers, will return false
     var marker=layer.marker; //returns
@@ -20,9 +20,7 @@ function getMarkers(layer){
 }
 
 function moveMarker(layer,newTime){
-    //we go with index because that's probably the best way to grab a marker
-    //relevant for layers with only one marker
-    //since AE sucks so the only way to do this is by deleting the marker and remaking it
+    
     var markers=getMarkers(layer);
     if (markers){
         var markerComment=markers[0].comment;

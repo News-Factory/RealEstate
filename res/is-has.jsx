@@ -78,7 +78,6 @@ function isNumber(text){
 }
 
 ///////////////////////////////////////////////
-
 ///// The HAS section
 
 function hasAttr(obj,attrName){

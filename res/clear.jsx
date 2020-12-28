@@ -11,7 +11,6 @@ function clearOpacity(layer){
     }
 }
 
-
 ///// clears property Keys and expression
 function clearKeys(layer,propertyName){
     layer.property(propertyName).expression='';

@@ -1,13 +1,12 @@
 
 /////  16/12/2020
-///// These are functions that fix details for text paddings/margins etc in R&B template
+///// Functions that fix details for text paddings/margins etc in R&B template
 ///// They should eventually be abandoned 
 
 function centerText_BackGroundPadding(layer){
     var textBG = x.allLayers[layer]['Text BG'];
            textBG.property('position').setValue([-10.5, -77]);
 }
-
 
 function topScrollingText_SpaceBetween(){
     // fixing yet more text variations, this time for the up scroll spaces between words
