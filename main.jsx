@@ -27,9 +27,9 @@
     // fitSoundOnPhotosComp();
 
     ///// ADDITIONAL functions to call in TRANSPARENT
-    fitSoundOnAll();
+    // fitSoundOnAll();
 
-    // sc_constructGS(x);  // this function creates the google sheet thingy
+    sc_constructGS(x);  // this function creates the google sheet thingy
 }
 
 function realEstate(x){

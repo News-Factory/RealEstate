@@ -46,7 +46,7 @@ function setScaleDurationMarkersForPhotosComp(x){
             syncOutPointToInPoint(layerB,layerA,padding);
         }
 
-        if (layers.length > 5 && i<layers.length){
+        if (layers.length>5 && i<layers.length){
             setFadeIn(innerLayer,0, 1);
         }
     }
@@ -64,9 +64,9 @@ function setScaleDurationMarkersForVideosComp(x){
             var layers=VideosComp.layers;
             
             //durations:
-            var vidDur=6.4;
+            var vidDur=6.2;
             var picDur=7;
-            var padding = 2;
+            var padding = 1.9;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
             for (var i=layers.length; i>0; i--){
