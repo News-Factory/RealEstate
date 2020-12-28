@@ -25,7 +25,7 @@ function setScaleDurationMarkersForPhotosComp(x){
         var roomPx=layers[i].name; //CompLayer
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
-        // alert(innerLayer.name);
+        // alert(layers.length);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
         setCompAndLayerDuration(innerComp,dur);
@@ -33,16 +33,21 @@ function setScaleDurationMarkersForPhotosComp(x){
         var scaleA=getLayerScale(innerLayer)['x'];
         var scaleB=scaleA*scaleFactor;
         setScaleFromTo(innerLayer,0,dur,scaleA,scaleB);
-        
+
+        // var newStartTime=layers[i].startTime;
         var newMarkerTime=layers[i].startTime+dur-1;
         moveMarker(layers[i],newMarkerTime);
 
-        setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
+        // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
 
         if (i > 1){
             var layerB = layers[i];
             var layerA = layers[i-1];
             syncOutPointToInPoint(layerB,layerA,padding);
+        }
+
+        if (layers.length > 5 && i<layers.length){
+            setFadeIn(innerLayer,0, 1);
         }
     }
     //Once we're done scaling and setting durations it's time to relocate the markers
@@ -59,7 +64,7 @@ function setScaleDurationMarkersForVideosComp(x){
             var layers=VideosComp.layers;
             
             //durations:
-            var vidDur=6;
+            var vidDur=6.4;
             var picDur=7;
             var padding = 2;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
@@ -141,7 +146,7 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
                 var scaleValue=100*(compH/layerH);
             } 
         //  alert(scaleValue + " scaleValue for " + layer.name);      
-            layer.property('Scale').setValueAtTime(1,[scaleValue,scaleValue]);
+            layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
         }
     } else {
         if(layerH!=compH || layerW!=compW){
@@ -168,12 +173,16 @@ function getLayerScale(layer){
     }
 
 function getXYZ(array){
+    
     var x=array[0];
     var y=array[1];
     var z=array[2];
     return {x:x,y:y,z:z}
     }
-
+function setFadeIn(layer,start,end){
+    layer.property('opacity').setValueAtTime(start,0);
+    layer.property('opacity').setValueAtTime(end,100);
+}
 function setFadeOut(layer,start,end){
     layer.property('opacity').setValueAtTime(start,100);
     layer.property('opacity').setValueAtTime(end,0);

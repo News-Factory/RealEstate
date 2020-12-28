@@ -1,3 +1,5 @@
+#include "scale.jsx";
+
 function insertAll(x,found){
     if (found){
         //alert('insert text');

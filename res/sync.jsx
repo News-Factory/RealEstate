@@ -76,7 +76,7 @@ function syncInPointToOutPoint(layerA,layerB,padding){
     layerA.startTime=layerB.outPoint-(layerA.inPoint-layerA.startTime)+padding;
     }
 
-function syncOutPointToInPoint(layerA,layerB,padding){  ///// added on 15/12/2020 I believe
+function syncOutPointToInPoint(layerA,layerB,padding){  ///// added on 15/12/2020 
     //syncs layerA's outPoint with layerB's inPoint
     layerB.startTime=layerA.outPoint-padding;
     }
