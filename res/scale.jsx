@@ -1,5 +1,22 @@
 #include "get.jsx"   
 
+function setDurationForIntroComp(x){
+    var introComp=x.allLayers['Intro'].comp;
+    var layers=introComp.layers;
+
+    for (var i=layers.length; i>0; i--){
+        var videoSource=getFileType(layers[i].source.name);
+        
+        if (videoSource == 'video'){
+            var videoEnd = layers[i].source.duration;
+            // alert(videoEnd);
+            introComp.duration = videoEnd;
+            // alert(introComp.time);
+        }
+    }
+
+}
+
 function setScaleDurationMarkersForPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;

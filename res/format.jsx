@@ -9,12 +9,12 @@ function formatPhotosComp(x){
     var layers=photosComp.layers;
 
     // changing the logo scale and dimension for intro /outro / details  04/12/2020
+    // var logo_Intro=x.allLayers['Intro']['logo'];
     var logo_Details=x.allLayers['Details']['logo'];
-    var logo_Intro=x.allLayers['Intro']['logo'];
     var logo_Outro=x.allLayers['Outro']['logo'];
 
+    // setLogoScaleAndPosition(logo_Intro);
     setLogoScaleAndPosition(logo_Details);
-    setLogoScaleAndPosition(logo_Intro);
     setLogoScaleAndPosition(logo_Outro);
 
     function setLogoScaleAndPosition(layer){
