@@ -7,7 +7,7 @@ function setDurationForIntroComp(x){
     for (var i=layers.length; i>0; i--){
         var videoSource=getFileType(layers[i].source.name);
         
-        if (videoSource == 'video'){
+        if (videoSource == 'video' && layers.length <=3){
             var videoEnd = layers[i].source.duration;
             // alert(videoEnd);
             introComp.duration = videoEnd;
@@ -16,6 +16,7 @@ function setDurationForIntroComp(x){
     }
 
 }
+
 
 function setScaleDurationMarkersForPhotosComp(x){
     //Main function in scale.jsx
