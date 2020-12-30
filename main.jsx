@@ -23,11 +23,11 @@
     realEstate(x);
 
     ///// ADDITIONAL functions to call in RED&BLUE
-    // formatPhotosComp(x);
-    // fitSoundOnPhotosComp();
+    formatPhotosComp(x);
+    fitSoundOnPhotosComp();
 
     ///// ADDITIONAL functions to call in TRANSPARENT
-    fitSoundOnAll();
+    // fitSoundOnAll();
 
     // sc_constructGS(x);  // this function creates the google sheet thingy
 
@@ -62,6 +62,8 @@ function realEstate(x){
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
+
+    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
     slicer(x);

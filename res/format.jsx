@@ -8,14 +8,13 @@ function formatPhotosComp(x){
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
 
-    // changing the logo scale and dimension for intro /outro / details  04/12/2020
+    // changing the logo scale and dimension for details comp, 
+    // intro and outro are videos now        30/12/2020
     // var logo_Intro=x.allLayers['Intro']['logo'];
     var logo_Details=x.allLayers['Details']['logo'];
-    var logo_Outro=x.allLayers['Outro']['logo'];
 
     // setLogoScaleAndPosition(logo_Intro);
     setLogoScaleAndPosition(logo_Details);
-    setLogoScaleAndPosition(logo_Outro);
 
     function setLogoScaleAndPosition(layer){
         layer.property('scale').setValueAtTime(0.2,[60,60,100]);

@@ -14,7 +14,6 @@ function setDurationForIntroComp(x){
             // alert(introComp.time);
         }
     }
-
 }
 
 
@@ -109,6 +108,22 @@ function setScaleDurationMarkersForVideosComp(x){
             }
         }
     }      
+}
+
+function setDurationForOutroComp(x){
+    var outroComp=x.allLayers['Outro'].comp;
+    var layers=outroComp.layers;
+
+    for (var i=layers.length; i>0; i--){
+        var videoSource=getFileType(layers[i].source.name);
+        
+        if (videoSource == 'video' && layers.length <=3){
+            var videoEnd = layers[i].source.duration;
+            // alert(videoEnd);
+            outroComp.duration = videoEnd;
+            // alert(introComp.time);
+        }
+    }
 }
 
 function setDurationDefByFileType(videoDur,restDur){
