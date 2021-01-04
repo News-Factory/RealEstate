@@ -4,16 +4,5 @@
 			"path": "."
 		}
 	],
-	"launch": {
-		"version": "0.2.0",
-		"configurations": [
-			{
-				"type": "extendscript-debug",
-				"request": "launch",
-				"name": "Ask for script name",
-				"program": "${workspaceFolder}/main.jsx",
-				"stopOnEntry": false
-			}
-		]
-	}
+	"settings": {}
 }
