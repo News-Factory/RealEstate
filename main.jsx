@@ -23,11 +23,11 @@
     realEstate(x);
 
     ///// ADDITIONAL functions to call in RED&BLUE
-    formatPhotosComp(x);
-    fitSoundOnPhotosComp();
+    // formatPhotosComp(x);
+    // fitSoundOnPhotosComp();
 
     ///// ADDITIONAL functions to call in TRANSPARENT
-    // fitSoundOnAll();
+    fitSoundOnAll();
 
     // sc_constructGS(x);  // this function creates the google sheet thingy
 
