@@ -27,9 +27,10 @@
     // fitSoundOnPhotosComp();
 
     ///// ADDITIONAL functions to call in TRANSPARENT
-    // fitSoundOnAll();
+    fitSoundOnAll();
 
-    sc_constructGS(x);  // this function creates the google sheet thingy
+    // sc_constructGS(x);  // this function creates the google sheet thingy
+
 }
 
 function realEstate(x){
@@ -55,10 +56,14 @@ function realEstate(x){
     insertAll(x,found); //set.jsx
 
     //Stage04
+    setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
+
     setScaleDurationMarkersForPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
+
+    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
     slicer(x);

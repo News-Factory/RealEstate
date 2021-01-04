@@ -49,7 +49,7 @@ function insertAll_onoff(x,found){
         //Parameters:
         var layer=found.onoff[i].layer;
         var onoffBoolean=found.onoff[i].value.toLowerCase().indexOf('on')>-1;
-        //alert(layer.name+' is set to: '+onoffBoolean.toString());
+        // alert(layer.name+' is set to: '+onoffBoolean.toString());
         if (x.tog.alertWhereWeAre){found.onoff[i].containingComp.openInViewer();}
         setVisibility(layer,onoffBoolean); //Check if this works
         if (x.tog.alertWhereWeAre){alert('Footage visibility in layer: '+layer.name+' was set to: '+onoffBoolean.toString());}
