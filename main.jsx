@@ -19,18 +19,53 @@
 //Stage06 Slicer
 
 {
-    var x=defineMainProjectItems();
-    realEstate(x);
+    // var x=defineMainProjectItems();
+    // realEstate(x);
 
-    ///// ADDITIONAL functions to call in RED&BLUE
-    // formatPhotosComp(x);
-    // fitSoundOnPhotosComp();
+    // ///// ADDITIONAL functions to call in RED&BLUE
+    // // formatPhotosComp(x);
+    // // fitSoundOnPhotosComp();
 
-    ///// ADDITIONAL functions to call in TRANSPARENT
-    fitSoundOnAll();
+    // ///// ADDITIONAL functions to call in TRANSPARENT
+    // fitSoundOnAll();
 
-    // sc_constructGS(x);  // this function creates the google sheet thingy
+    // // sc_constructGS(x);  // this function creates the google sheet thingy
 
+    batchProcess();
+}
+
+function batchProcess(){
+    app.beginSuppressDialogs();
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');
+    var processedFolder=new Folder(mommyFolderPath+'processed');
+
+    var wFiles=waitingFolder.getFiles();
+    for (var i=0; i<wFiles.length; i++){
+        var fileExt=wFiles[i].name.split('.')[1];
+        if (fileExt=='txt'){
+            var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
+            var x=defineMainProjectItems(txtFilePath);
+            var success=realEstate(x);
+
+            ///// ADDITIONAL functions to call in RED&BLUE
+            // formatPhotosComp(x);
+            // fitSoundOnPhotosComp();
+
+            ///// ADDITIONAL functions to call in TRANSPARENT
+            // fitSoundOnAll();
+
+            //sc_constructGS(x);  // this function creates the google sheet thingy
+
+            //success //move txt file
+            if (success){
+                var fileName=wFiles[i].name;
+                var dest=mommyFolderPath+processedFolder.name+'/'+fileName;
+                wFiles[i].copy(dest);
+                wFiles[i].remove();
+            }
+        }
+    }
 }
 
 function realEstate(x){
@@ -71,7 +106,24 @@ function realEstate(x){
     //checkLayersMarker(x.comps);
     //RQaddActiveItem(x);
 
-   app.endUndoGroup();   
+    app.endUndoGroup();
+
+    //save and export
+    var exportName='tempName';
+    var exportComp=x.mainComp.duplicate();
+    var resultFile = new File(paths['exports']+exportName+'.mp4');
+    var savePath = paths['saves']+exportName+'.aep';
+    exportComp.name = paths['exports']+exportName+'.mp4';
+
+    exportComp.openInViewer();
+    var renderQueue = app.project.renderQueue;
+    var render = renderQueue.items.add(exportComp);
+    render.outputModules[1].file = resultFile;
+    app.project.renderQueue.queueInAME(true);
+    app.project.save(savePath);
+    app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
+
+   return true;
 }
 
 function onOffProcedure(found){
