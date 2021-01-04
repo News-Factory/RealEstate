@@ -1,9 +1,20 @@
 ﻿#include 'get.jsx';
 //merged with readWrite 050920
 
-function defineMainProjectItems(){
+function defineMainProjectItems(txtFilePath){
     var x = {};
-    x.projFile = app.project.file;
+    x.paths=definePaths(true); //TRUE is script is in News Factory
+    x.sym=defineSymbols();
+    x.data=defineMasterObj(txtFilePath, x.sym); //An array of objects with title, value and type
+    x.dataByType=getData_byTitleValueType(x.data);
+    
+    var templateName=x.dataByType['meta'][0].value;
+    var projectFilePath=x.paths['projects']+'/'+templateName+'.aep';
+    x.projFile=File(projectFilePath);
+    alert('projFile: '+x.projFile.name);
+    app.open(x.projFile);
+
+    //x.projFile = app.project.file;
     x.items = app.project.items;   
 
     x.comps = getAllByType(x.items,"Composition");
@@ -15,10 +26,6 @@ function defineMainProjectItems(){
     x.mainComp=getMainComp(x.comps);
     x.photoComp=getByName(x.comps,"1_Photos Comp");
 
-    x.paths = definePaths(true); //TRUE is script is in News Factory
-    x.sym = defineSymbols();
-    x.data = defineMasterObj(x.paths, x.sym); //An array of objects with title, value and type
-    x.dataByType=getData_byTitleValueType(x.data);
     x.tog = defineTogglers();
     //x.log = setUpLogFile(x.paths['logFile'],x.projFile);
 
@@ -35,16 +42,21 @@ function definePaths(newsfactoryBoolean){
         //News factory paths:
         paths['drive']='G';
         paths['realEstate']=paths['drive']+':/My Drive/Real Estate Project/';
-        paths['txtFile']=paths['realEstate']+'old/OneRow/export2.txt'; //Varies according to computer, CHANGE TXT HERE according on project
+        //paths['txtFile']=paths['realEstate']+'old/OneRow/export2.txt'; //Varies according to computer, CHANGE TXT HERE according on project
         //paths['updateFile']=paths['realEstate']+'OneRow/whenUpdated.txt';    
         paths['footageFolder']=paths['drive'] + ':/My Drive/Programming/real-estate/Realestate Project 121020/(Footage)/importFolder';
-    } else {
-        //Oren paths:
-        paths['realEstate']='H:/alt Studio Dropbox/Oren Menache/News Factory/Nadlan/Realestate1/';
-        paths['txtFile']=paths['realEstate']+'export.txt';
-        paths['footageFolder']=paths['realEstate']+'(Footage)/importFolder';
+
+        //paths['waitingFolder']=paths['realEstate']+'waiting';
+        //paths['processedFolder']=paths['realEstate']+'processed';
+        paths['projects']=paths['realEstate']+'projects';
+        paths['saves']=paths['realEstate']+'saves';
+        paths['exports']=paths['realEstate']+'exports';
     }
     return paths;
+}
+
+function defineTemplate(){
+    
 }
 
 function reconstructProjectAsNamesObjects(comps){
@@ -83,10 +95,10 @@ function defineSymbols(){
     return sym;
 }
 
-function defineMasterObj(paths, sym){
+function defineMasterObj(txtFilePath, sym){
     //The more advanced version, can accept several object titles: title, value, type whereas the previous version could only accept two.
     try{
-    var txt = gettxt(paths['txtFile']);
+    var txt = gettxt(txtFilePath);
     var splitted = txt.split(sym['con']); //'title: '+title+sym['ref']+'value: '+value+sym['ref']+'type: '+type;
     
     var masterObj = [];
