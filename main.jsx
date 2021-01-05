@@ -15,8 +15,8 @@
 //Stage02 Import files into the project
 //Stage03 Insert text, footage and visibility
 //Stage04 Trim and set composition locations
-//Stage05 Set length, opacity, markers for Photos Comp
-//Stage06 Slicer
+//Stage05 Slicer
+//Stage06 Set background music ++
 
 {
     // sc_constructGS(x);  // this function creates the google sheet thingy
@@ -25,7 +25,7 @@
 }
 
 function batchProcess(){
-    // app.beginSuppressDialogs();
+    app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var waitingFolder=new Folder(mommyFolderPath+'waiting');
     var processedFolder=new Folder(mommyFolderPath+'processed');
@@ -37,7 +37,6 @@ function batchProcess(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath);
             var success=realEstate(x);
-            alert(success);
 
             //success //move txt file
             if (success){
@@ -48,6 +47,7 @@ function batchProcess(){
             }
         }
     }
+    app.endSuppressDialogs();
 }
 
 function realEstate(x){
@@ -104,7 +104,7 @@ function realEstate(x){
 
     var exportName='tempName';
     var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(dateTime+' '+exportName+'.mp4');
+    var resultFile = new File(paths['exports']+dateTime+' '+exportName+'.mp4');
     var savePath = paths['saves'] //+' '+exportName+'.aep';
     // alert(savePath);
     exportComp.name = paths['exports']+dateTime+' '+exportName+'.mp4';
@@ -222,7 +222,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
 function soundAndDetails(x){  
 
     var template = x.projFile.name.split('.')[0];
-    alert(template);
+    // alert(template);
     if (template === 'T-W'){
         fitSoundOnAll(x);
     }
