@@ -109,10 +109,12 @@ function realEstate(x){
     app.endUndoGroup();
 
     //save and export
+    paths=definePaths(true);
     var exportName='tempName';
     var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(paths['exports']+exportName+'.mp4');
-    var savePath = paths['saves']+exportName+'.aep';
+    var resultFile = new File(paths['exports']+' '+exportName+'.mp4');
+    var savePath = paths['saves']; //+ ' ' +exportName+'.aep';
+    alert(savePath);
     exportComp.name = paths['exports']+exportName+'.mp4';
 
     exportComp.openInViewer();
