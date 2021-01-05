@@ -19,23 +19,13 @@
 //Stage06 Slicer
 
 {
-    // var x=defineMainProjectItems();
-    // realEstate(x);
-
-    // ///// ADDITIONAL functions to call in RED&BLUE
-    // // formatPhotosComp(x);
-    // // fitSoundOnPhotosComp();
-
-    // ///// ADDITIONAL functions to call in TRANSPARENT
-    // fitSoundOnAll();
-
-    // // sc_constructGS(x);  // this function creates the google sheet thingy
+    // sc_constructGS(x);  // this function creates the google sheet thingy
 
     batchProcess();
 }
 
 function batchProcess(){
-    app.beginSuppressDialogs();
+    // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var waitingFolder=new Folder(mommyFolderPath+'waiting');
     var processedFolder=new Folder(mommyFolderPath+'processed');
@@ -47,15 +37,7 @@ function batchProcess(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath);
             var success=realEstate(x);
-
-            ///// ADDITIONAL functions to call in RED&BLUE
-            // formatPhotosComp(x);
-            // fitSoundOnPhotosComp();
-
-            ///// ADDITIONAL functions to call in TRANSPARENT
-            // fitSoundOnAll();
-
-            //sc_constructGS(x);  // this function creates the google sheet thingy
+            alert(success);
 
             //success //move txt file
             if (success){
@@ -106,23 +88,33 @@ function realEstate(x){
     //checkLayersMarker(x.comps);
     //RQaddActiveItem(x);
 
+    // Stage06
+    soundAndDetails(x);
+
     app.endUndoGroup();
 
     //save and export
     paths=definePaths(true);
+
+    // define date and hour for the export name
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes();
+    var dateTime = date+' '+time;
+
     var exportName='tempName';
     var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(paths['exports']+' '+exportName+'.mp4');
-    var savePath = paths['saves']; //+ ' ' +exportName+'.aep';
-    alert(savePath);
-    exportComp.name = paths['exports']+exportName+'.mp4';
+    var resultFile = new File(dateTime+' '+exportName+'.mp4');
+    var savePath = paths['saves'] //+' '+exportName+'.aep';
+    // alert(savePath);
+    exportComp.name = paths['exports']+dateTime+' '+exportName+'.mp4';
 
     exportComp.openInViewer();
     var renderQueue = app.project.renderQueue;
     var render = renderQueue.items.add(exportComp);
     render.outputModules[1].file = resultFile;
     app.project.renderQueue.queueInAME(true);
-    app.project.save(savePath);
+    app.project.save(resultFile);
     app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
 
    return true;
@@ -224,3 +216,18 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
     }
 }
 
+
+// 05/01/2020 recognizes what kind of template we are working on and 
+// calls the last functions needed to fix the sound composition and some other last details
+function soundAndDetails(x){  
+
+    var template = x.projFile.name.split('.')[0];
+    alert(template);
+    if (template === 'T-W'){
+        fitSoundOnAll(x);
+    }
+    else if (template === 'R&B'){
+        formatPhotosComp(x);
+        fitSoundOnPhotosComp(x);
+    }
+}

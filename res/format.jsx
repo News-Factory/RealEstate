@@ -55,7 +55,7 @@ function formatPhotosComp(x){
 
 
 // sets the right fade in/out for the music going on Photos Comp  08/12/2020
-function fitSoundOnPhotosComp(){
+function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
     var photoComp=x.allLayers['0_Main Comp']['1_Photos Comp'];
     var photoCompStart = photoComp.inPoint; //inPoint
@@ -72,7 +72,7 @@ function fitSoundOnPhotosComp(){
     xFadeOut(backgroundSong, photoCompEnd, 4, -20, -60);
 }
 
-function fitSoundOnAll(){
+function fitSoundOnAll(x){
     var introComp = x.allLayers['0_Main Comp']['Intro'];
     var outroComp = x.allLayers['0_Main Comp']['Outro'];
     var introCompStart = introComp.inPoint; //intro inPoint
