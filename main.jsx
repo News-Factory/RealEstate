@@ -20,7 +20,6 @@
 
 {
     // sc_constructGS(x);  // this function creates the google sheet thingy
-
     batchProcess();
 }
 
@@ -212,26 +211,26 @@ function soundAndDetails(x){
 
 function renderIt(x){
     //save and export
-    paths=definePaths(true);
+    //paths=definePaths(true);
 
     // define date and hour for the export name
-    var today = new Date();
-    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-    var time = today.getHours() + "-" + today.getMinutes()+ "-" + today.getSeconds();
-    var dateTime = date+' '+time;
+    var today=new Date();
+    var date=today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time=today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds();
+    var dateTime=date+' '+time;
 
     var exportName='tempName';
     var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(paths['exports']+dateTime+exportName+'.mp4');
-    var savePath = paths['saves']; //+' '+exportName+'.aep';
+    var resultFile = new File(x.paths['exports']+'/'+dateTime+exportName+'.mp4');
+    var savePath = x.paths['saves']; //+' '+exportName+'.aep';
     // alert(savePath);
-    exportComp.name = paths['exports']+dateTime+exportName+'.mp4';   //paths['exports']+
+    exportComp.name = x.paths['exports']+'/'+dateTime+exportName+'.mp4';   //paths['exports']+
 
     exportComp.openInViewer();
-    var renderQueue = app.project.renderQueue;
-    var render = renderQueue.items.add(exportComp);
-    render.outputModules[1].file = resultFile;
+    var renderQueue=app.project.renderQueue;
+    var render=renderQueue.items.add(exportComp);
+    render.outputModules[1].file=resultFile;
     app.project.renderQueue.queueInAME(true);
-    // app.project.save(resultFile);
+    //app.project.save(resultFile);
     app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
 }
