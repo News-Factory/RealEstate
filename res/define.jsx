@@ -49,7 +49,7 @@ function definePaths(newsfactoryBoolean){
         //paths['waitingFolder']=paths['realEstate']+'waiting';
         //paths['processedFolder']=paths['realEstate']+'processed';
         paths['projects']=paths['realEstate']+'projects';
-        paths['saves']=paths['realEstate']+'saves';
+        paths['saved']=paths['realEstate']+'saved';
         paths['exports']=paths['realEstate']+'exports';
     }
     return paths;

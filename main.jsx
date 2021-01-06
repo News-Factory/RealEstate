@@ -37,17 +37,19 @@ function batchProcess(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath);
             var success=realEstate(x);
-
-            //success //move txt file
-            if (success){
+            
+            // realExtate success activates the rendering queue and moves txt files
+            if (success){                
+                renderIt(x);
+                
                 var fileName=wFiles[i].name;
                 var dest=mommyFolderPath+processedFolder.name+'/'+fileName;
                 wFiles[i].copy(dest);
-                wFiles[i].remove();
+                wFiles[i].remove();              
             }
         }
     }
-    app.endSuppressDialogs();
+    app.endSuppressDialogs(alert);
 }
 
 function realEstate(x){
@@ -92,30 +94,6 @@ function realEstate(x){
     soundAndDetails(x);
 
     app.endUndoGroup();
-
-    //save and export
-    paths=definePaths(true);
-
-    // define date and hour for the export name
-    var today = new Date();
-    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    var time = today.getHours() + ":" + today.getMinutes();
-    var dateTime = date+' '+time;
-
-    var exportName='tempName';
-    var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(paths['exports']+dateTime+' '+exportName+'.mp4');
-    var savePath = paths['saves'] //+' '+exportName+'.aep';
-    // alert(savePath);
-    exportComp.name = paths['exports']+dateTime+' '+exportName+'.mp4';
-
-    exportComp.openInViewer();
-    var renderQueue = app.project.renderQueue;
-    var render = renderQueue.items.add(exportComp);
-    render.outputModules[1].file = resultFile;
-    app.project.renderQueue.queueInAME(true);
-    app.project.save(resultFile);
-    app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
 
    return true;
 }
@@ -230,4 +208,30 @@ function soundAndDetails(x){
         formatPhotosComp(x);
         fitSoundOnPhotosComp(x);
     }
+}
+
+function renderIt(x){
+    //save and export
+    paths=definePaths(true);
+
+    // define date and hour for the export name
+    var today = new Date();
+    var date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+    var time = today.getHours() + "-" + today.getMinutes()+ "-" + today.getSeconds();
+    var dateTime = date+' '+time;
+
+    var exportName='tempName';
+    var exportComp=x.mainComp.duplicate();
+    var resultFile = new File(paths['exports']+dateTime+exportName+'.mp4');
+    var savePath = paths['saves']; //+' '+exportName+'.aep';
+    // alert(savePath);
+    exportComp.name = paths['exports']+dateTime+exportName+'.mp4';   //paths['exports']+
+
+    exportComp.openInViewer();
+    var renderQueue = app.project.renderQueue;
+    var render = renderQueue.items.add(exportComp);
+    render.outputModules[1].file = resultFile;
+    app.project.renderQueue.queueInAME(true);
+    // app.project.save(resultFile);
+    app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
 }
