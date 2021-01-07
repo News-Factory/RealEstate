@@ -1,8 +1,5 @@
-///// Here there are the functions that CLEAR some property
-///// or keys/expressions from the layers
+///// Functions that CLEAR some property or keys/expressions from the layers  14/12/2020
 
-
-///// clears opacity values
 function clearOpacity(layer){
     var opacity=layer.property('opacity');
     var numKeys=opacity.numKeys;
@@ -11,7 +8,6 @@ function clearOpacity(layer){
     }
 }
 
-///// clears property Keys and expression
 function clearKeys(layer,propertyName){
     layer.property(propertyName).expression='';
     var numKeys=layer.property(propertyName).numKeys;
@@ -20,9 +16,8 @@ function clearKeys(layer,propertyName){
     }
 }
 
-///// function to clear markers of a composition or layer    14/12/2020
 function clearMarkers(layer){
-    var marker=layer.marker; //returns
+    var marker=layer.marker; 
     var numMarkers=marker.numKeys;
     for(m = 0; m < numMarkers; m++){
         marker.removeKey(1);

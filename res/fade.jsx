@@ -1,7 +1,7 @@
 function fade(layer,startAt,endAt,duration,startVal,endVal){
     //Only ONE of params startAt and endAt should be inputted
-    //startAt is the time to ADD to the beginning of the audio file- this is where fade will begin
-    //endAt is the time to SUBTRACT from the end of the audio file- this is where fade will end
+    //startAt is the time to ADD to the beginning of the audio file- 
+    //endAt is the time to SUBTRACT from the end of the audio file-
     //the irrelevant value should be null
     //it's best to use functions fadeIn and fadeOut which use this function
     if (startAt!=null){
@@ -11,28 +11,19 @@ function fade(layer,startAt,endAt,duration,startVal,endVal){
         var relativeEndTime=layer.outPoint-endAt;
         var relativeStartTime=relativeEndTime-duration;
     }
-    // alert(layer.inPoint);
-    // alert(layer.outPoint);
-
+    
     layer.property('Audio Levels').setValueAtTime(relativeStartTime,[startVal,startVal]);
     layer.property('Audio Levels').setValueAtTime(relativeEndTime,[endVal,endVal]);
 }
 
 function xFade(layer,startAt,endAt,duration,startVal,endVal){ // it's the same concept as fade but applied as if it was an Xfade
-    //Only ONE of params startAt and endAt should be inputted
-    //startAt is the time to ADD to the beginning of the audio file- this is where fade will begin
-    //endAt is the time to SUBTRACT from the end of the audio file- this is where fade will end
-    //the irrelevant value should be null
-    //it's best to use functions fadeIn and fadeOut which use this function
     if (startAt!=null){
         var relativeStartTime=layer.inPoint+startAt - duration/2;
         var relativeEndTime=relativeStartTime+duration;
     } else {
-        var relativeEndTime= endAt + duration/2;   // layer.outPoint-
+        var relativeEndTime= endAt + duration/2;   
         var relativeStartTime=relativeEndTime-duration;
     }
-    // alert(layer.inPoint);
-    // alert(layer.outPoint);
 
     layer.property('Audio Levels').setValueAtTime(relativeStartTime,[startVal,startVal]);
     layer.property('Audio Levels').setValueAtTime(relativeEndTime,[endVal,endVal]);
@@ -63,7 +54,3 @@ function fadeOut_fromEnd(layer,duration){
     fadeOut(layer,0,duration,0,-100);
 }
 
-function fadeIn_fromStart_fadeOut_fromEnd(layer,duration){
-    fadeIn(layer,0,duration,-100,0);
-    fadeOut(layer,0,duration,0,-100);
-}

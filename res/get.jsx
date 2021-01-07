@@ -1,9 +1,7 @@
 ﻿#include "is-has.jsx";
-//merged with import 050920
 
 function getFileType(fileName){
-    //Recognize filetypes by extention
-    //Consider replacing "isLegitFileType"
+    //Recognize filetypes by extension
     var fileTypes=[];
     fileTypes.push({ext:'txt',type:'text'});
     fileTypes.push({ext:'png',type:'pic'});
@@ -14,7 +12,7 @@ function getFileType(fileName){
     fileTypes.push({ext:'mov',type:'video'});
     fileTypes.push({ext:'mxf',type:'video'});
     fileTypes.push({ext:'flv',type:'video'});
-    //fileTypes.push({ext:'txt',type:'text'});
+
     fileType=fileName.toString().toLowerCase().split('.')[1];
     for (var i=0; i<fileTypes.length; i++){
         if (fileType==fileTypes[i].ext){
@@ -44,7 +42,6 @@ function getMainComp(allComps){
 
 function getAllByType(inArray,type){
     //Folder / Composition / Footage
-    //returns array
     var res = [];    
     for (var i=1; i<=inArray.length; i++){
         if (inArray[i].typeName==type){
@@ -57,7 +54,6 @@ function getAllByType(inArray,type){
 function getData_byTitleValueType(data){
     //returns the text file sorted into the following types: 19/10/2020
 
-    // undefined in var types only makes the program run, needs to be fixed/debugged
     var types = ["info","vid","pic","sound","text","onoff","meta","null", "undefined"];
     var res = {};
     for (var i=0; i<types.length; i++){res[types[i]]=[];} //Make empty arrays //res['info']=[],res['vid']=[]...
@@ -71,7 +67,6 @@ function getData_byTitleValueType(data){
     }
     return res;
 
-    // this alert is to show how many undefined data there are
     var log='The following titles in the master sheet are undefined:\n';
     for (var i=0; i<res['undefined'].length; i++){
         log+=res['undefined'][i].title+'\n';
@@ -95,11 +90,9 @@ function getAllLayersByType(allComps){
             } else {
                 if (isFootageLayer(layer)){
                     all.av.push({containingComp:layer.containingComp,layer:layer});
-                    //all.av.push(layer);
                 } else {
                 if (isTextLayer(layer)){
                     all.text.push({containingComp:layer.containingComp,layer:layer});
-                    //all.text.push(layer);
             }}}
         }
     }
@@ -109,8 +102,7 @@ function getAllLayersByType(allComps){
 }
 
 function getByName(inArray,name){
-    try {
-        //for (var i=0; i<inArray.length; i++) ~~ inArray[0] dosen`t exist, itg starts from index 1        
+    try {  
         for (var i=0; i<inArray.length; i++){
             if (inArray[i].name==name){                
                 return inArray[i];
