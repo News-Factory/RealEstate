@@ -224,7 +224,7 @@ function renderIt(x){
     var resultFile = new File(x.paths['exports']+'/'+dateTime+exportName+'.mp4');
     var savePath = x.paths['saves']; //+' '+exportName+'.aep';
     // alert(savePath);
-    exportComp.name = x.paths['exports']+'/'+dateTime+exportName+'.mp4';   //paths['exports']+
+    exportComp.name = x.paths['exports']+'/'+dateTime+exportName+'.mp4'; //paths['exports']+
 
     exportComp.openInViewer();
     var renderQueue=app.project.renderQueue;
