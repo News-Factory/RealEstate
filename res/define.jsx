@@ -1,5 +1,4 @@
 ﻿#include 'get.jsx';
-//merged with readWrite 050920
 
 function defineMainProjectItems(txtFilePath){
     var x = {};

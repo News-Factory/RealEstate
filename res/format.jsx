@@ -10,7 +10,6 @@ function formatPhotosComp(x){
 
     // changing the logo scale and dimension for details comp, 
     // intro and outro are videos now        30/12/2020
-    // var logo_Intro=x.allLayers['Intro']['logo'];
     var logo_Details=x.allLayers['Details']['logo'];
 
     // setLogoScaleAndPosition(logo_Intro);
@@ -36,7 +35,6 @@ function formatPhotosComp(x){
         //remove expressions and reset scale
         var layer=x.allLayers[roomPhotoLayerName]['RoomP'+i];
         layer.property('scale').expression='';
-        // layer.property('scale').setValue([100,100]);
         
         //remove opacity
         var Room_Photo_i_layer=x.allLayers['Photos Comp']['Room_Photo_'+i];
