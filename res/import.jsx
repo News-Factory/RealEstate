@@ -7,8 +7,10 @@
         //run per avtype
         var avtype=avtypes_forSetFootage[i];
         for (var j=0; j<found[avtype].length; j++){
-            var fileName=found[avtype][j].value;
-            var filePath=x.paths['footageFolder']+'/'+fileName;
+            //var fileName=found[avtype][j].value;
+            //var filePath=x.paths['footageFolder']+'/'+fileName;
+            var filePath=found[avtype][j].value;
+            var fileName=filePath.split('\\')[8];
             var file=importSingleFile(filePath,x['importFolder']);
             if (file){ //Now we create a file reference
                 found[avtype][j].file=file;

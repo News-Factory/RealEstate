@@ -211,7 +211,6 @@ function soundAndDetails(x){
 
 function renderIt(x){
     //save and export
-    //paths=definePaths(true);
 
     // define date and hour for the export name
     var today=new Date();

@@ -8,6 +8,7 @@ function defineMainProjectItems(txtFilePath){
     x.dataByType=getData_byTitleValueType(x.data);
     
     var templateName=x.dataByType['meta'][0].value;
+    alert(templateName);
     var projectFilePath=x.paths['projects']+'/'+templateName+'.aep';
     x.projFile=File(projectFilePath);
     alert('projFile: '+x.projFile.name);
@@ -55,7 +56,6 @@ function definePaths(newsfactoryBoolean){
 }
 
 function defineTemplate(){
-    
 }
 
 function reconstructProjectAsNamesObjects(comps){
