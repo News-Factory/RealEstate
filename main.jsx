@@ -200,10 +200,10 @@ function soundAndDetails(x){
 
     var template = x.projFile.name.split('.')[0];
     // alert(template);
-    if (template === 'T-W'){
+    if (template === 'Transparent'){
         fitSoundOnAll(x);
     }
-    else if (template === 'R&B'){
+    else if (template === 'Red & Blue'){
         formatPhotosComp(x);
         fitSoundOnPhotosComp(x);
     }

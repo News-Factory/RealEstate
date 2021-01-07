@@ -6,6 +6,7 @@ function getFileType(fileName){
     fileTypes.push({ext:'txt',type:'text'});
     fileTypes.push({ext:'png',type:'pic'});
     fileTypes.push({ext:'jpg',type:'pic'});
+    fileTypes.push({ext:'jpeg',type:'pic'});
     fileTypes.push({ext:'mp3',type:'sound'});
     fileTypes.push({ext:'wav',type:'sound'});
     fileTypes.push({ext:'mp4',type:'video'});
@@ -61,7 +62,7 @@ function getData_byTitleValueType(data){
     for (var i=0; i<data.length; i++){
         if (isFullObject(data[i])){
 
-            // alert('i: '+i+' title: '+data[i]['title']);
+            // alert('i: '+i+' title: '+data[i]['title']+' value: '+data[i]['value']);
             res[data[i]['type']].push({title:data[i]['title'],value:data[i]['value']});    
         }
     }
