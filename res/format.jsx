@@ -45,10 +45,10 @@ function formatPhotosComp(x){
         Room_Photo_i_layer.property('opacity').setValue(100);
 
         // this function is in the style.jsx file
-        centerText_BackGroundPadding(roomPhotoLayerName);
+        centerText_BackGroundPadding(x,roomPhotoLayerName);
     }
     // this function is in the style.jsx file
-    topScrollingText_SpaceBetween();
+    topScrollingText_SpaceBetween(x);
 }
 
 

@@ -8,6 +8,9 @@ function insertAll(x,found){
         insertAll_onoff(x,found);
         //alert('insert footage');
         insertAll_footage(x,found);
+        //alert('insert sounds');
+        insertAll_sounds(x,found);
+
     } else {
         alert('Insert failed');
     }
@@ -26,7 +29,7 @@ function insertAll_text(x,found){
 
 function insertAll_footage(x,found){
     var avtypes=defineAVTypes();
-    for (var j=0; j<avtypes.length; j++){
+    for (var j=0; j<avtypes.length-1; j++){
         var arr=found[avtypes[j]];
         for (var i=0; i<arr.length; i++){
             //Parameters:
@@ -42,6 +45,25 @@ function insertAll_footage(x,found){
         }
     }
 }
+
+function insertAll_sounds(x,found){
+    var avtypes=defineAVTypes();
+    var arr=found[avtypes[2]];
+    for (var i=0; i<arr.length; i++){
+        //Parameters:
+        if (x.tog.alertWhereWeAre){
+            arr[i].containingComp.openInViewer();
+        }
+        setFootage(arr[i].layer,arr[i].file);
+        // fitToComp(arr[i].layer);
+        //setDurationByType(arr[i]);
+        if (x.tog.alertWhereWeAre){
+            alert('Footage was inserted in layer: '+layer.name);
+        }
+    }
+    
+}
+
 
 function insertAll_onoff(x,found){
     //alert('found.onoff.length: '+found.onoff.length);

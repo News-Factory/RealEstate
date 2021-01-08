@@ -28,20 +28,25 @@ function setScaleDurationMarkersForPhotosComp(x){
     var padding = 1;
     //scales:
     var scaleFactor=1.05;
+    var fixForm = 0;  // needed to use the google Form files folders 08/01/2020
 
     ///// setting conditional statement based on how many photo layers there are 16/12/2020
-    //// this is done to make the function work both on R&B and TRANSPARENT
+    //// this is done to make the function work on TRANSPARENT
     if (layers.length <= 5){
         picDur = 7.4;
         padding = 2;
+        fixForm = 20;
     }
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
     //var i=1;
     for (var i=layers.length; i>0; i--){
+        // alert(i);
+        // alert(fixForm);
+        var j = i+fixForm;
         var roomPx=layers[i].name; //CompLayer
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
-        var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
+        var innerLayer=x.allLayers[roomPx]['RoomP'+j]; //Layer RoomPX
         // alert(layers.length);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
@@ -178,7 +183,7 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
             } else {
                 var scaleValue=100*(compH/layerH);
             } 
-        //  alert(scaleValue + " scaleValue for " + layer.name);      
+            // alert(scaleValue + " scaleValue for " + layer.name);      
             layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
         }
     } else {

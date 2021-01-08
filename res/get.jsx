@@ -55,13 +55,16 @@ function getAllByType(inArray,type){
 function getData_byTitleValueType(data){
     //returns the text file sorted into the following types: 19/10/2020
 
-    var types = ["info","vid","pic","sound","text","onoff","meta","null", "undefined"];
+    var types = ["info","vid","pic","sound","text","onoff","meta","null"];
     var res = {};
-    for (var i=0; i<types.length; i++){res[types[i]]=[];} //Make empty arrays //res['info']=[],res['vid']=[]...
+    for (var i=0; i<types.length; i++){
+        res[types[i]]=[];
+        } //Make empty arrays //res['info']=[],res['vid']=[]...
 
     for (var i=0; i<data.length; i++){
         if (isFullObject(data[i])){
 
+            // alert(res[data[i]['type']]);
             // alert('i: '+i+' title: '+data[i]['title']+' value: '+data[i]['value']);
             res[data[i]['type']].push({title:data[i]['title'],value:data[i]['value']});    
         }

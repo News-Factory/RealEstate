@@ -169,19 +169,28 @@ function slicer(x){
 
 function getLoc_TestPhoto(x){//get the layer number where test photo is at
 
+    var template = x.projFile.name.split('.')[0];
+    var fixForm = 0;   // needed to use the google Form files folders 08/01/2020
+
+    if (template === 'Transparent'){
+        fixForm = 20;
+    }
+
     var pcLayer=x.allLayers['Photos Comp'].comp;
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
     for (var j=howMany_Pictures; j>1; j--){
-        var compName = "Room_Photo_"+j;
+        var f =j+fixForm;
+        var compName = "Room_Photo_"+f;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;
+        alert(compName);
 
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
         
-            if (layerName === "RoomP"+j){
+            if (layerName === "RoomP"+f){
                 var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
                 var imageSourceType = getFileType(imageSourceName);
 
@@ -197,13 +206,12 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
 // 05/01/2020 recognizes what kind of template we are working on and 
 // calls the last functions needed to fix the sound composition and some other last details
 function soundAndDetails(x){  
-
     var template = x.projFile.name.split('.')[0];
     // alert(template);
     if (template === 'Transparent'){
         fitSoundOnAll(x);
     }
-    else if (template === 'Red & Blue'){
+    else if (template === 'Red&Blue'){
         formatPhotosComp(x);
         fitSoundOnPhotosComp(x);
     }
