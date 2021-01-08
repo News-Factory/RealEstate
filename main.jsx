@@ -185,7 +185,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
         var compName = "Room_Photo_"+f;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;
-        alert(compName);
+        // alert(compName);
 
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
