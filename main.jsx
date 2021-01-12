@@ -92,7 +92,6 @@ function realEstate(x){
 
     // Stage06
     soundAndDetails(x);
-    iconsChecksRB(x)
 
     app.endUndoGroup();
 
@@ -233,6 +232,7 @@ function soundAndDetails(x){
     else if (template === 'Red&Blue'){
         // alert('hi');
         formatPhotosComp(x);
+        iconsChecksRB(x)
         fitSoundOnPhotosComp(x);
         fitSoundOnIntroOutro(x);
     }
