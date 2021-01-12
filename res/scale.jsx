@@ -69,7 +69,7 @@ function setScaleDurationMarkersForPhotosComp(x){
         }
 
         if (layers.length>5 && i<layers.length){
-            setFadeIn(innerLayer,0, 1);
+            setFadeIn(innerLayer,0, 0.5);
         }
     }
     //Once we're done scaling and setting durations it's time to relocate the markers

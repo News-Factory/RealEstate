@@ -3,6 +3,17 @@
 ///// Functions that fix details for text paddings/margins etc in R&B template
 ///// They should eventually be abandoned 
 
+function setLogoScaleAndPositionRB(layer){
+        layer.property('scale').setValueAtTime(0.2,[60,60,100]);
+        layer.property('position').setValueAtTime(0.2, [550, 550]);
+    }
+
+function setLogoScaleAndPositionTR(layer){
+        layer.property('scale').setValueAtTime(0.2,[50,50,100]);
+        layer.property('position').setValueAtTime(0.2, [290, 335]);
+    }
+
+
 function centerText_BackGroundPadding(x,layer){
     var textBG = x.allLayers[layer]['Text BG'];
     textBG.property('position').setValue([-10.5, -77]);

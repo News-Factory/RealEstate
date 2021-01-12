@@ -2,6 +2,12 @@
 #include "clear.jsx";
 #include "style.jsx";
 
+function formatLogo(x){
+
+    var logo_Details =x.allLayers['Flat Logo']['logo'];
+    setLogoScaleAndPositionTR(logo_Details);
+}
+
 function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
 
@@ -13,12 +19,7 @@ function formatPhotosComp(x){
     var logo_Details=x.allLayers['Details']['logo'];
 
     // setLogoScaleAndPosition(logo_Intro);
-    setLogoScaleAndPosition(logo_Details);
-
-    function setLogoScaleAndPosition(layer){
-        layer.property('scale').setValueAtTime(0.2,[60,60,100]);
-        layer.property('position').setValueAtTime(0.2, [550, 550]);
-    }
+    setLogoScaleAndPositionRB(logo_Details);
 
     for (var i=1; i<=layers.length; i++){
         var roomPhotoLayerName=layers[i].name;
@@ -56,18 +57,47 @@ function formatPhotosComp(x){
 function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
     var photoComp=x.allLayers['0_Main Comp']['1_Photos Comp'];
+    var detailComp=x.allLayers['0_Main Comp']['Details'];
     var photoCompStart = photoComp.inPoint; //inPoint
-    var photoCompEnd = photoComp.outPoint; //outPoint
+    var detailCompEnd = detailComp.outPoint; //outPoint
     // alert(photoCompEnd);
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Loop Sound'];
+    // alert(backgroundSong.source.name);
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    xFadeIn(backgroundSong, photoCompStart, 4, -60, -20);
-    xFadeOut(backgroundSong, photoCompEnd, 4, -20, -60);
+    xFadeIn(backgroundSong, photoCompStart, 2, -60, -10);
+    xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
+}
+
+
+// fixes the music on the intro and outro  11/01/2021
+function fitSoundOnIntroOutro(x){
+    var introComp = x.allLayers['0_Main Comp']['Intro'];
+    var outroComp = x.allLayers['0_Main Comp']['Outro'];
+    var introCompStart = introComp.inPoint; //intro inPoint
+    var outroCompStart = outroComp.inPoint; //outro inPoint
+    var introCompEnd = introComp.outPoint; //intro outPoint
+    var outroCompEnd = outroComp.outPoint; //outro outPoint
+
+    // select the layer for the intro background song
+    var backgroundIntro = x.allLayers['Intro']['Intro Sound'];
+    // select the layer for the outro background song
+    var backgroundOutro = x.allLayers['Outro']['Outro Sound'];
+    // clear the eventual keyframes on the layer
+    clearKeys(backgroundIntro, 'Audio Levels');
+    clearKeys(backgroundOutro, 'Audio Levels');
+
+    // apply the fade in / fade out to the intro comp 
+    xFadeIn(backgroundIntro, introCompStart, 2, -60, -10);
+    xFadeOut(backgroundIntro, introCompEnd, 2, -10, -60);
+
+    // apply the fade in / fade out to the outro comp 
+    xFadeIn(backgroundOutro, outroCompStart, 2, -60, -10);
+    xFadeOut(backgroundOutro, outroCompEnd, 2, -10, -60);
 }
 
 function fitSoundOnAll(x){
