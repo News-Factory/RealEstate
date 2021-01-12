@@ -3,7 +3,6 @@
 #include "style.jsx";
 
 function formatLogo(x){
-
     var logo_Details =x.allLayers['Flat Logo']['logo'];
     setLogoScaleAndPositionTR(logo_Details);
 }

@@ -70,7 +70,6 @@ function realEstate(x){
         //New structure: found.pic=[{layer,value,containingComp,file,fileType},{...},{...}]
         //When importing a file we need to know in what layer this file needs to go
 
-        alert(found.onoff.length);
 
     //Stage03
     insertAll(x,found); //set.jsx
@@ -93,30 +92,45 @@ function realEstate(x){
 
     // Stage06
     soundAndDetails(x);
-    onOffProcedure(found);
+    iconsChecksRB(x)
 
     app.endUndoGroup();
 
    return true;
 }
 
-function onOffProcedure(found){
-    //New form of setVisibility
-    for (var n=0; n<found.onoff.length; n++){
-        var layerName=found.onoff[n].layer.name;
-        alert(found.onoff.length);
-        var onoffBoolean=found.onoff[n].value.toLowerCase().indexOf('on')>-1;
-        for (var i=0; i<x.comps.length; i++){
-            var comp=x.comps[i];
-            var layers=comp.layers; 
-            for (var j=1; j<=layers.length; j++){
-                if (layers[j].name==layerName){
-                   // setVisibility(layers[j].name,onoffBoolean);   
-                    if(!onoffBoolean){
-                        setText(layers[j+1]," ");
-                    }                
-                }
-            }
+// function onOffProcedure(found){
+//     //New form of setVisibility
+//     for (var n=0; n<found.onoff.length; n++){
+//         var layerName=found.onoff[n].layer.name;
+//         alert(found.onoff.length);
+//         var onoffBoolean=found.onoff[n].value.toLowerCase().indexOf('on')>-1;
+//         for (var i=0; i<x.comps.length; i++){
+//             var comp=x.comps[i];
+//             var layers=comp.layers; 
+//             for (var j=1; j<=layers.length; j++){
+//                 if (layers[j].name==layerName){
+//                    // setVisibility(layers[j].name,onoffBoolean);   
+//                     if(!onoffBoolean){
+//                         setText(layers[j+1]," ");
+//                     }                
+//                 }
+//             }
+//         }
+//     }
+// }
+
+// new logic for turning on and off the icons in R&B  12/01/2020
+function iconsChecksRB(x){    
+    for (var i=1; i<11; i++){
+        var theIcon= x.allLayers['Apartment Icons']['Icon'+i];
+        // alert(theIcon.property("Source Text").value);
+        var approved= x.allLayers['Apartment Icons']['CM'+i];
+        // alert(approved.name);
+        if (theIcon.property("Source Text").value != ''){
+            approved.enabled=true;
+        } else {
+            approved.enabled=false;
         }
     }
 }

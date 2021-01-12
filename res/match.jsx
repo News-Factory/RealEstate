@@ -33,9 +33,13 @@ function matchLayers_GENERIC(x,dt,lt){ //dataType = av/text, layerType = textLay
     var lostLayers=[];
     for (var i=0; i<x.dataByType[dt].length; i++){
         var title=x.dataByType[dt][i].title.toLowerCase();
-        // alert(dt);
-        // alert(title);
+        // if (dt == 'onoff'){
+        //     alert(lt);
+        //     alert(x.dataByType[dt].length);
+        //     alert(title);
+        // }   
         var res=matchLayers_GEN_internal(x,i,title,dt,lt);
+        // alert(res.layer, res.value);
         if(res){foundLayers.push(res);}
         else{lostLayers.push(title);}
     }
@@ -47,7 +51,7 @@ function matchLayers_GENERIC(x,dt,lt){ //dataType = av/text, layerType = textLay
 function matchLayers_GEN_internal(x,i,title,dt,lt){
     for (var j=0;j<x[lt].length; j++){
         var layerName=x[lt][j].layer.name.toLowerCase();
-        //if (layerName.indexOf('icon')>-1 && dt=='onoff'){alert('layerName: '+layerName+' lt: '+lt+' dt: '+dt);}
+        // if (layerName.indexOf('icon')>-1 && dt=='onoff'){alert('layerName: '+layerName+' lt: '+lt+' dt: '+dt);}
         if (title==layerName){
             return{
                 layer:x[lt][j].layer,
