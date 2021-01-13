@@ -136,10 +136,13 @@ function iconsCheckRB(x){
 
 // new logic for turning on and off the icons in TR  13/01/2020
 function iconsCheckTR(x){
-    var theIcons =x.dataByType['onoff'];
+    var theIcons=x.dataByType['onoff'];
     var iconString= theIcons[0].value.toString();
     var activeIcons= iconString.split(', ');
     // alert(activeIcons[0]);
+    var background=  x.allLayers['1_Photos Comp']['IconsBackground'];
+    // alert(background.name);
+    background.property('position').removeKey(2);
 
     for(i=0; i<activeIcons.length; i++){
         var option = activeIcons[i];
@@ -147,7 +150,33 @@ function iconsCheckTR(x){
         var iconLayer = x.allLayers['ICONS 003']['icon '+option];
         // alert(iconLayer.name);
         iconLayer.enabled=true;
+        
+        switch (i){
+            case 0:
+            iconLayer.property('position').setValueAtTime(0.1, [739, 167]);
+            break;
+            case 1:
+            iconLayer.property('position').setValueAtTime(0.1, [617, 167]);
+            break;
+            case 2:
+            iconLayer.property('position').setValueAtTime(0.1, [493, 167]);
+            break;
+            case 3:
+            iconLayer.property('position').setValueAtTime(0.1, [369, 167]);
+            break;
+            case 4:
+            iconLayer.property('position').setValueAtTime(0.1, [248, 167]);
+            break;
+            case 5:
+            iconLayer.property('position').setValueAtTime(0.1, [125, 167]);
+            break;
+        }
     }
+
+    var distance = 1510 - 110 * (activeIcons.length-1);
+    background.property('position').setValueAtTime(2.5, [distance, 540]);
+
+
 }
 
 //ARRANGE slicer003
@@ -185,8 +214,7 @@ function slicer(x){
             var introDuration = mainLayers[1].outPoint;
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             pcLayer.outPoint = lastPic.outPoint + introDuration -gap; 
-            alert(lastPic.outPoint);
-            
+            // alert(lastPic.outPoint);
             
             for (var i=2; i<4; i++){
             var layer = mainLayers[i];
