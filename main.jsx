@@ -120,7 +120,7 @@ function realEstate(x){
 // }
 
 // new logic for turning on and off the icons in R&B  12/01/2020
-function iconsChecksRB(x){    
+function iconsCheckRB(x){    
     for (var i=1; i<11; i++){
         var theIcon= x.allLayers['Apartment Icons']['Icon'+i];
         // alert(theIcon.property("Source Text").value);
@@ -134,9 +134,20 @@ function iconsChecksRB(x){
     }
 }
 
+// new logic for turning on and off the icons in TR  13/01/2020
 function iconsCheckTR(x){
-    theIcons =x.dataByType['onoff'];
-    alert(theIcons.length);
+    var theIcons =x.dataByType['onoff'];
+    var iconString= theIcons[0].value.toString();
+    var activeIcons= iconString.split(', ');
+    // alert(activeIcons[0]);
+
+    for(i=0; i<activeIcons.length; i++){
+        var option = activeIcons[i];
+        // alert(option);
+        var iconLayer = x.allLayers['ICONS 003']['icon '+option];
+        // alert(iconLayer.name);
+        iconLayer.enabled=true;
+    }
 }
 
 //ARRANGE slicer003
@@ -171,7 +182,12 @@ function slicer(x){
 
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
-
+            var introDuration = mainLayers[1].outPoint;
+            pcLayer = getByName(mainLayers,"1_Photos Comp");  
+            pcLayer.outPoint = lastPic.outPoint + introDuration -gap; 
+            alert(lastPic.outPoint);
+            
+            
             for (var i=2; i<4; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];         
@@ -231,13 +247,13 @@ function soundAndDetails(x){
     // alert(template);
     if (template === 'Transparent'){
         formatLogo(x);
-        iconsChecksTR(x)
+        iconsCheckTR(x)
         fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
         // alert('hi');
         formatPhotosComp(x);
-        iconsChecksRB(x)
+        iconsCheckRB(x)
         fitSoundOnPhotosComp(x);
         fitSoundOnIntroOutro(x);
     }
