@@ -32,7 +32,7 @@ function setScaleDurationMarkersForPhotosComp(x){
 
     ///// setting conditional statement based on how many photo layers there are 16/12/2020
     //// this is done to make the function work on TRANSPARENT
-    if (layers.length <= 5){
+    if (layers.length <= 10){
         picDur = 7.4;
         padding = 2;
         fixForm = 20;

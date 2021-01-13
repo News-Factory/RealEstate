@@ -134,6 +134,11 @@ function iconsChecksRB(x){
     }
 }
 
+function iconsCheckTR(x){
+    theIcons =x.dataByType['onoff'];
+    alert(theIcons.length);
+}
+
 //ARRANGE slicer003
 
 //Four functions to supplement the slicer
@@ -146,7 +151,7 @@ function slicer(x){
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        var gap = 0.75;
+        var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
 
@@ -155,7 +160,7 @@ function slicer(x){
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.outPoint - gap*2;     
+            pcLayer.outPoint = lastPic.outPoint - gap;     
             // alert(lastPic.outPoint);
 
             for (var i=1; i<4; i++){
@@ -165,8 +170,7 @@ function slicer(x){
             } 
 
         } else {
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_1'];
-            gap = gap*2; 
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
 
             for (var i=2; i<4; i++){
             var layer = mainLayers[i];
@@ -189,7 +193,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
     var template = x.projFile.name.split('.')[0];
     var fixForm = 0;   // needed to use the google Form files folders 08/01/2020
 
-    if (template === 'Transparent'){
+    if (template == 'Transparent'){
         fixForm = 20;
     }
 
@@ -207,7 +211,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
         
-            if (layerName === "RoomP"+f){
+            if (layerName == "RoomP"+f){
                 var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
                 var imageSourceType = getFileType(imageSourceName);
 
@@ -227,6 +231,7 @@ function soundAndDetails(x){
     // alert(template);
     if (template === 'Transparent'){
         formatLogo(x);
+        iconsChecksTR(x)
         fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
