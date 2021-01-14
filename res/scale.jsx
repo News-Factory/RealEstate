@@ -167,34 +167,38 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
     var goldenRatio=goldenH/goldenW;
     //alert(goldenRatio); //0.5625
     var comp=layer.containingComp;
-    //alert('comp.name '+comp.name+' layer.name '+layer.name);
+    // alert('comp.name '+comp.name+' layer.name '+layer.name);
     var compW=comp.width;
     var compH=comp.height;
     var layerW=layer.width;
     var layerH=layer.height;
 
-    // if the composition is NOT logo resize to fill the screen, otherwise only rescale 40%
-    if (comp.name !== 'logo') {
+    // if the comp/layer contains a logo rescale based on dimensions, 
+    // otherwise rescale to fit the screen, changed on 14/01/2021
+    if (comp.name == 'logo' || comp.name == "Flat Logo") {
         if(layerH!=compH  || layerW!=compW){
-        //alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
+        // alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
             var ratio=layerH/layerW;
-            if (ratio>=goldenRatio){
-                var scaleValue=100*(compW/layerW);
-            } else {
-                var scaleValue=100*(compH/layerH);
-            } 
-            // alert(scaleValue + " scaleValue for " + layer.name);      
-            layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
-        }
-    } else {
-        if(layerH!=compH || layerW!=compW){
-            var ratio=layerH/layerW;
+
             if (ratio>=goldenRatio){
                 var scaleValue=40*(compW/layerW);
             } else {
                 var scaleValue=40*(compH/layerH);
+            } 
+            // alert(scaleValue + " scaleValue for " + layer.name);      
+            layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
+        }
+    } else {   
+        if(layerH!=compH || layerW!=compW){
+            var ratio=layerH/layerW;
+            if (ratio>=goldenRatio){
+                var scaleValue=100*(compW/layerW);
+                // alert(scaleValue + " scaleValue for " + layer.name);  
+            } else {
+                var scaleValue=100*(compH/layerH);
+                // alert(scaleValue + " scaleValue for " + layer.name);  
             }     
-            layer.property('Scale').setValueAtTime(1,[scaleValue,scaleValue]);
+            layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
         }
 
     }

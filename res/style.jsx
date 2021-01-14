@@ -9,7 +9,16 @@ function setLogoScaleAndPositionRB(layer){
     }
 
 function setLogoScaleAndPositionTR(layer){
-        layer.property('scale').setValueAtTime(0.2,[50,50,100]);
+        var width=layer.width;
+        var height=layer.height;
+        // alert(height);
+        if (height < 100){
+            layer.property('scale').setValueAtTime(0.2,[250,250,100]);
+        } else if (height < 150){
+            layer.property('scale').setValueAtTime(0.2,[115,115,100]);
+        }else{
+            layer.property('scale').setValueAtTime(0.2,[50,50,100]);
+        }
         layer.property('position').setValueAtTime(0.2, [290, 335]);
     }
 

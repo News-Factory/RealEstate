@@ -26,7 +26,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting');
+    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is only "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -193,21 +193,22 @@ function slicer(x){
         var howMany_Pictures = photoLayers.length;
         var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
-        alert(locTestPhoto);
+        // alert(locTestPhoto);
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
         ///// depending if the AE project has test pictures or not   23/12/2020
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            alert(lastPic.name);
+            // alert(lastPic.name);
             pcLayer.outPoint = lastPic.outPoint - gap;     
             // alert(lastPic.outPoint);
 
-            for (var i=1; i<4; i++){
-            var layer = mainLayers[i];
-            var nextLayer = mainLayers[i+1];
-            nextLayer.startTime=layer.outPoint;           
+            for (var i=2; i<4; i++){
+                var layer = mainLayers[i];
+                // alert(layer.name);
+                var nextLayer = mainLayers[i+1];
+                nextLayer.startTime=layer.outPoint;           
             } 
 
         } else {
@@ -218,9 +219,9 @@ function slicer(x){
             // alert(lastPic.outPoint);
             
             for (var i=2; i<4; i++){
-            var layer = mainLayers[i];
-            var nextLayer = mainLayers[i+1];         
-            nextLayer.startTime=layer.outPoint -gap;
+                var layer = mainLayers[i];
+                var nextLayer = mainLayers[i+1];         
+                nextLayer.startTime=layer.outPoint -gap;
             }
         } 
 
@@ -251,7 +252,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
         var compName = "Room_Photo_"+f;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;
-        alert(compName);
+        // alert(compName);
 
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
@@ -265,7 +266,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
                 }
             }
         }
-    }
+    } 
 }
 
 
@@ -275,7 +276,7 @@ function soundAndDetails(x){
     var template = x.projFile.name.split('.')[0];
     // alert(template);
     if (template === 'Transparent'){
-        formatLogo(x);
+        formatLogoTR(x);
         iconsCheckTR(x)
         fitSoundOnAll(x);
     }
