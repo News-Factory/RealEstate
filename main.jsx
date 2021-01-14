@@ -193,13 +193,14 @@ function slicer(x){
         var howMany_Pictures = photoLayers.length;
         var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
-        // alert(locTestPhoto);
+        alert(locTestPhoto);
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
         ///// depending if the AE project has test pictures or not   23/12/2020
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
+            alert(lastPic.name);
             pcLayer.outPoint = lastPic.outPoint - gap;     
             // alert(lastPic.outPoint);
 
@@ -250,7 +251,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
         var compName = "Room_Photo_"+f;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;
-        // alert(compName);
+        alert(compName);
 
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
@@ -260,7 +261,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
                 var imageSourceType = getFileType(imageSourceName);
 
                 if (imageSourceName=="Test Photo.jpg"){ //if the source is Test Photo we can then get the location
-                    return j; 
+                    return f; 
                 }
             }
         }
