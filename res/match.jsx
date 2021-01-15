@@ -3,7 +3,7 @@
 function matchAllTitlesToLayers(x){
 
     var avtypes=defineAVTypes();
-    var found={}; //Found Layers
+    var found={}; //Found Layers 
 
     ////// TEXT
     var dt='text';

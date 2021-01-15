@@ -57,3 +57,25 @@ function topScrollingText_SpaceBetween(x){
         data[i].property('anchorPoint').setValue([-1.6, -20]);
     }
 }
+
+function randomIntroOutroTR(x){
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    var cityFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/cityFootage');
+    var IsraelFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/IsraelFootage');
+    var cityFootage= cityFootageFolder.getFiles();
+    var IsraelFootage= IsraelFootageFolder.getFiles();
+
+
+    var introLayer=x.allLayers['Intro']['Video Intro'];
+    var outroLayer=x.allLayers['Outro']['Video Outro'];
+    // alert(introLayer.name);
+    var random4= Math.floor(Math.random()*4);
+    var random5= Math.floor(Math.random()*5);
+    var videoIntroPath= IsraelFootage[random4];
+    var videoOutroPath= cityFootage[random5];
+    var videoIntro= app.project.importFile(new ImportOptions(new File(videoIntroPath)));
+    var videoOutro= app.project.importFile(new ImportOptions(new File(videoOutroPath)));
+    // alert(videoIntro.name);
+    introLayer.replaceSource(videoIntro,true);
+    outroLayer.replaceSource(videoOutro,true);
+}

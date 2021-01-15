@@ -28,6 +28,10 @@ function batchProcess(){
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is only "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
+    // var cityFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/cityFootage');
+    // var IsraelFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/IsraelFootage');
+    // var cityFootage= cityFootageFolder.getFiles();
+    // var IsraelFootage= IsraelFootageFolder.getFiles();
 
     var wFiles=waitingFolder.getFiles();
     for (var i=0; i<wFiles.length; i++){
@@ -277,11 +281,11 @@ function soundAndDetails(x){
     // alert(template);
     if (template === 'Transparent'){
         formatLogoTR(x);
-        iconsCheckTR(x)
+        randomIntroOutroTR(x);
+        iconsCheckTR(x);
         fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
-        // alert('hi');
         formatPhotosComp(x);
         iconsCheckRB(x)
         fitSoundOnPhotosComp(x);
