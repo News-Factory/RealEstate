@@ -1,7 +1,6 @@
 
 /////  16/12/2020
 ///// Functions that fix details for text paddings/margins etc in R&B template
-///// They should eventually be abandoned 
 
 function setLogoScaleAndPositionRB(layer){
         layer.property('scale').setValueAtTime(0.2,[60,60,100]);
@@ -58,7 +57,7 @@ function topScrollingText_SpaceBetween(x){
     }
 }
 
-function randomIntroOutroTR(x){
+function randomIntroOutroTR(x){    // 15/01/2021
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var cityFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/cityFootage');
     var IsraelFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/IsraelFootage');

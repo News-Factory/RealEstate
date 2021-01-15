@@ -33,11 +33,7 @@ function matchLayers_GENERIC(x,dt,lt){ //dataType = av/text, layerType = textLay
     var lostLayers=[];
     for (var i=0; i<x.dataByType[dt].length; i++){
         var title=x.dataByType[dt][i].title.toLowerCase();
-        // if (dt == 'onoff'){
-        //     alert(lt);
-        //     alert(x.dataByType[dt].length);
-        //     alert(title);
-        // }   
+ 
         var res=matchLayers_GEN_internal(x,i,title,dt,lt);
         // alert(res.layer, res.value);
         if(res){foundLayers.push(res);}

@@ -9,7 +9,6 @@ function formatLogoTR(x){
 
 function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
-
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
 

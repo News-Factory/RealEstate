@@ -79,7 +79,7 @@ function setScaleDurationMarkersForPhotosComp(x){
    
 // this function is the same as above but targets a ['Videos Comp'] for project 2     // 23/12/2020
 function setScaleDurationMarkersForVideosComp(x){
-    // looping through the comps to check if there is a ['Video Comp']
+    // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
         if(x.comps[c].name == 'Videos Comp'){
             var VideosComp=x.allLayers['Videos Comp'].comp;
