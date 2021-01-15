@@ -207,26 +207,18 @@ function slicer(x){
             // alert(lastPic.name);
             pcLayer.outPoint = lastPic.outPoint - gap;     
             // alert(lastPic.outPoint);
-
-            for (var i=2; i<4; i++){
-                var layer = mainLayers[i];
-                // alert(layer.name);
-                var nextLayer = mainLayers[i+1];
-                nextLayer.startTime=layer.outPoint;           
-            } 
-
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
             var introDuration = mainLayers[1].outPoint;
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.outPoint + introDuration -gap; 
+            pcLayer.outPoint = lastPic.outPoint + introDuration -gap*2; 
             // alert(lastPic.outPoint);
-            
-            for (var i=2; i<4; i++){
+        } 
+        for (var i=2; i<4; i++){
                 var layer = mainLayers[i];
-                var nextLayer = mainLayers[i+1];         
-                nextLayer.startTime=layer.outPoint -gap;
-            }
+                // alert(layer.name);
+                var nextLayer = mainLayers[i+1];
+                nextLayer.startTime=layer.outPoint;           
         } 
 
     } else { //If naming hasn't been done correctly sound the alarm
