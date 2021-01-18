@@ -14,10 +14,12 @@ function formatPhotosComp(x){
 
     // changing the logo scale and dimension for details comp, 
     // intro and outro are videos now        30/12/2020
-    var logo_Details=x.allLayers['Details']['logoR&B'];
+    var logo_Details=x.allLayers['Details']['LogoR&B'];
+    var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
 
     // setLogoScaleAndPosition(logo_Intro);
-    setLogoScaleAndPositionRB(logo_Details);
+    // setLogoScaleAndPositionRB(logo_Details);
+    setLogoScaleAndPositionRB(logo_PhotosComp);
 
     for (var i=1; i<=layers.length; i++){
         var roomPhotoLayerName=layers[i].name;
@@ -76,10 +78,13 @@ function fitSoundOnPhotosComp(x){
 function fitSoundOnIntroOutro(x){
     var introComp = x.allLayers['0_Main Comp']['Intro'];
     var outroComp = x.allLayers['0_Main Comp']['Outro'];
+    var detailsComp = x.allLayers['0_Main Comp']['Details'];
+    
     var introCompStart = introComp.inPoint; //intro inPoint
-    var outroCompStart = outroComp.inPoint; //outro inPoint
+    var outroCompStart = 0; //outro inPoint
+
     var introCompEnd = introComp.outPoint; //intro outPoint
-    var outroCompEnd = outroComp.outPoint; //outro outPoint
+    var outroCompEnd = outroComp.outPoint - detailsComp.outPoint; //outro outPoint
 
     // select the layer for the intro background song
     var backgroundIntro = x.allLayers['Intro']['Intro Sound'];
@@ -90,12 +95,12 @@ function fitSoundOnIntroOutro(x){
     clearKeys(backgroundOutro, 'Audio Levels');
 
     // apply the fade in / fade out to the intro comp 
-    xFadeIn(backgroundIntro, introCompStart, 2, -60, -10);
-    xFadeOut(backgroundIntro, introCompEnd, 2, -10, -60);
+    xFadeIn(backgroundIntro, introCompStart, 1.5, -60, -10);
+    xFadeOut(backgroundIntro, introCompEnd, 1.5, -10, -60);
 
     // apply the fade in / fade out to the outro comp 
-    xFadeIn(backgroundOutro, outroCompStart, 2, -60, -10);
-    xFadeOut(backgroundOutro, outroCompEnd, 2, -10, -60);
+    xFadeIn(backgroundOutro, outroCompStart, 1.5, -60, -10);
+    xFadeOut(backgroundOutro, outroCompEnd, 1.5, -10, -60);
 }
 
 function fitSoundOnAll(x){

@@ -3,8 +3,17 @@
 ///// Functions that fix details for text paddings/margins etc in R&B template
 
 function setLogoScaleAndPositionRB(layer){
-        layer.property('scale').setValueAtTime(0.2,[60,60,100]);
-        layer.property('position').setValueAtTime(0.2, [550, 550]);
+        var width=layer.width;
+        var height=layer.height;
+        // alert(height);
+
+        if (height > 1000){
+            layer.property('scale').setValueAtTime(0.2,[20,-20,100]);
+            layer.property('position').setValueAtTime(0.2, [-1062, -400]);
+        } else {
+            layer.property('scale').setValueAtTime(0.2,[60,60,100]);
+            layer.property('position').setValueAtTime(0.2, [550, 550]);
+        }
     }
 
 function setLogoScaleAndPositionTR(layer){

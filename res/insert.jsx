@@ -23,7 +23,9 @@ function insertAll_text(x,found){
         var text=found.text[i].value;
         if (x.tog.alertWhereWeAre){found.text[i].containingComp.openInViewer();}
         setText(layer,text);
-        if (x.tog.alertWhereWeAre){alert('Text was inserted in layer: '+layer.name);}
+        if (x.tog.alertWhereWeAre){
+            alert('Text was inserted in layer: '+layer.name);
+        }
     }
 }
 
@@ -40,7 +42,7 @@ function insertAll_footage(x,found){
             fitToComp(arr[i].layer);
             //setDurationByType(arr[i]);
             if (x.tog.alertWhereWeAre){
-                alert('Footage was inserted in layer: '+layer.name);
+                alert('Footage' +arr[i].file.name + ' was inserted in layer: '+arr[i].layer.name);
             }
         }
     }
@@ -58,7 +60,7 @@ function insertAll_sounds(x,found){
         // fitToComp(arr[i].layer);
         //setDurationByType(arr[i]);
         if (x.tog.alertWhereWeAre){
-            alert('Footage was inserted in layer: '+layer.name);
+            alert('Footage was inserted in layer: '+arr[i].layer.name);
         }
     }
     

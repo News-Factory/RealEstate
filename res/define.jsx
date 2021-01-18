@@ -80,7 +80,7 @@ function defineTogglers(){
     var tog = {};
     tog.testingMode = false;
     tog.alertWhereWeAre = false;
-    tog.errorBreakMode = true; //if an error is found break if true
+    tog.errorBreakMode = false; //if an error is found break if true
     tog.loggingMode = true; //log errors if true, should always be turned on
     tog.alertErrorMode = true;
     return tog;

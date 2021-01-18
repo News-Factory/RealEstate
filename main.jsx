@@ -18,7 +18,8 @@
 //Stage05 Slicer
 //Stage06 Set background music ++
 
-{
+{   
+
     // sc_constructGS(x);  // this function creates the google sheet thingy
     batchProcess();
 }
@@ -26,7 +27,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is only "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is only "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
     // var cityFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/cityFootage');
     // var IsraelFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/IsraelFootage');
@@ -38,9 +39,9 @@ function batchProcess(){
         var fileExt=wFiles[i].name.split('.')[1];
         if (fileExt=='txt'){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
-            var x=defineMainProjectItems(txtFilePath);
+            var x=defineMainProjectItems(txtFilePath);      
             var success=realEstate(x);
-            
+
             // realExtate success activates the rendering queue and moves txt files
             if (success){                
                 renderIt(x);
@@ -214,12 +215,15 @@ function slicer(x){
             pcLayer.outPoint = lastPic.outPoint + introDuration -gap*2; 
             // alert(lastPic.outPoint);
         } 
-        for (var i=2; i<4; i++){
-                var layer = mainLayers[i];
-                // alert(layer.name);
-                var nextLayer = mainLayers[i+1];
-                nextLayer.startTime=layer.outPoint;           
+        for (var i=1; i<4; i++){
+            var layer = mainLayers[i];
+            // alert(layer.name);
+            var nextLayer = mainLayers[i+1];
+            nextLayer.startTime=layer.outPoint;    
+
         } 
+
+
 
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
