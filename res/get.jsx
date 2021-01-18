@@ -25,6 +25,7 @@ function getFileType(fileName){
 
 function gettxt(filePath){
     var txtFile = File(filePath);
+    txtFile.encoding ="utf-8";
     txtFile.open("r");  
     var str = txtFile.read();
     txtFile.close();
