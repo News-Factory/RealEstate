@@ -67,23 +67,57 @@ function topScrollingText_SpaceBetween(x){
 }
 
 function randomIntroOutroTR(x){    // 15/01/2021
-    var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var cityFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/cityFootage');
-    var IsraelFootageFolder= new Folder(mommyFolderPath+'Customer Photos/Transparent/IsraelFootage');
-    var cityFootage= cityFootageFolder.getFiles();
-    var IsraelFootage= IsraelFootageFolder.getFiles();
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
+    var outroFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Outro');
+    var introFootage= introFootageFolder.getFiles();
+    var outroFootage= outroFootageFolder.getFiles();
 
+    var introInt=introFootage.length;
+    var outroInt=outroFootage.length;
 
     var introLayer=x.allLayers['Intro']['Video Intro'];
     var outroLayer=x.allLayers['Outro']['Video Outro'];
     // alert(introLayer.name);
-    var random4= Math.floor(Math.random()*4);
-    var random5= Math.floor(Math.random()*5);
-    var videoIntroPath= IsraelFootage[random4];
-    var videoOutroPath= cityFootage[random5];
+    var randomIntro= Math.floor(Math.random()*introInt);
+    var randomOutro= Math.floor(Math.random()*outroInt);
+    var videoIntroPath= introFootage[randomIntro];
+    var videoOutroPath= outroFootage[randomOutro];
     var videoIntro= app.project.importFile(new ImportOptions(new File(videoIntroPath)));
     var videoOutro= app.project.importFile(new ImportOptions(new File(videoOutroPath)));
     // alert(videoIntro.name);
     introLayer.replaceSource(videoIntro,true);
     outroLayer.replaceSource(videoOutro,true);
+}
+
+function randomStartVideoComp(x){   // 19/01/2021
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var barsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
+    var beachParksFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Beach-Parks');
+    var familyFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Family');
+    var marketsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
+    var shoppingFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Shopping');
+    var barsFootage= barsFootageFolder.getFiles();
+    var beachParksFootage= beachParksFootageFolder.getFiles();
+    var familyFootage= familyFootageFolder.getFiles();
+    var marketsFootage= marketsFootageFolder.getFiles();
+    var shoppingFootage= shoppingFootageFolder.getFiles();
+
+    var firstInt=familyFootage.length;
+    var secondInt=beachParksFootage.length;
+    // alert(firstInt);
+    // alert(secondInt);
+
+    var firstVidLayer=x.allLayers['Videos Comp']['Video_5'];
+    var secondVidLayer=x.allLayers['Videos Comp']['Video_4'];
+
+    var randomFirst= Math.floor(Math.random()*firstInt);
+    var randomSecond= Math.floor(Math.random()*secondInt);
+    var firstVidPath= familyFootage[randomFirst];
+    var secondVidPath= beachParksFootage[randomSecond];
+    var firstVideo= app.project.importFile(new ImportOptions(new File(firstVidPath)));
+    var secondVideo= app.project.importFile(new ImportOptions(new File(secondVidPath)));
+    // alert(videoIntro.name);
+    firstVidLayer.replaceSource(firstVideo,true);
+    secondVidLayer.replaceSource(secondVideo,true);
 }
