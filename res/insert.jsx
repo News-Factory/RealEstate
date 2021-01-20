@@ -84,10 +84,68 @@ function insertIconsTopTicker(x){
     var theIcons=x.dataByType['onoff'];
     var iconString= theIcons[0].value.toString();
     var activeIcons= iconString.split(', ');
+    var tickerComp= x.allLayers['Details 2'].comp;
+    // alert(activeIcons.length);
+
+    function moveBasicInfo(howMuch){
+        for(j=1; j<=6; j++){
+            var infoLayer= tickerComp.layer(j);
+            // alert(infoLayer.name);
+            var position=infoLayer.property('Position');
+            var keyNumber=position.numKeys;
+            // alert(keyNumber);
+            for (k=1; k<= keyNumber; k++){
+                var time= position.keyTime(k);
+                // alert(time);
+                var value= position.keyValue(k);
+                // alert(value[0]);
+                var newValue= value[0]-howMuch;
+                // alert(newValue);
+                position.removeKey(k);
+                position.setValueAtTime(time, [newValue, value[1]]);
+            }
+        }
+    }
+
+    function moveNewInfo(theX){
+        var position=comp.property('Position');
+        var keyNumber=position.numKeys;
+        for (n=1; n<= keyNumber; n++){
+            var time= position.keyTime(n);
+            // alert(time);
+            var value= position.keyValue(n);
+            // alert(value[0]);
+            position.removeKey(n);
+            position.setValueAtTime(time, [theX, value[1]]);
+        }
+    }
 
     for(i=0; i<activeIcons.length; i++){
         var iconWord = activeIcons[i].split('-');
         var option=iconWord[0];
-        alert(option); 
+        // alert(option); 
+        var comp= x.allLayers['Details 2']['icon Ticker '+i];
+        var layer= x.allLayers['icon Ticker '+i]['IT'+i];
+        // alert(layer.name);
+        layer.enabled=true;
+        setText(layer,option);
+
+        switch (i){
+            case 0:
+            tickerComp.width= 2700;
+            moveBasicInfo(70);
+            moveNewInfo(2272);
+            break;
+            case 1:
+            tickerComp.width= 3100;
+            moveBasicInfo(4);
+            moveNewInfo(2635);
+            break;
+            case 2:
+            tickerComp.width= 3400;
+            moveBasicInfo(6);
+            moveNewInfo(2900);
+            break;
+        }
     }
 }

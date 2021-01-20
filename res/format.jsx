@@ -66,7 +66,7 @@ function fitSoundOnPhotosComp(x){
         var detailCompEnd = detailComp.outPoint; //outPoint
     } else {
         var videoCompEnd = videoComp.outPoint;
-        alert(videoCompEnd);
+        // alert(videoCompEnd);
     }
 
     // select the layer for the background song
