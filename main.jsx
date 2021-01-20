@@ -26,7 +26,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is only "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is only "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -146,7 +146,8 @@ function iconsCheckTR(x){
     background.property('position').removeKey(2);
 
     for(i=0; i<activeIcons.length; i++){
-        var option = activeIcons[i];
+        var optionLanguage = activeIcons[i].split('-');
+        var option=optionLanguage[1];
         // alert(option);
         var iconLayer = x.allLayers['ICONS 003']['icon '+option];
         // alert(iconLayer.name);
@@ -176,8 +177,6 @@ function iconsCheckTR(x){
 
     var distance = 1510 - 110 * (activeIcons.length-1);
     background.property('position').setValueAtTime(2.5, [distance, 540]);
-
-
 }
 
 //ARRANGE slicer003
@@ -217,6 +216,11 @@ function slicer(x){
             // alert(layer.name);
             nextLayer.startTime=layer.outPoint;    
         } 
+
+        var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
+        var main= x.allLayers['0_Main Comp'].comp;
+        main.workAreaDuration = veryEnd;
+        
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
     }
@@ -272,14 +276,15 @@ function soundAndDetails(x){
         randomIntroOutroTR(x);
         randomStartVideoComp(x);
         iconsCheckTR(x);
-        fitSoundOnAll(x);
+        insertIconsTopTicker(x)
+        // fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
         formatPhotosComp(x);
         iconsCheckRB(x)
-        fitSoundOnPhotosComp(x);
-        fitSoundOnIntroOutro(x);
     }
+    fitSoundOnPhotosComp(x);
+    fitSoundOnIntroOutro(x);
 }
 
 function renderIt(x){

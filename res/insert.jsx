@@ -79,3 +79,15 @@ function insertAll_onoff(x,found){
         if (x.tog.alertWhereWeAre){alert('Footage visibility in layer: '+layer.name+' was set to: '+onoffBoolean.toString());}
     }
 }
+
+function insertIconsTopTicker(x){
+    var theIcons=x.dataByType['onoff'];
+    var iconString= theIcons[0].value.toString();
+    var activeIcons= iconString.split(', ');
+
+    for(i=0; i<activeIcons.length; i++){
+        var iconWord = activeIcons[i].split('-');
+        var option=iconWord[0];
+        alert(option); 
+    }
+}

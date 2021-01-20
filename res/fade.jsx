@@ -8,7 +8,7 @@ function fade(layer,startAt,endAt,duration,startVal,endVal){
         var relativeStartTime=layer.inPoint+startAt;
         var relativeEndTime=relativeStartTime+duration;
     } else {
-        var relativeEndTime=layer.outPoint-endAt;
+        var relativeEndTime=endAt; //layer.outPoint-
         var relativeStartTime=relativeEndTime-duration;
     }
     
