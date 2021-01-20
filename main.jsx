@@ -150,7 +150,7 @@ function iconsCheckTR(x){
         var option=optionLanguage[1];
         // alert(option);
         var iconLayer = x.allLayers['ICONS 003']['icon '+option];
-        alert(iconLayer.name);
+        // alert(iconLayer.name);
         iconLayer.enabled=true;
         
         switch (i){

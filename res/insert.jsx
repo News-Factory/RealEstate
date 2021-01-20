@@ -21,6 +21,8 @@ function insertAll_text(x,found){
         //Parameters:
         var layer=found.text[i].layer;
         var text=found.text[i].value;
+        // alert(layer. name);
+        // alert(text);
         if (x.tog.alertWhereWeAre){found.text[i].containingComp.openInViewer();}
         setText(layer,text);
         if (x.tog.alertWhereWeAre){
@@ -80,7 +82,11 @@ function insertAll_onoff(x,found){
     }
 }
 
-function insertIconsTopTicker(x){
+// 20/01/2021
+// thuis was a huge pain in the ass function to show the hebrew names
+// of the icons in the upper ticker of the photo comp
+
+function insertIconsTopTicker(x){   
     var theIcons=x.dataByType['onoff'];
     var iconString= theIcons[0].value.toString();
     var activeIcons= iconString.split(', ');
