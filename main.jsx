@@ -277,14 +277,14 @@ function soundAndDetails(x){
         randomStartVideoComp(x);
         iconsCheckTR(x);
         insertIconsTopTicker(x)
-        fitSoundOnAll(x);
+        // fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
         formatPhotosComp(x);
         iconsCheckRB(x)
     }
-    // fitSoundOnPhotosComp(x);
-    // fitSoundOnIntroOutro(x);
+    fitSoundOnPhotosComp(x);
+    fitSoundOnIntroOutro(x);
 }
 
 function renderIt(x){
