@@ -93,39 +93,6 @@ function insertIconsTopTicker(x){
     var tickerComp= x.allLayers['Details 2'].comp;
     // alert(activeIcons.length);
 
-    function moveBasicInfo(howMuch){
-        for(j=1; j<=6; j++){
-            var infoLayer= tickerComp.layer(j);
-            // alert(infoLayer.name);
-            var position=infoLayer.property('Position');
-            var keyNumber=position.numKeys;
-            // alert(keyNumber);
-            for (k=1; k<= keyNumber; k++){
-                var time= position.keyTime(k);
-                // alert(time);
-                var value= position.keyValue(k);
-                // alert(value[0]);
-                var newValue= value[0]-howMuch;
-                // alert(newValue);
-                position.removeKey(k);
-                position.setValueAtTime(time, [newValue, value[1]]);
-            }
-        }
-    }
-
-    function moveNewInfo(theX){
-        var position=comp.property('Position');
-        var keyNumber=position.numKeys;
-        for (n=1; n<= keyNumber; n++){
-            var time= position.keyTime(n);
-            // alert(time);
-            var value= position.keyValue(n);
-            // alert(value[0]);
-            position.removeKey(n);
-            position.setValueAtTime(time, [theX, value[1]]);
-        }
-    }
-
     for(i=0; i<activeIcons.length; i++){
         var iconWord = activeIcons[i].split('-');
         var option=iconWord[0];
@@ -152,6 +119,60 @@ function insertIconsTopTicker(x){
             moveBasicInfo(6);
             moveNewInfo(2900);
             break;
+            case 3:
+            tickerComp.width= 3700;
+            moveBasicInfo(2);
+            moveNewInfo(3230);
+            break;
+            case 4:
+            tickerComp.width= 4000;
+            moveBasicInfo(2);
+            moveNewInfo(3500);
+            break;
+            case 5:
+            tickerComp.width= 4300;
+            moveBasicInfo(2);
+            moveNewInfo(3735);
+            break;
+        }
+    }
+
+    // this function moves to the left all of the information that were already 'active' in the ticker
+    // in order to make space for new info layers
+
+    function moveBasicInfo(howMuch){
+        for(j=1; j<= (6+i); j++){
+            var infoLayer= tickerComp.layer(j);
+            // alert(infoLayer.name);
+            var position=infoLayer.property('Position');
+            var keyNumber=position.numKeys;
+            // alert(keyNumber);
+            for (k=1; k<= keyNumber; k++){
+                var time= position.keyTime(k);
+                // alert(time);
+                var value= position.keyValue(k);
+                // alert(value[0]);
+                var newValue= value[0]-howMuch;
+                // alert(newValue);
+                position.removeKey(k);
+                position.setValueAtTime(time, [newValue, value[1]]);
+            }
+        }
+    }
+
+    // this function changes the X value for the position keyframes property of a layer
+    // you need to have know the correct x value of where the layer needs to be, ofc
+
+    function moveNewInfo(theX){  
+        var position=comp.property('Position');
+        var keyNumber=position.numKeys;
+        for (n=1; n<= keyNumber; n++){
+            var time= position.keyTime(n);
+            // alert(time);
+            var value= position.keyValue(n);
+            // alert(value[0]);
+            position.removeKey(n);
+            position.setValueAtTime(time, [theX, value[1]]);
         }
     }
 }
