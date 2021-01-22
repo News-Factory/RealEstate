@@ -186,6 +186,12 @@ function slicer(x){
     var mainLayers = x.mainComp.layers;
     // alert(mainLayers.length);
 
+    // 22/01/2021
+    // these variables are added because the function needs to set the length of the
+    // intro comp based on the music in the intro
+    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
+    var neededTime = backgroundIntroSong.source.duration;
+
     if (x.photoComp) {//if naming was done correctly start
         
         var pcLayer=x.allLayers['Photos Comp'].comp;
@@ -210,20 +216,28 @@ function slicer(x){
             pcLayer.outPoint = lastPic.outPoint + introDuration -gap*2; 
             // alert(lastPic.outPoint);
         } 
-        for (var i=2; i<4; i++){
+
+        adjustIntroForMusic(x);
+        mainLayers[1].outPoint=neededTime;
+
+        for (var i=1; i<4; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
-            nextLayer.startTime=layer.outPoint;    
+            if (i ==1){
+                nextLayer.startTime=layer.outPoint -gap;
+            }else{
+                nextLayer.startTime=layer.outPoint;    
+            }
         } 
 
-        adjustIntroForMusic(x)
+        fitSoundOnPhotosComp(x);
         
         // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
         var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
         var main= x.allLayers['0_Main Comp'].comp;
         main.workAreaDuration = veryEnd;
-        
+   
     } else { //If naming hasn't been done correctly sound the alarm
         alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
     }
@@ -286,7 +300,7 @@ function soundAndDetails(x){
         formatPhotosComp(x);
         iconsCheckRB(x)
     }
-    fitSoundOnPhotosComp(x);
+    // fitSoundOnPhotosComp(x);
     fitSoundOnIntroOutro(x);
 }
 
