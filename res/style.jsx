@@ -20,14 +20,13 @@ function setLogoScaleAndPositionTR(layer){
         var width=layer.width;
         var height=layer.height;
         // alert(height);
-        if (height < 100){
-            layer.property('scale').setValueAtTime(0.2,[250,250,100]);
-        } else if (height < 150){
-            layer.property('scale').setValueAtTime(0.2,[115,115,100]);
+        // alert(width); 
+        if (height < 150 && width < 250){
+            layer.property('scale').setValueAtTime(0.1,[250,250,100]);
         }else{
-            layer.property('scale').setValueAtTime(0.2,[50,50,100]);
+            layer.property('scale').setValueAtTime(0.1,[50,50,100]);
         }
-        layer.property('position').setValueAtTime(0.2, [290, 335]);
+        layer.property('position').setValueAtTime(0.1, [290, 335]);
     }
 
 

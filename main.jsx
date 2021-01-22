@@ -26,7 +26,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is only "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -86,13 +86,13 @@ function realEstate(x){
     setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
+    soundAndDetails(x);
+    
+    // Stage06
     slicer(x);
     //setMainCompDuration(mainComp);
     //checkLayersMarker(x.comps);
     //RQaddActiveItem(x);
-
-    // Stage06
-    soundAndDetails(x);
 
     app.endUndoGroup();
 
@@ -196,12 +196,12 @@ function slicer(x){
         // alert(locTestPhoto);
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
-        ///// depending if the AE project has test pictures or not   23/12/2020
+        ///// depending if the AE project has test pictures or not 23/12/2020
         if(locTestPhoto){
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+(locTestPhoto +1)];
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             // alert(lastPic.name);
-            pcLayer.outPoint = lastPic.outPoint - gap;     
+            pcLayer.outPoint = lastPic.outPoint + gap;     
             // alert(lastPic.outPoint);
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
@@ -217,6 +217,9 @@ function slicer(x){
             nextLayer.startTime=layer.outPoint;    
         } 
 
+        adjustIntroForMusic(x)
+        
+        // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
         var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
         var main= x.allLayers['0_Main Comp'].comp;
         main.workAreaDuration = veryEnd;
@@ -310,4 +313,38 @@ function renderIt(x){
     app.project.renderQueue.queueInAME(true);
     //app.project.save(resultFile);
     app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
+}
+
+
+// 22/01/2021 this section changes the length of the intro comp based on the length of its music layer
+
+function adjustIntroForMusic(x){
+    var mainLayers = x.mainComp.layers;
+    var introComp = mainLayers[1];
+    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
+    var introBox = x.allLayers['Intro']['Intro Box'];
+    var introMask = x.allLayers['Intro']['Cyan Solid'];
+    var neededTime = backgroundIntroSong.source.duration;
+    // alert(neededTime);
+    var positionIntroBox=introBox.property('Position');
+    var pathMask=introMask.mask(1).property('ADBE Mask Shape');
+
+    var keyNumber=2
+    for (k=1; k <= keyNumber; k++){
+        var posValue= positionIntroBox.keyValue(k);
+        // this is a shape object, the vertices attributes is an array of 4 objects
+        var pathValue= pathMask.keyValue(k);  
+        // alert(posValue[0]);
+        // alert(pathValue.vertices[0]);
+        positionIntroBox.removeKey(k);
+        pathMask.removeKey(k);
+
+        if (k==1){
+            positionIntroBox.setValueAtTime(neededTime-1, [posValue[0], posValue[1]]);
+            pathMask.setValueAtTime(neededTime-1, pathValue);
+        } else {
+            positionIntroBox.setValueAtTime(neededTime, [posValue[0], posValue[1]]);
+            pathMask.setValueAtTime(neededTime, pathValue);
+        }
+    }
 }
