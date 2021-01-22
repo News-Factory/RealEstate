@@ -76,12 +76,12 @@ function fitSoundOnPhotosComp(x){
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    fadeIn(backgroundSong, photoCompStart, 1, -60, -10);
+    fadeIn(backgroundSong, photoCompStart, 1, -60, 0);
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(detailComp){
-        fadeOut(backgroundSong, detailCompEnd, 2, -10, -60);  
+        fadeOut(backgroundSong, detailCompEnd, 2, 0, -60);  
     } else {
-        fadeOut(backgroundSong, videoCompEnd, 2, -10, -60);
+        fadeOut(backgroundSong, videoCompEnd, 2, 0, -60);
     }
 }
 
@@ -112,12 +112,12 @@ function fitSoundOnIntroOutro(x){
     clearKeys(backgroundOutro, 'Audio Levels');
 
     // apply the fade in / fade out to the intro comp 
-    fadeIn(backgroundIntro, introCompStart, 1, -60, -10);
-    fadeOut(backgroundIntro, introCompEnd, 1, -10, -60);
+    fadeIn(backgroundIntro, introCompStart, 1, -60, 0);
+    fadeOut(backgroundIntro, introCompEnd, 1, 0, -60);
 
     // apply the fade in / fade out to the outro comp 
-    fadeIn(backgroundOutro, outroCompStart, 1, -60, -10);
-    fadeOut(backgroundOutro, outroCompEnd, 1, -10, -60);
+    fadeIn(backgroundOutro, outroCompStart, 1, -60, 0);
+    fadeOut(backgroundOutro, outroCompEnd, 1, 0, -60);
 }
 
 function fitSoundOnAll(x){
@@ -132,6 +132,6 @@ function fitSoundOnAll(x){
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    fadeIn(backgroundSong, introCompStart, 2, -60, -10);
-    fadeOut(backgroundSong, outroCompEnd, 2, -10, -60);
+    fadeIn(backgroundSong, introCompStart, 2, -60, 0);
+    fadeOut(backgroundSong, outroCompEnd, 2, 0, -60);
 }
