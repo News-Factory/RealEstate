@@ -99,26 +99,6 @@ function realEstate(x){
    return true;
 }
 
-// function onOffProcedure(found){
-//     //New form of setVisibility
-//     for (var n=0; n<found.onoff.length; n++){
-//         var layerName=found.onoff[n].layer.name;
-//         alert(found.onoff.length);
-//         var onoffBoolean=found.onoff[n].value.toLowerCase().indexOf('on')>-1;
-//         for (var i=0; i<x.comps.length; i++){
-//             var comp=x.comps[i];
-//             var layers=comp.layers; 
-//             for (var j=1; j<=layers.length; j++){
-//                 if (layers[j].name==layerName){
-//                    // setVisibility(layers[j].name,onoffBoolean);   
-//                     if(!onoffBoolean){
-//                         setText(layers[j+1]," ");
-//                     }                
-//                 }
-//             }
-//         }
-//     }
-// }
 
 // new logic for turning on and off the icons in R&B  12/01/2020
 function iconsCheckRB(x){    
@@ -197,7 +177,7 @@ function slicer(x){
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        var gap = 1.5;
+        var gap = 1;
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
 
@@ -207,7 +187,7 @@ function slicer(x){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             // alert(lastPic.name);
-            pcLayer.outPoint = lastPic.outPoint + gap;     
+            pcLayer.outPoint = lastPic.inPoint;     
             // alert(lastPic.outPoint);
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
@@ -217,7 +197,7 @@ function slicer(x){
             // alert(lastPic.outPoint);
         } 
 
-        adjustIntroForMusic(x);
+        adjustIntroOnMusicRB(x);
         mainLayers[1].outPoint=neededTime;
 
         for (var i=1; i<4; i++){
@@ -300,8 +280,7 @@ function soundAndDetails(x){
         formatPhotosComp(x);
         iconsCheckRB(x)
     }
-    // fitSoundOnPhotosComp(x);
-    fitSoundOnIntroOutro(x);
+    // fitSoundOnIntroOutro(x);
 }
 
 function renderIt(x){
@@ -332,33 +311,11 @@ function renderIt(x){
 
 // 22/01/2021 this section changes the length of the intro comp based on the length of its music layer
 
-function adjustIntroForMusic(x){
+function adjustIntroOnMusicRB(x){
     var mainLayers = x.mainComp.layers;
     var introComp = mainLayers[1];
     var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
-    var introBox = x.allLayers['Intro']['Intro Box'];
-    var introMask = x.allLayers['Intro']['Cyan Solid'];
     var neededTime = backgroundIntroSong.source.duration;
     // alert(neededTime);
-    var positionIntroBox=introBox.property('Position');
-    var pathMask=introMask.mask(1).property('ADBE Mask Shape');
-
-    var keyNumber=2
-    for (k=1; k <= keyNumber; k++){
-        var posValue= positionIntroBox.keyValue(k);
-        // this is a shape object, the vertices attributes is an array of 4 objects
-        var pathValue= pathMask.keyValue(k);  
-        // alert(posValue[0]);
-        // alert(pathValue.vertices[0]);
-        positionIntroBox.removeKey(k);
-        pathMask.removeKey(k);
-
-        if (k==1){
-            positionIntroBox.setValueAtTime(neededTime-1, [posValue[0], posValue[1]]);
-            pathMask.setValueAtTime(neededTime-1, pathValue);
-        } else {
-            positionIntroBox.setValueAtTime(neededTime, [posValue[0], posValue[1]]);
-            pathMask.setValueAtTime(neededTime, pathValue);
-        }
-    }
+    introComp.outPoint = neededTime
 }

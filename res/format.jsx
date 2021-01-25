@@ -81,7 +81,7 @@ function fitSoundOnPhotosComp(x){
     preFadeIn(backgroundSong, startIn, 0.2, -60, 0);
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(detailComp){
-        fadeOut(backgroundSong, detailCompEnd, 1, 0, -100);  
+        slowFadeOut(backgroundSong, detailCompEnd, 5, -50, 5);  
     } else {
         slowFadeOut(backgroundSong, videoCompEnd, 5, -50, 5);
     }
