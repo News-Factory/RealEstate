@@ -56,11 +56,13 @@ function formatPhotosComp(x){
 // sets the right fade in/out for the music going on Photos Comp  08/12/2020
 function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
-    var photoComp=x.allLayers['0_Main Comp']['1_Photos Comp'];
-    var videoComp = x.allLayers['0_Main Comp']['1_Videos Comp'];
+    var introSong= x.allLayers['Intro']['Intro Sound'];
+    var startIn= introSong.source.duration;
+    // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
+    var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
     var detailComp=x.allLayers['0_Main Comp']['Details'];
 
-    var photoCompStart = photoComp.inPoint; //inPoint
+    // var photoCompStart = photoComp.inPoint; //inPoint
 
     if(detailComp){
         var detailCompEnd = detailComp.outPoint; //outPoint
@@ -71,19 +73,17 @@ function fitSoundOnPhotosComp(x){
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
-    // alert(backgroundSong.source.name);
+    alert(startIn);
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    fadeIn(backgroundSong, photoCompStart, 0.2, -100, 0);
+    preFadeIn(backgroundSong, startIn, 0.2, -60, 0);
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(detailComp){
         fadeOut(backgroundSong, detailCompEnd, 1, 0, -100);  
     } else {
-        fadeOut(backgroundSong, videoCompEnd-3, 1.5, 0, -20);
-        fadeOut(backgroundSong, videoCompEnd-1.5, 1.5, -20, -40);
-        fadeOut(backgroundSong, videoCompEnd, 1.5, -40, -60);
+        slowFadeOut(backgroundSong, videoCompEnd, 5, -50, 5);
     }
 }
 
@@ -114,7 +114,7 @@ function fitSoundOnIntroOutro(x){
     clearKeys(backgroundOutro, 'Audio Levels');
 
     // apply the fade in / fade out to the intro comp 
-    fadeIn(backgroundIntro, introCompStart, 1, -100, 0);
+    fadeIn(backgroundIntro, introCompStart, 0.2, -100, 0);
     // fadeOut(backgroundIntro, introCompEnd, 1, 0, -100);
 
     // apply the fade in / fade out to the outro comp 
