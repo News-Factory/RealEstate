@@ -28,6 +28,7 @@ function gettxt(filePath){
     txtFile.encoding ="utf-8";   // THIS IS VERY IMPORTANT SO THAT 
                                  // DOES NOT BECOME GIBBERISH
     txtFile.open("r");  
+
     var str = txtFile.read();
     txtFile.close();
     return str;
