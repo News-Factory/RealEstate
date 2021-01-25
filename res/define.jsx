@@ -80,7 +80,7 @@ function defineTogglers(){
     var tog = {};
     tog.testingMode = false;
     tog.alertWhereWeAre = false;
-    tog.errorBreakMode = true; //if an error is found break if true
+    tog.errorBreakMode = false; //if an error is found break if true
     tog.loggingMode = true; //log errors if true, should always be turned on
     tog.alertErrorMode = true;
     return tog;
@@ -94,7 +94,7 @@ function defineSymbols(){
 }
 
 function defineMasterObj(txtFilePath, sym){
-    //The more advanced version, can accept several object titles: title, value, type whereas the previous version could only accept two.
+    //The more advanced version, can accept several object titles: title, value, and type.
     try{
     var txt = gettxt(txtFilePath);
     var splitted = txt.split(sym['con']); //'title: '+title+sym['ref']+'value: '+value+sym['ref']+'type: '+type;

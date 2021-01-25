@@ -1,7 +1,34 @@
 
 /////  16/12/2020
 ///// Functions that fix details for text paddings/margins etc in R&B template
-///// They should eventually be abandoned 
+
+function setLogoScaleAndPositionRB(layer){
+        var width=layer.width;
+        var height=layer.height;
+        // alert(height);
+
+        if (height > 1000){
+            layer.property('scale').setValueAtTime(0.2,[20,-20,100]);
+            layer.property('position').setValueAtTime(0.2, [-1062, -400]);
+        } else {
+            layer.property('scale').setValueAtTime(0.2,[60,60,100]);
+            layer.property('position').setValueAtTime(0.2, [550, 550]);
+        }
+    }
+
+function setLogoScaleAndPositionTR(layer){
+        var width=layer.width;
+        var height=layer.height;
+        // alert(height);
+        // alert(width); 
+        if (height < 150 && width < 250){
+            layer.property('scale').setValueAtTime(0.1,[250,250,100]);
+        }else{
+            layer.property('scale').setValueAtTime(0.1,[50,50,100]);
+        }
+        layer.property('position').setValueAtTime(0.1, [290, 335]);
+    }
+
 
 function centerText_BackGroundPadding(x,layer){
     var textBG = x.allLayers[layer]['Text BG'];
@@ -36,4 +63,60 @@ function topScrollingText_SpaceBetween(x){
     for (i = 1; i < data.length; i++){
         data[i].property('anchorPoint').setValue([-1.6, -20]);
     }
+}
+
+function randomIntroOutroTR(x){    // 15/01/2021
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
+    var outroFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Outro');
+    var introFootage= introFootageFolder.getFiles();
+    var outroFootage= outroFootageFolder.getFiles();
+
+    var introInt=introFootage.length;
+    var outroInt=outroFootage.length;
+
+    var introLayer=x.allLayers['Intro']['Video Intro'];
+    var outroLayer=x.allLayers['Outro']['Video Outro'];
+    // alert(introLayer.name);
+    var randomIntro= Math.floor(Math.random()*introInt);
+    var randomOutro= Math.floor(Math.random()*outroInt);
+    var videoIntroPath= introFootage[randomIntro];
+    var videoOutroPath= outroFootage[randomOutro];
+    var videoIntro= app.project.importFile(new ImportOptions(new File(videoIntroPath)));
+    var videoOutro= app.project.importFile(new ImportOptions(new File(videoOutroPath)));
+    // alert(videoIntro.name);
+    introLayer.replaceSource(videoIntro,true);
+    outroLayer.replaceSource(videoOutro,true);
+}
+
+function randomStartVideoComp(x){   // 19/01/2021
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var barsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
+    var beachParksFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Beach-Parks');
+    var familyFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Family');
+    var marketsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
+    var shoppingFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Shopping');
+    var barsFootage= barsFootageFolder.getFiles();
+    var beachParksFootage= beachParksFootageFolder.getFiles();
+    var familyFootage= familyFootageFolder.getFiles();
+    var marketsFootage= marketsFootageFolder.getFiles();
+    var shoppingFootage= shoppingFootageFolder.getFiles();
+
+    var firstInt=familyFootage.length;
+    var secondInt=beachParksFootage.length;
+    // alert(firstInt);
+    // alert(secondInt);
+
+    var firstVidLayer=x.allLayers['Videos Comp']['Video_5'];
+    var secondVidLayer=x.allLayers['Videos Comp']['Video_4'];
+
+    var randomFirst= Math.floor(Math.random()*firstInt);
+    var randomSecond= Math.floor(Math.random()*secondInt);
+    var firstVidPath= familyFootage[randomFirst];
+    var secondVidPath= beachParksFootage[randomSecond];
+    var firstVideo= app.project.importFile(new ImportOptions(new File(firstVidPath)));
+    var secondVideo= app.project.importFile(new ImportOptions(new File(secondVidPath)));
+    // alert(videoIntro.name);
+    firstVidLayer.replaceSource(firstVideo,true);
+    secondVidLayer.replaceSource(secondVideo,true);
 }

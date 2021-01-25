@@ -1,4 +1,6 @@
-﻿function importAllFilesIntoProject(x,found){
+﻿#include "get.jsx";
+
+function importAllFilesIntoProject(x,found){
     //The main import function that both imports files and returns the found layers object with the
     //corresponding file references.
     var avtypes_forSetFootage=['vid','pic','sound'];

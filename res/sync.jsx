@@ -1,5 +1,5 @@
-﻿//The second section of sync.jsx will be specific functions dealing with specific cases
-//The first section will be a function that maps out the markers of a given layer
+﻿//The second section of sync.jsx is in specific functions dealing with specific cases
+//The first section is a function that maps out the markers of a given layer
 
 function getMarkers(layer){
     //A marker can have a name or not, there can be more than one or none

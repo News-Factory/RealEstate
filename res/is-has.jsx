@@ -1,9 +1,11 @@
 ﻿//IS functions// 
 ////////////////////////
-//isCompLayer(layer)
-//isFootageLayer(layer)
-//isCameraLayer(layer)
-//isTextLayer(layer)
+
+// isCompLayer(layer)
+// isFootageLayer(layer)
+// isCameraLayer(layer)
+// isTextLayer(layer)
+
 ////////////////////////
 
 function isCompLayer(layer){
@@ -24,9 +26,6 @@ function isSoundLayer(layer){
     return layer.hasAudio;
 }
 
-//function isPicturesLayer(layer){
-//   return layer.
-//}
 
 function isCameraLayer(layer){
     //return layer.toString()=="[object CameraLayer]";
@@ -69,7 +68,7 @@ function isUndefined(obj){
     return true;
 }
 
-// a function that reconizes numbers from words in text 08/12/2020
+// a function that recognizes numbers from words in text 08/12/2020
 function isNumber(text){
     var n = parseFloat(text);
     if (isNaN(n)){

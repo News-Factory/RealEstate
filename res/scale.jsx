@@ -32,7 +32,7 @@ function setScaleDurationMarkersForPhotosComp(x){
 
     ///// setting conditional statement based on how many photo layers there are 16/12/2020
     //// this is done to make the function work on TRANSPARENT
-    if (layers.length <= 5){
+    if (layers.length <= 10){
         picDur = 7.4;
         padding = 2;
         fixForm = 20;
@@ -69,7 +69,7 @@ function setScaleDurationMarkersForPhotosComp(x){
         }
 
         if (layers.length>5 && i<layers.length){
-            setFadeIn(innerLayer,0, 1);
+            setFadeIn(innerLayer,0, 0.5);
         }
     }
     //Once we're done scaling and setting durations it's time to relocate the markers
@@ -79,7 +79,7 @@ function setScaleDurationMarkersForPhotosComp(x){
    
 // this function is the same as above but targets a ['Videos Comp'] for project 2     // 23/12/2020
 function setScaleDurationMarkersForVideosComp(x){
-    // looping through the comps to check if there is a ['Video Comp']
+    // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
         if(x.comps[c].name == 'Videos Comp'){
             var VideosComp=x.allLayers['Videos Comp'].comp;
@@ -167,34 +167,38 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
     var goldenRatio=goldenH/goldenW;
     //alert(goldenRatio); //0.5625
     var comp=layer.containingComp;
-    //alert('comp.name '+comp.name+' layer.name '+layer.name);
+    // alert('comp.name '+comp.name+' layer.name '+layer.name);
     var compW=comp.width;
     var compH=comp.height;
     var layerW=layer.width;
     var layerH=layer.height;
 
-    // if the composition is NOT logo resize to fill the screen, otherwise only rescale 40%
-    if (comp.name !== 'logo') {
+    // if the comp/layer contains a logo rescale based on dimensions, 
+    // otherwise rescale to fit the screen, changed on 14/01/2021
+    if (comp.name == 'logo' || comp.name == "Flat Logo" || comp.name == "LogoR&B" ) {
         if(layerH!=compH  || layerW!=compW){
-        //alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
+        // alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
             var ratio=layerH/layerW;
+
             if (ratio>=goldenRatio){
-                var scaleValue=100*(compW/layerW);
+                var scaleValue=35*(compW/layerW);
             } else {
-                var scaleValue=100*(compH/layerH);
+                var scaleValue=35*(compH/layerH);
             } 
             // alert(scaleValue + " scaleValue for " + layer.name);      
             layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
         }
-    } else {
+    } else {   
         if(layerH!=compH || layerW!=compW){
             var ratio=layerH/layerW;
             if (ratio>=goldenRatio){
-                var scaleValue=40*(compW/layerW);
+                var scaleValue=100*(compW/layerW);
+                // alert(scaleValue + " scaleValue for " + layer.name);  
             } else {
-                var scaleValue=40*(compH/layerH);
+                var scaleValue=100*(compH/layerH);
+                // alert(scaleValue + " scaleValue for " + layer.name);  
             }     
-            layer.property('Scale').setValueAtTime(1,[scaleValue,scaleValue]);
+            layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
         }
 
     }

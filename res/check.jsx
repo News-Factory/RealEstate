@@ -1,3 +1,6 @@
+///// THIS PAGE CONTAINS THE FUNCTIONS THAT CHECK FOR LOST OR DOUBLE LAYERS
+
+
 function checkFor_lostLayers(lostLayers){
     var lostAndFound_log='The following  layers could not be found:';
     for (var i=0;i<lostLayers.length;i++){

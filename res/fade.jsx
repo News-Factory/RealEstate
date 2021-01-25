@@ -8,7 +8,7 @@ function fade(layer,startAt,endAt,duration,startVal,endVal){
         var relativeStartTime=layer.inPoint+startAt;
         var relativeEndTime=relativeStartTime+duration;
     } else {
-        var relativeEndTime=layer.outPoint-endAt;
+        var relativeEndTime=endAt; //layer.outPoint-
         var relativeStartTime=relativeEndTime-duration;
     }
     
@@ -33,6 +33,11 @@ function fadeIn(layer,startAt,duration,startVal,endVal){
     fade(layer,startAt,null,duration,startVal,endVal);
 }
 
+function preFadeIn(layer,startAt,duration,startVal,endVal){
+    fade(layer,startAt -duration,null,duration,startVal,endVal);
+}
+
+
 function fadeOut(layer,endAt,duration,startVal,endVal){
     fade(layer,null,endAt,duration,startVal,endVal);
 }
@@ -54,3 +59,13 @@ function fadeOut_fromEnd(layer,duration){
     fadeOut(layer,0,duration,0,-100);
 }
 
+function slowFadeOut(layer,endAt,duration,endVal,parts){
+    var unit = duration/parts;
+    var volUnit= endVal/parts;
+    for (i=parts; i >=0; i--){
+        var gap= unit*i;
+        var startVol= volUnit *(duration-i);
+        var endVol= volUnit *(duration-i+1);
+        fade(layer,null,endAt-gap,unit,startVol,endVol);
+    }
+}
