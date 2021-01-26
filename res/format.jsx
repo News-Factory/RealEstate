@@ -61,13 +61,15 @@ function fitSoundOnPhotosComp(x){
     // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
     var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
     var detailComp=x.allLayers['0_Main Comp']['Details'];
+    var outroComp=x.allLayers['0_Main Comp']['Outro'];
 
     // var photoCompStart = photoComp.inPoint; //inPoint
 
     if(detailComp){
         var detailCompEnd = detailComp.outPoint; //outPoint
     } else {
-        var videoCompEnd = videoComp.outPoint;
+        // var videoCompEnd = videoComp.outPoint;
+        var outroCompEnd = outroComp.outPoint;
         // alert(videoCompEnd);
     }
 
@@ -84,7 +86,7 @@ function fitSoundOnPhotosComp(x){
     if(detailComp){
         fadeOut(backgroundSong, detailCompEnd, 1, 0, -100);  
     } else {
-        slowFadeOut(backgroundSong, videoCompEnd, 5, -40, 5);
+        slowFadeOut(backgroundSong, outroCompEnd, 5, -40, 5);
     }
 }
 
@@ -119,8 +121,8 @@ function fitSoundOnIntroOutro(x){
     // fadeOut(backgroundIntro, introCompEnd, 0.2, 0, -60);
 
     // apply the fade in / fade out to the outro comp 
-    fadeIn(backgroundOutro, outroCompStart, 0.2, -60, 0);
-    fadeOut(backgroundOutro, outroCompEnd, 0.2, 0, -60);
+    // fadeIn(backgroundOutro, outroCompStart, 0.2, -60, 0);
+    // fadeOut(backgroundOutro, outroCompEnd, 0.2, 0, -60);
 }
 
 function fitSoundOnAll(x){
