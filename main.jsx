@@ -81,7 +81,7 @@ function realEstate(x){
     setScaleDurationMarkersForPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
-    setScaleDurationMarkersForVideosComp(x);
+    // setScaleDurationMarkersForVideosComp(x);
 
     setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
@@ -186,9 +186,9 @@ function slicer(x){
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            alert(lastPic.name);
+            // alert(lastPic.name);
             pcLayer.outPoint = lastPic.inPoint + introDuration;     
-            alert(lastPic.inPoint);
+            // alert(lastPic.inPoint);
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
             var introDuration = mainLayers[2].startTime;
