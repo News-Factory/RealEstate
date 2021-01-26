@@ -9,6 +9,7 @@
 #include "./res/format.jsx";
 #include "./res/fade.jsx";
 #include "./res/labels.jsx";
+#include "./res/random.jsx";
 #include "./res/sheetConstruct.jsx";
 
 //Stage01 Match - match the titles in the sheet to layers in the project
@@ -271,7 +272,8 @@ function soundAndDetails(x){
     if (template === 'Transparent'){
         formatLogoTR(x);
         randomIntroOutroTR(x);
-        randomStartVideoComp(x);
+        // randomStartVideoComp(x);
+        randomVideoCompCity(x);
         iconsCheckTR(x);
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);
