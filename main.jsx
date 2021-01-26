@@ -176,6 +176,7 @@ function slicer(x){
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
+        var introDuration = mainLayers[2].startTime;
         var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
@@ -185,14 +186,14 @@ function slicer(x){
         if(locTestPhoto){
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            // alert(lastPic.name);
-            pcLayer.outPoint = lastPic.outPoint + gap;     
-            // alert(lastPic.outPoint);
+            alert(lastPic.name);
+            pcLayer.outPoint = lastPic.inPoint + introDuration;     
+            alert(lastPic.inPoint);
         } else {
             var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
-            var introDuration = mainLayers[1].outPoint;
+            var introDuration = mainLayers[2].startTime;
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.outPoint + introDuration -gap*2; 
+            pcLayer.outPoint = lastPic.outPoint + introDuration; 
             // alert(lastPic.outPoint);
         } 
 
@@ -318,6 +319,7 @@ function adjustIntroForMusic(x){
     var introBox = x.allLayers['Intro']['Intro Box'];
     var introMask = x.allLayers['Intro']['Cyan Solid'];
     var neededTime = backgroundIntroSong.source.duration;
+    var gap = 0.5;
     // alert(neededTime);
     var positionIntroBox=introBox.property('Position');
     var pathMask=introMask.mask(1).property('ADBE Mask Shape');
@@ -333,10 +335,10 @@ function adjustIntroForMusic(x){
         pathMask.removeKey(k);
 
         if (k==1){
-            positionIntroBox.setValueAtTime(neededTime-1, [posValue[0], posValue[1]]);
+            positionIntroBox.setValueAtTime(neededTime-1-gap, [posValue[0], posValue[1]]);
             pathMask.setValueAtTime(neededTime-1, pathValue);
         } else {
-            positionIntroBox.setValueAtTime(neededTime, [posValue[0], posValue[1]]);
+            positionIntroBox.setValueAtTime(neededTime-gap, [posValue[0], posValue[1]]);
             pathMask.setValueAtTime(neededTime, pathValue);
         }
     }
