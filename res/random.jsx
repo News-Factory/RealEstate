@@ -94,7 +94,8 @@ function randomVideoCompCity(x){
 }
 
 function randomVideoAvira(x, aviraNumber) {
-    var avira= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
+    var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
+    var avira= aviraString.split(' - ')[1];
     // alert(avira);
     var mommyFolderPath='D:/Real Estate Folder/';
     var aviraFootageFolder= new Folder(mommyFolderPath+'Shutterstock/'+avira);

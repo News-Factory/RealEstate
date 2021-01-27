@@ -65,3 +65,13 @@ function topScrollingText_SpaceBetween(x){
     }
 }
 
+function onlyHebrewAviraBox(x){
+    for (i=1; i<=3; i++){
+        var layer=  x.allLayers['Avira Text Box']['Avira'+i];
+        // alert(layer.name);
+        var aviraString= layer.sourceText.value.toString();
+        var avira= aviraString.split(' - ')[0];
+        setText(layer, avira);
+    }
+}
+

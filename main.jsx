@@ -277,6 +277,7 @@ function soundAndDetails(x){
         randomVideoAvira(x,1);
         randomVideoAvira(x,2);
         randomVideoAvira(x,3);
+        onlyHebrewAviraBox(x);
         iconsCheckTR(x);
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);

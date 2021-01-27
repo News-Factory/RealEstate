@@ -172,12 +172,12 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
     var compH=comp.height;
     var layerW=layer.width;
     var layerH=layer.height;
+    clearKeys(layer,'Scale');
 
     // if the comp/layer contains a logo rescale based on dimensions, 
     // otherwise rescale to fit the screen, changed on 14/01/2021
     if (comp.name == 'logo' || comp.name == "Flat Logo" || comp.name == "LogoR&B" ) {
         if(layerH!=compH  || layerW!=compW){
-        // alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
             var ratio=layerH/layerW;
 
             if (ratio>=goldenRatio){
@@ -190,6 +190,7 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
         }
     } else {   
         if(layerH!=compH || layerW!=compW){
+            // alert('layerH '+layerH+' layerW '+layerW+' compW '+compW+' compH '+compH);
             var ratio=layerH/layerW;
             if (ratio>=goldenRatio){
                 var scaleValue=100*(compW/layerW);
