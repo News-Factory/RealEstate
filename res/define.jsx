@@ -54,8 +54,6 @@ function definePaths(newsfactoryBoolean){
     return paths;
 }
 
-function defineTemplate(){
-}
 
 function reconstructProjectAsNamesObjects(comps){
     //go over every item, comp, folder, and get items by their name
