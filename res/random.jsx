@@ -95,14 +95,14 @@ function randomVideoCompCity(x){
 
 function randomVideoAvira(x, aviraNumber) {
     var avira= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
-
+    // alert(avira);
     var mommyFolderPath='D:/Real Estate Folder/';
-    var aviraFootageFolder= new Folder(mommyFolderPath+'Rahaf/Shutterstock/'+avira);
-    var aviraFootage= cityFootageFolder.getFiles();
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Shutterstock/'+avira);
+    var aviraFootage= aviraFootageFolder.getFiles();
 
-    var int=aviraFootage.length;
-    var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-avira)];
-    var random= Math.floor(Math.random()*int);
+    var integer=aviraFootage.length;
+    var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
+    var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);

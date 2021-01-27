@@ -274,6 +274,9 @@ function soundAndDetails(x){
         randomIntroOutroTR(x);
         // randomStartVideoComp(x);
         randomVideoCompCity(x);
+        randomVideoAvira(x,1);
+        randomVideoAvira(x,2);
+        randomVideoAvira(x,3);
         iconsCheckTR(x);
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);
