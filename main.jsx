@@ -205,7 +205,7 @@ function slicer(x){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
-            if (i ==1){
+            if (i==1 || i==2){
                 nextLayer.startTime=layer.outPoint -gap;
             }else{
                 nextLayer.startTime=layer.outPoint;    
