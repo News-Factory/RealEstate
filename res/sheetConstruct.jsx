@@ -2,7 +2,7 @@
 
 //Here we'll be using specific labels to construct the google sheet
 function sc_constructGS(x){
-    var selectedLabels=[6,10,12,13]; //peach, purple, brown, fuchsia
+    var selectedLabels=[4,6,10,12,13]; //peach, purple, brown, fuchsia
     var labelTypes=sc_defineTypesByLabels(); //array of objects {colorName,type}
     var resTitleRow=[]; //we're exporting a csv txt
     var resLabelTypeRow=[]; //we'll be joining the arrayes to a text later
@@ -47,6 +47,7 @@ function sc_defineTypesByLabels(){
     for (var i=1; i<labels.length; i++){
         res.push({colorName:labels[i]});
     }
+    res[4].type='onoff'; //pink
     res[6].type='text'; //peach
     res[10].type='vid'; //purple
     res[12].type='pic'; //brown
