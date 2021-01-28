@@ -23,6 +23,8 @@ function setLogoScaleAndPositionTR(layer){
         // alert(width); 
         if (height < 150 && width < 250){
             layer.property('scale').setValueAtTime(0.1,[250,250,100]);
+        } else if(width < 500 && height < 500){
+            layer.property('scale').setValueAtTime(0.2,[90,90,100]);
         }else{
             layer.property('scale').setValueAtTime(0.1,[50,50,100]);
         }
@@ -73,7 +75,12 @@ function onlyHebrewAviraBox(x){
         var avira= aviraString.split(' - ')[0];
         setText(layer, avira);
     }
+    var anotherLayer=  x.allLayers['Avira Headline Text']['city'];
+    var city= anotherLayer.sourceText.value.toString().split('-')[0];
+    setText(anotherLayer, city);
 }
+
+
 
 // This function takes the price number and adds points to make it more readable  28/01/2021
 function stylePrice(x){

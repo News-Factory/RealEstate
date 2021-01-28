@@ -64,7 +64,8 @@ function randomStartVideoComp(x){   // 19/01/2021
 }
 
 function randomVideoCompCity(x){
-    var city= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
+    var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
+    var city=cityBoth.split('-')[1];
     // alert(city);
 
     var mommyFolderPath='D:/Real Estate Folder/';
