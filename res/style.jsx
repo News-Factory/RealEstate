@@ -19,12 +19,18 @@ function setLogoScaleAndPositionRB(layer){
 function setLogoScaleAndPositionTR(layer){
         var width=layer.width;
         var height=layer.height;
-        // alert(height);
-        // alert(width); 
+        alert(height);
+        alert(width); 
         if (height < 150 && width < 250){
             layer.property('scale').setValueAtTime(0.1,[250,250,100]);
-        } else if(width < 500 && height < 500){
+        } else if(width < 500){
             layer.property('scale').setValueAtTime(0.2,[90,90,100]);
+        } else if (height < 100){
+            layer.property('scale').setValueAtTime(0.1,[40,40,100]);           
+        } else if (height >3000){
+            layer.property('scale').setValueAtTime(0.1,[10,10,100]);  
+        }else if (height >1000 && height <1500){
+            layer.property('scale').setValueAtTime(0.1,[27,27,100]);  
         }else{
             layer.property('scale').setValueAtTime(0.1,[50,50,100]);
         }
