@@ -75,3 +75,20 @@ function onlyHebrewAviraBox(x){
     }
 }
 
+// This function takes the price number and adds points to make it more readable  28/01/2021
+function stylePrice(x){
+    var layer=  x.allLayers['Price']['Price'];
+    var priceString= layer.sourceText.value.toString();
+    var len= priceString.length;
+    var needsTo =priceString.indexOf(".");
+    // 
+    if(needsTo == -1){
+        var first=priceString.slice(0, len-6);
+        var second=priceString.slice(len-6,len-3);
+        var third=priceString.slice(len-3,len);
+        var endNumber=first+'.'+second+'.'+third;
+        // alert(endNumber);
+        setText(layer, endNumber);
+    }
+}
+

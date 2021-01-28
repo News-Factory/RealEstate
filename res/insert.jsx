@@ -1,4 +1,5 @@
 #include "scale.jsx";
+#include "style.jsx";
 
 function insertAll(x,found){
     if (found){
@@ -136,6 +137,8 @@ function insertIconsTopTicker(x){
             break;
         }
     }
+
+    stylePrice(x);
 
     // this function moves to the left all of the information that were already 'active' in the ticker
     // in order to make space for new info layers

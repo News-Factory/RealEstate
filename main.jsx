@@ -20,15 +20,15 @@
 //Stage06 Set background music ++
 
 {   
-    var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
-    var processedFolder=new Folder(mommyFolderPath+'processed');
+    // var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    // var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
+    // var processedFolder=new Folder(mommyFolderPath+'processed');
 
-    var wFiles=waitingFolder.getFiles();
-    var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
-    var x=defineMainProjectItems(txtFilePath); 
-    sc_constructGS(x);  // this function creates the google sheet thingy
-    // batchProcess();
+    // var wFiles=waitingFolder.getFiles();
+    // var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
+    // var x=defineMainProjectItems(txtFilePath); 
+    // sc_constructGS(x);  // this function creates the google sheet thingy
+    batchProcess();
 }
 
 function batchProcess(){
@@ -332,7 +332,7 @@ function adjustIntroForMusic(x){
     var introBox = x.allLayers['Intro']['Intro Box'];
     var introMask = x.allLayers['Intro']['Cyan Solid'];
     var neededTime = backgroundIntroSong.source.duration;
-    var gap = 0.5;
+    var gap = 0.2;
     // alert(neededTime);
     var positionIntroBox=introBox.property('Position');
     var pathMask=introMask.mask(1).property('ADBE Mask Shape');
@@ -348,8 +348,8 @@ function adjustIntroForMusic(x){
         pathMask.removeKey(k);
 
         if (k==1){
-            positionIntroBox.setValueAtTime(neededTime-1-gap, [posValue[0], posValue[1]]);
-            pathMask.setValueAtTime(neededTime-1, pathValue);
+            positionIntroBox.setValueAtTime(neededTime-0.5-gap, [posValue[0], posValue[1]]);
+            pathMask.setValueAtTime(neededTime-0.5, pathValue);
         } else {
             positionIntroBox.setValueAtTime(neededTime-gap, [posValue[0], posValue[1]]);
             pathMask.setValueAtTime(neededTime, pathValue);
