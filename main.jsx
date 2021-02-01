@@ -277,6 +277,7 @@ function soundAndDetails(x){
         // fitSoundOnAll(x);
     }
     else if (template === 'Red&Blue'){
+        formatLogoRB(x);
         formatPhotosComp(x);
         iconsCheckRB(x)
     }

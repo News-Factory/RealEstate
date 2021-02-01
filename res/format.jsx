@@ -2,6 +2,11 @@
 #include "clear.jsx";
 #include "style.jsx";
 
+function formatLogoRB(x){
+    var logo_Details =x.allLayers['LogoR&B']['LogoR&B'];
+    setLogoScaleAndPositionRB(logo_Details);
+}
+
 function formatLogoTR(x){
     var logo_Details =x.allLayers['Flat Logo']['logo'];
     setLogoScaleAndPositionTR(logo_Details);
@@ -17,9 +22,6 @@ function formatPhotosComp(x){
     var logo_Details=x.allLayers['Outro']['LogoR&B'];
     var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
 
-    // setLogoScaleAndPosition(logo_Intro);
-    // setLogoScaleAndPositionRB(logo_Details);
-    setLogoScaleAndPositionRB(logo_PhotosComp);
 
     for (var i=1; i<=layers.length; i++){
         var roomPhotoLayerName=layers[i].name;
@@ -60,12 +62,12 @@ function fitSoundOnPhotosComp(x){
     var startIn= introSong.source.duration;
     // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
     var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
-    var detailComp=x.allLayers['0_Main Comp']['Details'];
+    var outroComp=x.allLayers['0_Main Comp']['Outro'];
 
     // var photoCompStart = photoComp.inPoint; //inPoint
 
-    if(detailComp){
-        var detailCompEnd = detailComp.outPoint; //outPoint
+    if(outroComp){
+        var outroCompEnd = outroComp.outPoint; //outPoint
     } else {
         var videoCompEnd = videoComp.outPoint;
         // alert(videoCompEnd);
@@ -73,15 +75,15 @@ function fitSoundOnPhotosComp(x){
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
-    alert(startIn);
+    // alert(startIn);
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
     preFadeIn(backgroundSong, startIn, 0.2, -60, 0);
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
-    if(detailComp){
-        slowFadeOut(backgroundSong, detailCompEnd, 5, -50, 5);  
+    if(outroComp){
+        slowFadeOut(backgroundSong, outroCompEnd, 5, -50, 5);  
     } else {
         slowFadeOut(backgroundSong, videoCompEnd, 5, -50, 5);
     }
