@@ -13,7 +13,7 @@ function setLogoScaleAndPositionRB(layer){
             layer.property('position').setValueAtTime(0.2, [-1062, -400]);
         } else if (height > 500 && width >1500){
             layer.property('scale').setValueAtTime(0.2,[26,26,100]);
-            layer.property('position').setValueAtTime(0.2, [1000, 530]);
+            layer.property('position').setValueAtTime(0.2, [1000, 540]);
         }else {
             layer.property('scale').setValueAtTime(0.2,[60,60,100]);
             layer.property('position').setValueAtTime(0.2, [550, 550]);
