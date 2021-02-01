@@ -14,7 +14,7 @@ function formatPhotosComp(x){
 
     // changing the logo scale and dimension for details comp, 
     // intro and outro are videos now        30/12/2020
-    var logo_Details=x.allLayers['Details']['LogoR&B'];
+    var logo_Details=x.allLayers['Outro']['LogoR&B'];
     var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
 
     // setLogoScaleAndPosition(logo_Intro);
