@@ -19,8 +19,8 @@ function setLogoScaleAndPositionRB(layer){
 function setLogoScaleAndPositionTR(layer){
         var width=layer.width;
         var height=layer.height;
-        alert(height);
-        alert(width); 
+        // alert(height);
+        // alert(width); 
         if (height < 150 && width < 250){
             layer.property('scale').setValueAtTime(0.1,[250,250,100]);
         } else if(width < 500){
@@ -82,7 +82,7 @@ function onlyHebrewAviraBox(x){
         setText(layer, avira);
     }
     var anotherLayer=  x.allLayers['Avira Headline Text']['city'];
-    var city= anotherLayer.sourceText.value.toString().split('-')[0];
+    var city= anotherLayer.sourceText.value.toString().split('-')[1];
     setText(anotherLayer, city);
 }
 

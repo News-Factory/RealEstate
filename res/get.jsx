@@ -58,7 +58,7 @@ function getAllByType(inArray,type){
 function getData_byTitleValueType(data){
     //returns the text file sorted into the following types: 19/10/2020
 
-    var types = ["info","vid","pic","sound","text","onoff","meta","null"];
+    var types = ["info","vid","pic","sound","text","onoff","meta","null"]; 
     var res = {};
     for (var i=0; i<types.length; i++){
         res[types[i]]=[];
