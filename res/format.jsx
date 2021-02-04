@@ -7,10 +7,6 @@ function formatLogoRB(x){
     setLogoScaleAndPositionRB(logo_Details);
 }
 
-function formatLogoTR(x){
-    var logo_Details =x.allLayers['Flat Logo']['logo'];
-    setLogoScaleAndPositionTR(logo_Details);
-}
 
 function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
