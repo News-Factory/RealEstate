@@ -294,6 +294,7 @@ function soundAndDetails(x){
         iconsCheckRB(x)
     }
     // fitSoundOnPhotosComp(x);
+    setTheMusic(x);
     fitSoundOnIntroOutro(x);
 }
 
