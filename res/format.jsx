@@ -8,44 +8,55 @@ function formatLogoRB(x){
 }
 
 
-function formatPhotosComp(x){
+function formatBothPhotosComp(x){
     //removes controller layers, expressions, opacity
     var photosComp=x.allLayers['Photos Comp'].comp;
+    var photosComp2=x.allLayers['Photos Comp 2'].comp;
     var layers=photosComp.layers;
+    // alert(layers);
+    var layers2=photosComp2.layers;
+    var lengthBothComps= layers.length + layers2.length;
 
-    // changing the logo scale and dimension for details comp, 
+    // changing the logo scale and dimension for outro comp, 
     // intro and outro are videos now        30/12/2020
     var logo_Details=x.allLayers['Outro']['LogoR&B'];
     var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
 
-
-    for (var i=1; i<=layers.length; i++){
-        var roomPhotoLayerName=layers[i].name;
-        //Now we have the composition in which there's the layer we need
-        //The layer name is RoomP+i
+    for (var i=1; i<=lengthBothComps; i++){
         
+         if (i<=15){
+            var lay=layers2[i];
+        } else {
+            var lay=layers[i-layers2.length]; //CompLayer
+            // alert(layer);
+        }
+        var roomPhotoLayerName=lay.name;
+        //Now we have the composition in which there's the layer we need
+        //The layer name is RoomP+i       
         //unlock controller layers and remove
         var controller=x.allLayers[roomPhotoLayerName]['Photo Scale Controler'];
         if (controller!==undefined){
             if (controller.locked){controller.locked=false;}
             controller.remove();
-        }
-        
+        }       
         //remove expressions and reset scale
         var layer=x.allLayers[roomPhotoLayerName]['RoomP'+i];
-        layer.property('scale').expression='';
-        
+        layer.property('scale').expression='';       
         //remove opacity
-        var Room_Photo_i_layer=x.allLayers['Photos Comp']['Room_Photo_'+i];
+        if (i<=15){
+            var Room_Photo_i_layer=x.allLayers['Photos Comp 2']['Room_Photo_'+i];
+        } else {
+            var Room_Photo_i_layer=x.allLayers['Photos Comp']['Room_Photo_'+i];      
+        }
         var numOpacityKeys=Room_Photo_i_layer.property('opacity').numKeys;
         for (var k=1; k<=numOpacityKeys; k++){
             Room_Photo_i_layer.property('opacity').removeKey(1);
         }
         Room_Photo_i_layer.property('opacity').setValue(100);
-
         // this function is in the style.jsx file
         centerText_BackGroundPadding(x,roomPhotoLayerName);
     }
+
     // this function is in the style.jsx file
     topScrollingText_SpaceBetween(x);
 }

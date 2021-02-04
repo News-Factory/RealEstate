@@ -78,7 +78,7 @@ function realEstate(x){
     //Stage04
     setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    setScaleDurationMarkersForPhotosComp(x);
+    setScaleDurationMarkersForBothPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
@@ -233,9 +233,9 @@ function soundAndDetails(x){
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);
     }
-    else if (template === 'Red&Blue'){
+    else if (template === 'Red&BlueNew'){
         formatLogoRB(x);
-        formatPhotosComp(x);
+        formatBothPhotosComp(x);
         iconsCheckRB(x)
     }
     // fitSoundOnIntroOutro(x);

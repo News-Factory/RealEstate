@@ -17,10 +17,12 @@ function setDurationForIntroComp(x){
 }
 
 
-function setScaleDurationMarkersForPhotosComp(x){
+function setScaleDurationMarkersForBothPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;
+    var photosComp2=x.allLayers['Photos Comp 2'].comp;
     var layers=photosComp.layers;
+    var layers2=photosComp2.layers;
     //params
     //durations:
     var vidDur=10;
@@ -28,25 +30,23 @@ function setScaleDurationMarkersForPhotosComp(x){
     var padding = 1;
     //scales:
     var scaleFactor=1.05;
-    var fixForm = 0;  // needed to use the google Form files folders 08/01/2020
-
-    ///// setting conditional statement based on how many photo layers there are 16/12/2020
-    //// this is done to make the function work on TRANSPARENT
-    if (layers.length <= 10){
-        picDur = 7.4;
-        padding = 2;
-        fixForm = 20;
-    }
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-    //var i=1;
-    for (var i=layers.length; i>0; i--){
+    // calculating the total length of both phot comps
+    var lengthBothComps= layers.length+layers2.length;
+    // alert(lengthBothComps);
+
+    for (var i=lengthBothComps; i>0; i--){
         // alert(i);
-        // alert(fixForm);
-        var j = i+fixForm;
-        var roomPx=layers[i].name; //CompLayer
+        if (i<=15){
+            var layer=layers2[i];
+        } else {
+            var layer=layers[i-layers2.length]; //CompLayer
+            // alert(layer);
+        }
+        var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
-        var innerLayer=x.allLayers[roomPx]['RoomP'+j]; //Layer RoomPX
+        var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
         // alert(layers.length);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
@@ -57,20 +57,20 @@ function setScaleDurationMarkersForPhotosComp(x){
         setScaleFromTo(innerLayer,0,dur,scaleA,scaleB);
 
         // var newStartTime=layers[i].startTime;
-        var newMarkerTime=layers[i].startTime+dur-1;
-        moveMarker(layers[i],newMarkerTime);
+        var newMarkerTime=layer.startTime+dur-1;
+        moveMarker(layer,newMarkerTime);
 
         // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
 
-        if (i > 1){
-            var layerB = layers[i];
-            var layerA = layers[i-1];
-            syncOutPointToInPoint(layerB,layerA,padding);
-        }
+        // if (i > 1){
+        //     var layerB = layer;
+        //     var layerA = layer-1;
+        //     syncOutPointToInPoint(layerB,layerA,padding);
+        // }
 
-        if (layers.length>5 && i<layers.length){
-            setFadeIn(innerLayer,0, 0.5);
-        }
+        // if (layers.length>5 && i<layers.length){
+        //     setFadeIn(innerLayer,0, 0.5);
+        // }
     }
     //Once we're done scaling and setting durations it's time to relocate the markers
     //This procedure will be done inside sync.jsx
