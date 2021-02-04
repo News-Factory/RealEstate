@@ -121,57 +121,57 @@ function iconsCheckRB(x){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
-    // alert(mainLayers.length);
 
     // 22/01/2021
     // these variables are added because the function needs to set the length of the
     // intro comp based on the music in the intro
-    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
-    var neededTime = backgroundIntroSong.source.duration;
 
     if (x.photoComp) {//if naming was done correctly start
         
-        var pcLayer=x.allLayers['Photos Comp'].comp;
+        var pcLayer=x.allLayers['Photos Comp 2'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
+        // alert(howMany_Pictures);
         var gap = 1;
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
 
-        ///// This if statement arranges the layers in [0_Main Comp] in different ways
-        ///// depending if the AE project has test pictures or not 23/12/2020
-        if(locTestPhoto){
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
-            pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            // alert(lastPic.name);
-            pcLayer.outPoint = lastPic.inPoint;     
-            // alert(lastPic.outPoint);
-        } else {
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
-            var introDuration = mainLayers[1].outPoint;
-            pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.outPoint + introDuration -gap*2; 
-            // alert(lastPic.outPoint);
-        } 
+        var lastPic = x.allLayers['Photos Comp 2']['Room_Photo_'+locTestPhoto];
+        brandIntroLayer = getByName(mainLayers, "Intro");
+        droneLayer = getByName(mainLayers, "Drone Comp");
+        pcLayer = getByName(mainLayers,"2_Photos Comp"); 
+        alert(brandIntroLayer.outPoint);
+        pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint;     
+        // alert(lastPic.outPoint);
 
-        adjustIntroOnMusicRB(x);  
-        mainLayers[1].outPoint=neededTime;
+        // adjustDroneIntroOnMusicRB(x);  
+        // var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
+        // var neededTime = backgroundIntroSong.source.duration;
+        // // alert(neededTime);
+        // mainLayers[2].outPoint=neededTime + brandIntroLayer.outpoint;
 
-        for (var i=1; i<4; i++){
+        for (var i=1; i<mainLayers.length-2; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
             if (i ==1){
                 nextLayer.startTime=layer.outPoint -gap;
-            }else{
+            }else if (i ==2){
+                adjustDroneIntroOnMusicRB(x);  
+                var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
+                var neededTime = backgroundIntroSong.source.duration;
+                // alert(neededTime);
+                mainLayers[2].outPoint=neededTime + brandIntroLayer.outPoint;
+                nextLayer.startTime=layer.outPoint;   
+            } else {
                 nextLayer.startTime=layer.outPoint;    
             }
         } 
 
-        fitSoundOnPhotosComp(x);
-        
+        fitSoundOnPhotosComp(x);       
         // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
         var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
+        // alert(veryEnd);
         var main= x.allLayers['0_Main Comp'].comp;
         main.workAreaDuration = veryEnd;
    
@@ -186,14 +186,9 @@ function slicer(x){
 
 function getLoc_TestPhoto(x){//get the layer number where test photo is at
 
-    var template = x.projFile.name.split('.')[0];
     var fixForm = 0;   // needed to use the google Form files folders 08/01/2020
 
-    if (template == 'Transparent'){
-        fixForm = 20;
-    }
-
-    var pcLayer=x.allLayers['Photos Comp'].comp;
+    var pcLayer=x.allLayers['Photos Comp 2'].comp;
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
@@ -269,11 +264,13 @@ function renderIt(x){
 
 // 22/01/2021 this section changes the length of the intro comp based on the length of its music layer
 
-function adjustIntroOnMusicRB(x){
+function adjustDroneIntroOnMusicRB(x){
     var mainLayers = x.mainComp.layers;
     var introComp = mainLayers[1];
-    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
+    // alert(introComp.outPoint);
+    var droneIntro = mainLayers[2];
+    var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
     var neededTime = backgroundIntroSong.source.duration;
     // alert(neededTime);
-    introComp.outPoint = neededTime
+    droneIntro.outPoint = neededTime + introComp.outPoint;
 }

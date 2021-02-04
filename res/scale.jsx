@@ -31,18 +31,22 @@ function setScaleDurationMarkersForBothPhotosComp(x){
     //scales:
     var scaleFactor=1.05;
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
-
     // calculating the total length of both phot comps
     var lengthBothComps= layers.length+layers2.length;
     // alert(lengthBothComps);
-
     for (var i=lengthBothComps; i>0; i--){
         // alert(i);
         if (i<=15){
             var layer=layers2[i];
-        } else {
+            if (i>1){
+                var layerA=layers2[i-1];
+            }
+        } else{
             var layer=layers[i-layers2.length]; //CompLayer
-            // alert(layer);
+            // alert(layer.name);
+            if(i>16){
+                var layerA=layers[(i-layers2.length)-1];
+            }
         }
         var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
@@ -62,11 +66,10 @@ function setScaleDurationMarkersForBothPhotosComp(x){
 
         // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
 
-        // if (i > 1){
-        //     var layerB = layer;
-        //     var layerA = layer-1;
-        //     syncOutPointToInPoint(layerB,layerA,padding);
-        // }
+        if (i > 1 ){
+            var layerB = layer;
+            syncOutPointToInPoint(layerB,layerA,padding);
+        }
 
         // if (layers.length>5 && i<layers.length){
         //     setFadeIn(innerLayer,0, 0.5);
@@ -81,8 +84,8 @@ function setScaleDurationMarkersForBothPhotosComp(x){
 function setScaleDurationMarkersForVideosComp(x){
     // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
-        if(x.comps[c].name == 'Videos Comp'){
-            var VideosComp=x.allLayers['Videos Comp'].comp;
+        if(x.comps[c].name == '1 Videos Comp'){
+            var VideosComp=x.allLayers['1 Videos Comp'].comp;
             var layers=VideosComp.layers;
             
             //durations:

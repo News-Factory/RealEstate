@@ -22,8 +22,7 @@ function formatBothPhotosComp(x){
     var logo_Details=x.allLayers['Outro']['LogoR&B'];
     var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
 
-    for (var i=1; i<=lengthBothComps; i++){
-        
+    for (var i=1; i<=lengthBothComps; i++){       
          if (i<=15){
             var lay=layers2[i];
         } else {
@@ -65,7 +64,7 @@ function formatBothPhotosComp(x){
 // sets the right fade in/out for the music going on Photos Comp  08/12/2020
 function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
-    var introSong= x.allLayers['Intro']['Intro Sound'];
+    var introSong= x.allLayers['Drone Shot']['Intro Sound'];
     var startIn= introSong.source.duration;
     // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
     var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
