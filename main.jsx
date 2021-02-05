@@ -229,7 +229,10 @@ function soundAndDetails(x){
         formatLogoRB(x);
         formatBothPhotosComp(x);
         randomDroneShot(x);
-        iconsCheckRB(x)
+        randomVideoAvira(x,1);
+        randomVideoAvira(x,2);
+        randomVideoAvira(x,3);
+        iconsCheckRB(x);
     }
     // fitSoundOnIntroOutro(x);
 }
