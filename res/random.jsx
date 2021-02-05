@@ -1,4 +1,5 @@
 #include "scale.jsx"  
+#include "import.jsx"  
 
 function randomDroneShot(x){    // 05/02/2021
     var mommyFolderPath='D:/Real Estate Folder/';
