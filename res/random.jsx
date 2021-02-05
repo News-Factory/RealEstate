@@ -1,3 +1,5 @@
+#include "scale.jsx"  
+
 function randomDroneShot(x){    // 05/02/2021
     var mommyFolderPath='D:/Real Estate Folder/';
     var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
@@ -53,4 +55,6 @@ function randomDroneComp(x){   // 19/01/2021
     // alert(videoIntro.name);
     firstVidLayer.replaceSource(firstVideo,true);
     secondVidLayer.replaceSource(secondVideo,true);
+    fitToComp(firstVidLayer);
+    fitToComp(secondVidLayer);
 }
