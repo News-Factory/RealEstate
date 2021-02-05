@@ -229,9 +229,11 @@ function soundAndDetails(x){
         formatLogoRB(x);
         formatBothPhotosComp(x);
         randomDroneShot(x);
+        randomDroneComp(x);
         randomVideoAvira(x,1);
         randomVideoAvira(x,2);
         randomVideoAvira(x,3);
+        onlyHebrewAviraBox(x);
         iconsCheckRB(x);
     }
     // fitSoundOnIntroOutro(x);

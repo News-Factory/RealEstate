@@ -68,3 +68,16 @@ function topScrollingText_SpaceBetween(x){
         data[i].property('anchorPoint').setValue([-1.6, -20]);
     }
 }
+
+function onlyHebrewAviraBox(x){
+    for (i=1; i<=3; i++){
+        var layer=  x.allLayers['Avira Text Box']['Avira'+i];
+        // alert(layer.name);
+        var aviraString= layer.sourceText.value.toString();
+        var avira= aviraString.split(' - ')[0];
+        setText(layer, avira);
+    }
+    var anotherLayer=  x.allLayers['Avira Headline Text']['city'];
+    var city= anotherLayer.sourceText.value.toString().split('-')[1];
+    setText(anotherLayer, city);
+}
