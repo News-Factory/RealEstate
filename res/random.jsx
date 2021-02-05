@@ -13,6 +13,22 @@ function randomDroneShot(x){    // 05/02/2021
     droneIntroLayer.replaceSource(videoDroneShot,true);
 }
 
+function randomVideoAvira(x, aviraNumber) {
+    var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
+    var avira= aviraString.split(' - ')[1];
+    // alert(avira);
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Shutterstock/'+avira);
+    var aviraFootage= aviraFootageFolder.getFiles();
+
+    var integer=aviraFootage.length;
+    var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
+    var random= Math.floor(Math.random()*integer);
+    var vidPath= aviraFootage[random];
+    var video= app.project.importFile(new ImportOptions(new File(vidPath)));
+    vidLayer.replaceSource(video,true);
+}
+
 function randomStartVideoComp(x){   // 19/01/2021
     var mommyFolderPath='D:/Real Estate Folder/';
     var barsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
