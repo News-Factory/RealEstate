@@ -141,15 +141,9 @@ function slicer(x){
         brandIntroLayer = getByName(mainLayers, "Intro");
         droneLayer = getByName(mainLayers, "Drone Comp");
         pcLayer = getByName(mainLayers,"2_Photos Comp"); 
-        alert(brandIntroLayer.outPoint);
+        // alert(brandIntroLayer.outPoint);
         pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint;     
         // alert(lastPic.outPoint);
-
-        // adjustDroneIntroOnMusicRB(x);  
-        // var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
-        // var neededTime = backgroundIntroSong.source.duration;
-        // // alert(neededTime);
-        // mainLayers[2].outPoint=neededTime + brandIntroLayer.outpoint;
 
         for (var i=1; i<mainLayers.length-2; i++){
             var layer = mainLayers[i];
