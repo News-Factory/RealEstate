@@ -154,17 +154,15 @@ function slicer(x){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
-            if (i ==1){
-                nextLayer.startTime=layer.outPoint -gap;
-            }else if (i ==2){
+            if (i ==2){
                 adjustDroneIntroOnMusicRB(x);  
                 var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
                 var neededTime = backgroundIntroSong.source.duration;
                 // alert(neededTime);
                 mainLayers[2].outPoint=neededTime + brandIntroLayer.outPoint;
-                nextLayer.startTime=layer.outPoint;   
+                nextLayer.startTime=layer.outPoint -gap;   
             } else {
-                nextLayer.startTime=layer.outPoint;    
+                nextLayer.startTime=layer.outPoint -gap;    
             }
         } 
 
