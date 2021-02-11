@@ -244,6 +244,7 @@ function soundAndDetails(x){
         iconsCheckRB(x);
     }
     // fitSoundOnIntroOutro(x);
+    setTheMusic(x);
 }
 
 function renderIt(x){

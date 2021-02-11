@@ -81,3 +81,23 @@ function onlyHebrewAviraBox(x){
     // var city= anotherLayer.sourceText.value.toString().split('-')[1];
     // setText(anotherLayer, city);
 }
+
+function setTheMusic(x){
+    var theMood=x.dataByType['meta'];
+    var moodString= theMood[1].value.toString();
+    // alert(moodString);
+
+    var mommyFolderPath='D:/Real Estate Folder/';
+    var musicFolder= new Folder(mommyFolderPath+'BackgroundMusic/Waveform Edits/'+moodString);
+    var audioTracks= musicFolder.getFiles();
+    var introTrackLayer=x.allLayers['Drone Shot']['Intro Sound'];
+    var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
+    
+    var introPath= audioTracks[1];
+    var bodyPath= audioTracks[0];
+    // alert(introPath);
+    var introAudioTrack= app.project.importFile(new ImportOptions(new File(introPath)));
+    var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
+    introTrackLayer.replaceSource(introAudioTrack,true);
+    bodyTrackLayer.replaceSource(bodyAudioTrack,true);
+}
