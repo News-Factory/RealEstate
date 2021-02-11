@@ -95,7 +95,7 @@ function setTheMusic(x){
     
     var introPath= audioTracks[1];
     var bodyPath= audioTracks[0];
-    // alert(introPath);
+    alert(bodyPath);
     var introAudioTrack= app.project.importFile(new ImportOptions(new File(introPath)));
     var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
     introTrackLayer.replaceSource(introAudioTrack,true);

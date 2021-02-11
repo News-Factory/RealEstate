@@ -36,6 +36,7 @@ function randomDroneComp(x){   // 19/01/2021
     var mommyFolderPath='G:/My Drive/Real Estate Project/Customer Photos/';
     var cityDronesFootageFolder= new Folder(mommyFolderPath+'Drones/Tel Aviv');
     var cityDroneFootage= cityDronesFootageFolder.getFiles();
+    alert(cityDroneFootage);
 
     var Int=cityDroneFootage.length;
     // alert(Int);
