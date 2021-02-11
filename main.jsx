@@ -20,13 +20,21 @@
 //Stage06 Set background music ++
 
 {   
-    var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
-    var wFiles=waitingFolder.getFiles();
-    var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
-    var x=defineMainProjectItems(txtFilePath); 
-    sc_constructGS(x);  // this function creates the google sheet thingy
-    // batchProcess();
+
+    //    HAVE A LOOK HERE!!!!!!
+    
+    //    HAVE A LOOK HERE!!!!!!!
+
+    //    YOU MUST UNCOMMENT THE batchProcess() FUNCTION!!!!
+
+
+    // var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    // var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
+    // var wFiles=waitingFolder.getFiles();
+    // var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
+    // var x=defineMainProjectItems(txtFilePath); 
+    // sc_constructGS(x);  // this function creates the google sheet thingy
+    batchProcess();
 }
 
 function batchProcess(){

@@ -41,12 +41,12 @@ function setScaleDurationMarkersForBothPhotosComp(x){
             if (i>1){
                 var layerA=layers2[i-1];
             }
-        } else{
+        } else {
             var layer=layers[i-layers2.length]; //CompLayer
             // alert(layer.name);
             if(i>16){
                 var layerA=layers[(i-layers2.length)-1];
-            }
+            } 
         }
         var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
@@ -66,7 +66,7 @@ function setScaleDurationMarkersForBothPhotosComp(x){
 
         // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
 
-        if (i > 1 ){
+        if (i > 1 && i != 16){
             var layerB = layer;
             syncOutPointToInPoint(layerB,layerA,padding);
         }

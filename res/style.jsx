@@ -43,9 +43,9 @@ function topScrollingText_SpaceBetween(x){
     // fixing yet more text variations, this time for the up scroll spaces between words
     var Rooms = x.allLayers['Data']['Rooms'];
     var HRooms = x.allLayers['Data']['HRooms'];
-    var Size = x.allLayers['Data']['Size'];
+    var Size = x.allLayers['Data']['SizeM2'];
     var HSize = x.allLayers['Data']['HSize'];
-    var Floor = x.allLayers['Data']['Floor'];
+    var Floor = x.allLayers['Data']['ApartmentFloor'];
     var HFloor = x.allLayers['Data']['HFloor'];
     var Price = x.allLayers['Data']['Price'];
     var HPrice = x.allLayers['Data']['HPrice'];
@@ -77,7 +77,7 @@ function onlyHebrewAviraBox(x){
         var avira= aviraString.split(' - ')[0];
         setText(layer, avira);
     }
-    var anotherLayer=  x.allLayers['Avira Headline Text']['city'];
-    var city= anotherLayer.sourceText.value.toString().split('-')[1];
-    setText(anotherLayer, city);
+    // var anotherLayer=  x.allLayers['Avira Headline']['city'];
+    // var city= anotherLayer.sourceText.value.toString().split('-')[1];
+    // setText(anotherLayer, city);
 }
