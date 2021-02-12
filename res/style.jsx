@@ -69,7 +69,7 @@ function topScrollingText_SpaceBetween(x){
     }
 }
 
-function onlyHebrewAviraBox(x){
+function onlyHebrewText(x){
     for (i=1; i<=3; i++){
         var layer=  x.allLayers['Avira Text Box']['Avira'+i];
         // alert(layer.name);
@@ -77,9 +77,9 @@ function onlyHebrewAviraBox(x){
         var avira= aviraString.split(' - ')[0];
         setText(layer, avira);
     }
-    // var anotherLayer=  x.allLayers['Avira Headline']['city'];
-    // var city= anotherLayer.sourceText.value.toString().split('-')[1];
-    // setText(anotherLayer, city);
+    var cityTextLayer=  x.allLayers['AddressComp']['City'];
+    var city= cityTextLayer.sourceText.value.toString().split('-')[1];
+    setText(cityTextLayer, city);
 }
 
 function setTheMusic(x){

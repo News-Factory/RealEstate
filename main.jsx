@@ -163,11 +163,11 @@ function slicer(x){
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
             if (i ==2){
-                adjustDroneIntroOnMusicRB(x);  
+                // adjustDroneIntroOnMusicRB(x);  
                 var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
                 var neededTime = backgroundIntroSong.source.duration;
                 // alert(neededTime);
-                mainLayers[2].outPoint=neededTime + brandIntroLayer.outPoint;
+                mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 nextLayer.startTime=layer.outPoint -gap;   
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
@@ -240,10 +240,9 @@ function soundAndDetails(x){
         randomVideoAvira(x,1);
         randomVideoAvira(x,2);
         randomVideoAvira(x,3);
-        onlyHebrewAviraBox(x);
+        onlyHebrewText(x);
         iconsCheckRB(x);
     }
-    // fitSoundOnIntroOutro(x);
     setTheMusic(x);
 }
 
