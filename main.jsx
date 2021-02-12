@@ -17,7 +17,7 @@
 //Stage03 Insert text, footage and visibility
 //Stage04 Trim and set composition locations
 //Stage05 Slicer
-//Stage06 Set background music ++
+//Stage06 Set background music 
 
 {   
 

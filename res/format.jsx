@@ -65,7 +65,9 @@ function formatBothPhotosComp(x){
 function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
     var introSong= x.allLayers['Drone Shot']['Intro Sound'];
-    var startIn= introSong.source.duration;
+    var brandIntroDuration= x.allLayers['0_Main Comp']['Intro'].outPoint;
+    // alert(brandIntroDuration);
+    var startIn= introSong.source.duration + brandIntroDuration;
     // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
     var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
     var outroComp=x.allLayers['0_Main Comp']['Outro'];
