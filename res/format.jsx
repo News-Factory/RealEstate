@@ -53,7 +53,7 @@ function formatBothPhotosComp(x){
         }
         Room_Photo_i_layer.property('opacity').setValue(100);
         // this function is in the style.jsx file
-        centerText_BackGroundPadding(x,roomPhotoLayerName);
+        // centerText_BackGroundPadding(x,roomPhotoLayerName);
     }
 
     // this function is in the style.jsx file
@@ -88,7 +88,7 @@ function fitSoundOnPhotosComp(x){
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    backgroundSong.startTime = startIn -1;
+    backgroundSong.startTime = startIn -1.5;
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(outroComp){
         slowFadeOut(backgroundSong, outroCompEnd, 5, -50, 5);  

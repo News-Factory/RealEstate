@@ -146,16 +146,16 @@ function slicer(x){
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
         // alert(howMany_Pictures);
-        var gap = 1;
+        var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
-        // alert(locTestPhoto);
+        alert(locTestPhoto);
 
         var lastPic = x.allLayers['Photos Comp 2']['Room_Photo_'+locTestPhoto];
         brandIntroLayer = getByName(mainLayers, "Intro");
         droneLayer = getByName(mainLayers, "Drone Comp");
         pcLayer = getByName(mainLayers,"2_Photos Comp"); 
         // alert(brandIntroLayer.outPoint);
-        pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint;     
+        pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint - gap;     
         // alert(lastPic.outPoint);
 
         for (var i=1; i<mainLayers.length-2; i++){
@@ -169,6 +169,8 @@ function slicer(x){
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 // alert(mainLayers[i].outPoint);
                 nextLayer.startTime=mainLayers[i].outPoint -gap*2;   
+            } else if (i ==3){
+                nextLayer.startTime=layer.outPoint -1.8;  
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
             }
