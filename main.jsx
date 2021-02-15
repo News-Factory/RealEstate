@@ -170,7 +170,7 @@ function slicer(x){
                 // alert(mainLayers[i].outPoint);
                 nextLayer.startTime=mainLayers[i].outPoint -gap*2;   
             } else if (i ==3){
-                nextLayer.startTime=layer.outPoint -1.8;  
+                nextLayer.startTime=layer.outPoint -2;  
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
             }
@@ -215,6 +215,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
                 var imageSourceType = getFileType(imageSourceName);
 
                 if (imageSourceName=="Test Photo.jpg"){ //if the source is Test Photo we can then get the location
+                
                     return f; 
                 }
             }
