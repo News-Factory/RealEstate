@@ -162,13 +162,13 @@ function slicer(x){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
-            if (i ==2){
+            if (i == 2){
                 // adjustDroneIntroOnMusicRB(x);  
                 var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
                 var neededTime = backgroundIntroSong.source.duration;
-                // alert(neededTime);
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
-                nextLayer.startTime=layer.outPoint -gap;   
+                // alert(mainLayers[i].outPoint);
+                nextLayer.startTime=mainLayers[i].outPoint -gap*2;   
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
             }
