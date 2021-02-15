@@ -148,7 +148,7 @@ function slicer(x){
         // alert(howMany_Pictures);
         var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
-        alert(locTestPhoto);
+        // alert(locTestPhoto);
 
         var lastPic = x.allLayers['Photos Comp 2']['Room_Photo_'+locTestPhoto];
         brandIntroLayer = getByName(mainLayers, "Intro");
