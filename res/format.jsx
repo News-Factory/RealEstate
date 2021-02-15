@@ -83,12 +83,12 @@ function fitSoundOnPhotosComp(x){
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
-    alert(startIn);
+    // alert(startIn);
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    preFadeIn(backgroundSong, startIn -1, 0.2, -60, 0);
+    backgroundSong.startTime = startIn -1;
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(outroComp){
         slowFadeOut(backgroundSong, outroCompEnd, 5, -50, 5);  
