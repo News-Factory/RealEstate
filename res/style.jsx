@@ -5,8 +5,8 @@
 function setLogoScaleAndPositionRB(layer){
         var width=layer.width;
         var height=layer.height;
-        // alert(height);
-        // alert(width); 
+        alert(height);
+        alert(width); 
 
         if (height > 1000){
             layer.property('scale').setValueAtTime(0.2,[20,-20,100]);
@@ -14,6 +14,9 @@ function setLogoScaleAndPositionRB(layer){
         } else if (height > 500 && width >1500){
             layer.property('scale').setValueAtTime(0.2,[26,26,100]);
             layer.property('position').setValueAtTime(0.2, [890, 540]);
+        }else if (height <100  && width < 300){
+            layer.property('scale').setValueAtTime(0.2,[200,200,100]);
+            layer.property('position').setValueAtTime(0.2, [950, 540]);
         }else {
             layer.property('scale').setValueAtTime(0.2,[60,60,100]);
             layer.property('position').setValueAtTime(0.2, [550, 550]);

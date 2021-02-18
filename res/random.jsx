@@ -19,7 +19,7 @@ function randomDroneShot(x){    // 05/02/2021
 function randomVideoAvira(x, aviraNumber) {
     var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
     var avira= aviraString.split(' - ')[1];
-    alert(avira);
+    // alert(avira);
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
@@ -27,20 +27,25 @@ function randomVideoAvira(x, aviraNumber) {
     // Code down here is to take out the desktop.ini files that create a TON of issues otherwise
     var index = aviraFootage.length -1;
     aviraFootage.splice(index,1);
-    alert(aviraFootage);
+    // alert(aviraFootage);
 
     var integer=aviraFootage.length;
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
-    alert(vidPath);
+    // alert(vidPath);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
 }
 
 function randomDroneComp(x){   // 19/01/2021
+
+    var cityTextLayer=  x.allLayers['AddressComp']['City'];
+    var city= cityTextLayer.sourceText.value.toString().split('-')[0];
+    // alert(city);
+
     var mommyFolderPath='G:/My Drive/Real Estate Project/Customer Photos/';
-    var cityDronesFootageFolder= new Folder(mommyFolderPath+'Drones/Tel Aviv');
+    var cityDronesFootageFolder= new Folder(mommyFolderPath+'Drones/'+ city);
     var cityDroneFootage= cityDronesFootageFolder.getFiles();
     // alert(cityDroneFootage);
 
