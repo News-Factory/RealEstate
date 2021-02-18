@@ -84,7 +84,7 @@ function onlyHebrewText(x){
 
 function setTheMusic(x){
     var theMood=x.dataByType['meta'];
-    var moodString= theMood[1].value.toString();
+    var moodString= theMood[0].value.toString();
     // alert(moodString);
 
     var mommyFolderPath='D:/Real Estate Folder/';
