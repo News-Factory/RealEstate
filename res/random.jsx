@@ -55,13 +55,14 @@ function randomDroneComp(x){   // 19/01/2021
     // alert(cityDroneFootage);
 
     var Int=cityDroneFootage.length;
-    // alert(Int);
+    // alert(Int/2);
 
     var firstVidLayer=x.allLayers['Drone Footage']['DroneFootage1'];
     var secondVidLayer=x.allLayers['Drone Footage']['DroneFootage2'];
 
     var randomFirst= Math.floor(Math.random()*Int);
-    if (randomFirst > Int/2){
+    // alert(randomFirst);
+    if (randomFirst >= Int/2 && randomFirst != 0){
         var randomSecond= randomFirst-1;
     } else {
         var randomSecond= randomFirst+1;

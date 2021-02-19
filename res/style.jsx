@@ -5,8 +5,8 @@
 function setLogoScaleAndPositionRB(layer){
         var width=layer.width;
         var height=layer.height;
-        alert(height);
-        alert(width); 
+        // alert(height);
+        // alert(width); 
 
         if (height > 1000){
             layer.property('scale').setValueAtTime(0.2,[20,-20,100]);
