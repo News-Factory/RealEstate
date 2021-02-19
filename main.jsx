@@ -156,7 +156,7 @@ function slicer(x){
         pcLayer = getByName(mainLayers,"2_Photos Comp"); 
         // alert(brandIntroLayer.outPoint);
         pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint - gap;     
-        adjustAnimationEndPhotosComp2(x, pcLayer.outPoint);
+        adjustAnimationEndPhotosComp2(x, lastPic.inPoint);
         // alert(lastPic.outPoint);
 
         for (var i=1; i<mainLayers.length-2; i++){
@@ -289,31 +289,20 @@ function adjustDroneIntroOnMusicRB(x){
 }
 
 function adjustAnimationEndPhotosComp2(x, neededTime){
-    // var mainLayers = x.mainComp.layers;
-    // var photoComp2 = mainLayers[5];
-    // var introBox = x.allLayers['Intro']['Intro Box'];
     var photoMask = x.allLayers['2_Photos Comp']['Cyan Solid'];
-    // var neededTime = backgroundIntroSong.source.duration;
-    // var gap = 0.2;
+    var gap = 0.5;
     // alert(neededTime);
-    // var positionIntroBox=introBox.property('Position');
     var pathMask=photoMask.mask(1).property('ADBE Mask Shape');
 
     var keyNumber=2
     for (k=1; k <= keyNumber; k++){
-        // var posValue= positionIntroBox.keyValue(k);
         // this is a shape object, the vertices attributes is an array of 4 objects
         var pathValue= pathMask.keyValue(k);  
-        // alert(posValue[0]);
-        // alert(pathValue.vertices[0]);
-        // positionIntroBox.removeKey(k);
         pathMask.removeKey(k);
 
         if (k==1){
-            // positionIntroBox.setValueAtTime(neededTime-0.5-gap, [posValue[0], posValue[1]]);
-            pathMask.setValueAtTime(neededTime-0.5, pathValue);
+            pathMask.setValueAtTime(neededTime- gap, pathValue);
         } else {
-            // positionIntroBox.setValueAtTime(neededTime-gap, [posValue[0], posValue[1]]);
             pathMask.setValueAtTime(neededTime, pathValue);
         }
     }
