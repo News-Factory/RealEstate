@@ -169,9 +169,11 @@ function slicer(x){
                 var neededTime = backgroundIntroSong.source.duration;
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 // alert(mainLayers[i].outPoint);
-                nextLayer.startTime=mainLayers[i].outPoint -gap;   
-            } else if (i ==3){
-                nextLayer.startTime=layer.outPoint -2;  
+                nextLayer.startTime=mainLayers[i].outPoint -gap; 
+            } else if (i == 3){
+                nextLayer.startTime=layer.outPoint -2;   
+            } else if (i == mainLayers.length-3){
+                nextLayer.startTime=layer.outPoint -2.7;  
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
             }

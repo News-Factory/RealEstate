@@ -5,12 +5,12 @@ function setDurationForIntroComp(x){
     var layers=introComp.layers;
 
     for (var i=layers.length; i>0; i--){
-        var videoSource=getFileType(layers[i].source.name);
+        var musicSource=getFileType(layers[i].source.name);
         
-        if (videoSource == 'video' && layers.length <=3){
-            var videoEnd = layers[i].source.duration;
+        if (musicSource == 'sound' && layers.length <=3){
+            var logoMusicEnd = layers[i].source.duration;
             // alert(videoEnd);
-            introComp.duration = videoEnd;
+            introComp.duration = logoMusicEnd;
             // alert(introComp.time);
         }
     }
