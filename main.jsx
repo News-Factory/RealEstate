@@ -169,7 +169,7 @@ function slicer(x){
                 var neededTime = backgroundIntroSong.source.duration;
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 // alert(mainLayers[i].outPoint);
-                nextLayer.startTime=mainLayers[i].outPoint -gap*2;   
+                nextLayer.startTime=mainLayers[i].outPoint -gap;   
             } else if (i ==3){
                 nextLayer.startTime=layer.outPoint -2;  
             } else {
@@ -275,7 +275,7 @@ function renderIt(x){
     app.project.close(CloseOptions.DO_NOT_SAVE_CHANGES);
 }
 
-// 22/01/2021 this section changes the length of the intro comp based on the length of its music layer
+// 22/01/2021 this section changes the length of the intro comp based on the length of its music
 
 function adjustDroneIntroOnMusicRB(x){
     var mainLayers = x.mainComp.layers;
