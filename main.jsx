@@ -164,7 +164,7 @@ function slicer(x){
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
             if (i == 2){
-                // adjustDroneIntroOnMusicRB(x);  
+                adjustDroneIntroSlideOnMusicRB(x);  
                 var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
                 var neededTime = backgroundIntroSong.source.duration;
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
@@ -277,15 +277,35 @@ function renderIt(x){
 
 // 22/01/2021 this section changes the length of the intro comp based on the length of its music
 
-function adjustDroneIntroOnMusicRB(x){
-    var mainLayers = x.mainComp.layers;
-    var introComp = mainLayers[1];
-    // alert(introComp.outPoint);
-    var droneIntro = mainLayers[2];
+function adjustDroneIntroSlideOnMusicRB(x){
+
+    var introHeadlineLayer = x.allLayers['Drone Shot']['Intro Box'];
     var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
+    var gap = 1;
     var neededTime = backgroundIntroSong.source.duration;
     // alert(neededTime);
-    droneIntro.outPoint = neededTime + introComp.outPoint;
+
+    var headlinePos = introHeadlineLayer.property('position');
+    
+    var droneMask = x.allLayers['Drone Shot']['Cyan Solid'];
+    var pathMask = droneMask.mask(1).property('ADBE Mask Shape');
+
+    var keyNumber=2
+    for (k=1; k <= keyNumber; k++){
+        var position = headlinePos.keyValue(k);
+        // this is a shape object, the vertices attributes is an array of 4 objects
+        var pathValue= pathMask.keyValue(k); 
+        headlinePos.removeKey(k);
+        pathMask.removeKey(k);
+
+        if (k==1){
+            headlinePos.setValueAtTime(neededTime -0.2, position);
+            pathMask.setValueAtTime(neededTime, pathValue);
+        } else {
+            headlinePos.setValueAtTime(neededTime + gap -0.2, position);
+            pathMask.setValueAtTime(neededTime + gap, pathValue);
+        }
+    }
 }
 
 function adjustAnimationEndPhotosComp2(x, neededTime){
