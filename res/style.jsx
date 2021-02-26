@@ -23,19 +23,6 @@ function setLogoScaleAndPositionRB(layer){
         }
     }
 
-function setLogoScaleAndPositionTR(layer){
-        var width=layer.width;
-        var height=layer.height;
-        // alert(height);
-        // alert(width); 
-        if (height < 150 && width < 250){
-            layer.property('scale').setValueAtTime(0.1,[250,250,100]);
-        }else{
-            layer.property('scale').setValueAtTime(0.1,[50,50,100]);
-        }
-        layer.property('position').setValueAtTime(0.1, [290, 335]);
-    }
-
 
 function centerText_BackGroundPadding(x,layer){
     var textBG = x.allLayers[layer]['Text BG'];
