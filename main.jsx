@@ -159,7 +159,7 @@ function slicer(x){
         adjustAnimationEndPhotosComp2(x, lastPic.inPoint);
         // alert(lastPic.outPoint);
 
-        for (var i=1; i<mainLayers.length-2; i++){
+        for (var i=1; i<mainLayers.length-1; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
