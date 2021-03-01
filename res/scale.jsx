@@ -20,9 +20,7 @@ function setDurationForIntroComp(x){
 function setScaleDurationMarkersForBothPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;
-    var photosComp2=x.allLayers['Photos Comp 2'].comp;
     var layers=photosComp.layers;
-    var layers2=photosComp2.layers;
     //params
     //durations:
     var vidDur=10;
@@ -31,23 +29,11 @@ function setScaleDurationMarkersForBothPhotosComp(x){
     //scales:
     var scaleFactor=1.05;
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
-    // calculating the total length of both phot comps
-    var lengthBothComps= layers.length+layers2.length;
-    // alert(lengthBothComps);
-    for (var i=lengthBothComps; i>0; i--){
+
+    for (var i=layers.length; i>0; i--){
         // alert(i);
-        if (i<=15){
-            var layer=layers2[i];
-            if (i>1){
-                var layerA=layers2[i-1];
-            }
-        } else {
-            var layer=layers[i-layers2.length]; //CompLayer
-            // alert(layer.name);
-            if(i>16){
-                var layerA=layers[(i-layers2.length)-1];
-            } 
-        }
+        var layer=layers[i]; //CompLayer
+        // alert(layer.name);
         var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
@@ -64,19 +50,16 @@ function setScaleDurationMarkersForBothPhotosComp(x){
         var newMarkerTime=layer.startTime+dur-1;
         moveMarker(layer,newMarkerTime);
 
-        // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
+        setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.25);
+
+        //Once we're done scaling and setting durations it's time to relocate the markers
+        //This procedure will be done inside sync.jsx
 
         if (i > 1 && i != 16){
             var layerB = layer;
             syncOutPointToInPoint(layerB,layerA,padding);
         }
-
-        // if (layers.length>5 && i<layers.length){
-        //     setFadeIn(innerLayer,0, 0.5);
-        // }
     }
-    //Once we're done scaling and setting durations it's time to relocate the markers
-    //This procedure will be done inside sync.jsx
 }
 
    
@@ -84,8 +67,8 @@ function setScaleDurationMarkersForBothPhotosComp(x){
 function setScaleDurationMarkersForVideosComp(x){
     // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
-        if(x.comps[c].name == '1 Videos Comp'){
-            var VideosComp=x.allLayers['1 Videos Comp'].comp;
+        if(x.comps[c].name == 'Footage Comp'){
+            var VideosComp=x.allLayers['Footage Comp'].comp;
             var layers=VideosComp.layers;
             
             //durations:
@@ -94,7 +77,7 @@ function setScaleDurationMarkersForVideosComp(x){
             var padding = 1.9;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-            for (var i=layers.length; i>0; i--){
+            for (var i=layers.length - 1; i>1; i--){
                 var video_x=layers[i].name; //CompLayer
                 var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
                 var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX

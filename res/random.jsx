@@ -17,7 +17,7 @@ function randomDroneShot(x){    // 05/02/2021
 }
 
 function randomVideoAvira(x, aviraNumber) {
-    var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
+    var aviraString= x.allLayers['Avira Headline']['Avira'+aviraNumber].sourceText.value.toString();
     var avira= aviraString.split(' - ')[1];
     // alert(avira);
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
@@ -30,7 +30,7 @@ function randomVideoAvira(x, aviraNumber) {
     // alert(aviraFootage);
 
     var integer=aviraFootage.length;
-    var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
+    var vidLayer=x.allLayers['FootageFootage'+(aviraNumber+2)]['Footage'+(aviraNumber+2)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
     // alert(vidPath);
@@ -38,9 +38,9 @@ function randomVideoAvira(x, aviraNumber) {
     vidLayer.replaceSource(video,true);
 }
 
-function randomDroneComp(x){   // 19/01/2021
+function randomCityDrones(x){   // 19/01/2021
 
-    var cityTextLayer=  x.allLayers['AddressComp']['City'];
+    var cityTextLayer=  x.allLayers['Flat Details']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[0];
     // alert(city);
 
@@ -57,8 +57,8 @@ function randomDroneComp(x){   // 19/01/2021
     var Int=cityDroneFootage.length;
     // alert(Int/2);
 
-    var firstVidLayer=x.allLayers['Drone Footage']['DroneFootage1'];
-    var secondVidLayer=x.allLayers['Drone Footage']['DroneFootage2'];
+    var firstVidLayer=x.allLayers['Footage1']['Footage1'];
+    var secondVidLayer=x.allLayers['Footage2']['Footage2'];
 
     var randomFirst= Math.floor(Math.random()*Int);
     // alert(randomFirst);

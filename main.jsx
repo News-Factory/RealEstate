@@ -27,13 +27,13 @@
     //    YOU MUST UNCOMMENT THE batchProcess() FUNCTION!!!!
 
 
-    var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
-    var wFiles=waitingFolder.getFiles();
-    var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
-    var x=defineMainProjectItems(txtFilePath); 
-    sc_constructGS(x);  // this function creates the google sheet thingy
-    // batchProcess();
+    // var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    // var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
+    // var wFiles=waitingFolder.getFiles();
+    // var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
+    // var x=defineMainProjectItems(txtFilePath); 
+    // sc_constructGS(x);  // this function creates the google sheet thingy
+    batchProcess();
 }
 
 function batchProcess(){
@@ -87,16 +87,20 @@ function realEstate(x){
 
     //Stage03
     insertAll(x,found); //set.jsx
+    randomCityDrones(x);
+    randomVideoAvira(x,1);
+    randomVideoAvira(x,2);
+    randomVideoAvira(x,3);
 
     //Stage04
-    setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
+    // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    setScaleDurationMarkersForBothPhotosComp(x);
+    setScaleDurationMarkersPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
 
-    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
+    // setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
     soundAndDetails(x);
@@ -126,6 +130,49 @@ function iconsCheckRB(x){
             approved.enabled=false;
         }
     }
+}
+
+function iconsCheckTR(x){
+    var theIcons=x.dataByType['onoff'];
+    var iconString= theIcons[0].value.toString();
+    var activeIcons= iconString.split(', ');
+    // alert(activeIcons[0]);
+    var background=  x.allLayers['1_Photos Comp']['IconsBackground'];
+    // alert(background.name);
+    background.property('position').removeKey(2);
+
+    for(i=0; i<activeIcons.length; i++){
+        var optionLanguage = activeIcons[i].split('-');
+        var option=optionLanguage[1];
+        // alert(option);
+        var iconLayer = x.allLayers['ICONS 003']['icon '+option];
+        // alert(iconLayer.name);
+        iconLayer.enabled=true;
+        
+        switch (i){
+            case 0:
+            iconLayer.property('position').setValueAtTime(0.1, [739, 167]);
+            break;
+            case 1:
+            iconLayer.property('position').setValueAtTime(0.1, [617, 167]);
+            break;
+            case 2:
+            iconLayer.property('position').setValueAtTime(0.1, [493, 167]);
+            break;
+            case 3:
+            iconLayer.property('position').setValueAtTime(0.1, [369, 167]);
+            break;
+            case 4:
+            iconLayer.property('position').setValueAtTime(0.1, [248, 167]);
+            break;
+            case 5:
+            iconLayer.property('position').setValueAtTime(0.1, [125, 167]);
+            break;
+        }
+    }
+
+    var distance = 1510 - 110 * (activeIcons.length-1);
+    background.property('position').setValueAtTime(2.5, [distance, 540]);
 }
 
 
@@ -237,11 +284,8 @@ function soundAndDetails(x){
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);
     }
-    else if (template === 'Red&BlueNew'){
-        formatLogoRB(x);
+    else if (template === 'Anglo-Saxon'){
         formatBothPhotosComp(x);
-        randomDroneShot(x);
-        randomDroneComp(x);
         randomVideoAvira(x,1);
         randomVideoAvira(x,2);
         randomVideoAvira(x,3);
