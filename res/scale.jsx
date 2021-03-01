@@ -8,8 +8,25 @@ function setDurationForIntroComp(x){
         var musicSource=getFileType(layers[i].source.name);
         
         if (musicSource == 'sound' && layers.length <=3){
+
             var logoMusicEnd = layers[i].source.duration;
             // alert(videoEnd);
+
+            var introMask = x.allLayers['Intro']['Cyan Solid'];
+            var pathMask = introMask.mask(1).property('ADBE Mask Shape');
+
+            var keyNumber=2
+            for (k=1; k <= keyNumber; k++){
+                // this is a shape object, the vertices attributes is an array of 4 objects
+                var pathValue= pathMask.keyValue(k); 
+                pathMask.removeKey(k);
+
+                if (k==1){
+                    pathMask.setValueAtTime(logoMusicEnd-1, pathValue);
+                } else {
+                    pathMask.setValueAtTime(logoMusicEnd, pathValue);
+                }
+            }
             introComp.duration = logoMusicEnd;
             // alert(introComp.time);
         }
