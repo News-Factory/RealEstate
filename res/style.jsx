@@ -65,20 +65,16 @@ function onlyHebrewText(x){
         // alert(layer.name);
         var aviraString= layer.sourceText.value.toString();
         var avira= aviraString.split(' - ')[0];
-        // setText(layer, avira);
+        setText(layer, avira);
     }
 
-    var iconsComp= x.allLayers['Icons'].comp;
-    var iconLayers= iconsComp.layers;
-
-    for (var i=1; i <= iconLayers.length; i++); {
-        alert(i);
-        var iLayer= iconLayers[i]['IconName'+i];
-        // alert(layer.name);
-        var iconString= iLayer.sourceText.value.toString();
-        var iconText= aviraString.split(' - ')[1];
-        setText(iLayer, iconText);    
+    for (i=1; i<= 5; i ++){
+        var layer= x.allLayers['Icon Final '+i]['IconName'+i];
+        var iconString= layer.sourceText.value.toString();
+        var iconText= aviraString.split(' - ')[0];
+        setText(layer, iconText);
     }
+
     var cityTextLayer=  x.allLayers['Flat Details']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[1];
     setText(cityTextLayer, city);
@@ -102,6 +98,7 @@ function setTheMusic(x){
     var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
     introTrackLayer.replaceSource(introAudioTrack,true);
     bodyTrackLayer.replaceSource(bodyAudioTrack,true);
+
 }
 
 // This function takes the price number and adds points to make it more readable  28/01/2021

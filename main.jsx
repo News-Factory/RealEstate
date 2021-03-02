@@ -102,14 +102,14 @@ function realEstate(x){
 
     // setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
-    //Stage05
-    soundAndDetails(x);
-    
-    // Stage06
+    // Stage05
     slicer(x);
     //setMainCompDuration(mainComp);
     //checkLayersMarker(x.comps);
     //RQaddActiveItem(x);
+
+    //Stage06
+    soundAndDetails(x);
 
     app.endUndoGroup();
 
@@ -189,7 +189,6 @@ function slicer(x){
         // alert(layer.name);
         nextLayer.startTime=layer.outPoint -gap;    
     } 
-
     // fitSoundOnPhotosComp(x);       
     // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
     var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
@@ -219,6 +218,7 @@ function soundAndDetails(x){
         // iconsCheckAS(x);
     }
     setTheMusic(x);
+    fitSoundOnAll(x);
 }
 
 function renderIt(x){
