@@ -61,13 +61,13 @@ function topScrollingText_SpaceBetween(x){
 
 function onlyHebrewText(x){
     for (i=1; i<=3; i++){
-        var layer=  x.allLayers['Avira Text Box']['Avira'+i];
+        var layer=  x.allLayers['Avira Headline']['Avira'+i];
         // alert(layer.name);
         var aviraString= layer.sourceText.value.toString();
         var avira= aviraString.split(' - ')[0];
         setText(layer, avira);
     }
-    var cityTextLayer=  x.allLayers['AddressComp']['City'];
+    var cityTextLayer=  x.allLayers['Flat Details']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[1];
     setText(cityTextLayer, city);
 }
@@ -80,7 +80,7 @@ function setTheMusic(x){
     var mommyFolderPath='D:/Real Estate Folder/';
     var musicFolder= new Folder(mommyFolderPath+'BackgroundMusic/Waveform Edits/'+moodString);
     var audioTracks= musicFolder.getFiles();
-    var introTrackLayer=x.allLayers['Drone Shot']['Intro Sound'];
+    var introTrackLayer=x.allLayers['Intro']['IntroSound'];
     var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
     
     var introPath= audioTracks[1];

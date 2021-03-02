@@ -8,21 +8,13 @@ function formatLogoRB(x){
 }
 
 
-function formatBothPhotosComp(x){
+function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
     var photosComp=x.allLayers['Photos Comp'].comp;
-    var photosComp2=x.allLayers['Photos Comp 2'].comp;
     var layers=photosComp.layers;
     // alert(layers);
-    var layers2=photosComp2.layers;
-    var lengthBothComps= layers.length + layers2.length;
 
-    // changing the logo scale and dimension for outro comp, 
-    // intro and outro are videos now        30/12/2020
-    var logo_Details=x.allLayers['Outro']['LogoR&B'];
-    var logo_PhotosComp= x.allLayers['08_Contact']['LogoR&B'];
-
-    for (var i=1; i<=lengthBothComps; i++){       
+    for (var i=1; i<=layers.length; i++){       
          if (i<=15){
             var lay=layers2[i];
         } else {

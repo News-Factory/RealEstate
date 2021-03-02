@@ -181,96 +181,24 @@ function iconsCheckTR(x){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
+    var gap = 0.2;
 
-    // 22/01/2021
-    // these variables are added because the function needs to set the length of the
-    // intro comp based on the music in the intro
+    for (var i=1; i<mainLayers.length-1; i++){
+        var layer = mainLayers[i];
+        var nextLayer = mainLayers[i+1];
+        // alert(layer.name);
+        nextLayer.startTime=layer.outPoint -gap;    
+    } 
 
-    if (x.photoComp) {//if naming was done correctly start
-        
-        var pcLayer=x.allLayers['Photos Comp 2'].comp;
-        var photoLayers = pcLayer.layers;
-        var howMany_Pictures = photoLayers.length;
-        // alert(howMany_Pictures);
-        var gap = 1.5;
-        var locTestPhoto = getLoc_TestPhoto(x);
-        // alert(locTestPhoto);
-
-        var lastPic = x.allLayers['Photos Comp 2']['Room_Photo_'+locTestPhoto];
-        brandIntroLayer = getByName(mainLayers, "Intro");
-        droneLayer = getByName(mainLayers, "Drone Comp");
-        pcLayer = getByName(mainLayers,"2_Photos Comp"); 
-        // alert(brandIntroLayer.outPoint);
-        pcLayer.outPoint = lastPic.inPoint + droneLayer.outPoint - gap;     
-        adjustAnimationEndPhotosComp2(x, lastPic.inPoint);
-        // alert(lastPic.outPoint);
-
-        for (var i=1; i<mainLayers.length-2; i++){
-            var layer = mainLayers[i];
-            var nextLayer = mainLayers[i+1];
-            // alert(layer.name);
-            if (i == 2){
-                adjustDroneIntroSlideOnMusicRB(x);  
-                var backgroundIntroSong = x.allLayers['Drone Shot']['Intro Sound'];
-                var neededTime = backgroundIntroSong.source.duration;
-                mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
-                // alert(mainLayers[i].outPoint);
-                nextLayer.startTime=mainLayers[i].outPoint -gap; 
-            } else if (i == 3){
-                nextLayer.startTime=layer.outPoint -2;   
-            } else if (i == mainLayers.length-3){
-                nextLayer.startTime=layer.outPoint -2.7;  
-            } else {
-                nextLayer.startTime=layer.outPoint -gap;    
-            }
-        } 
-
-        fitSoundOnPhotosComp(x);       
-        // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
-        var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
-        // alert(veryEnd);
-        var main= x.allLayers['0_Main Comp'].comp;
-        main.workAreaDuration = veryEnd;
-   
-    } else { //If naming hasn't been done correctly sound the alarm
-        alert("0_Main Comp or 1_Photos Comp were not found. Please make sure their labels are named correctly and try again.");
-    }
+    // fitSoundOnPhotosComp(x);       
+    // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
+    var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
+    // alert(veryEnd);
+    var main= x.allLayers['0_Main Comp'].comp;
+    main.workAreaDuration = veryEnd;
 }
 
 // END ARRANGE SCLICER003    
-
-///// modified on 9/12/2020 to take into account the double length of the video layer
-
-function getLoc_TestPhoto(x){//get the layer number where test photo is at
-
-    var fixForm = 0;   // needed to use the google Form files folders 08/01/2020
-
-    var pcLayer=x.allLayers['Photos Comp 2'].comp;
-    var photoLayers = pcLayer.layers;
-    var howMany_Pictures = photoLayers.length;
-
-    for (var j=howMany_Pictures; j>1; j--){
-        var f =j+fixForm;
-        var compName = "Room_Photo_"+f;
-        var comp = getByName(x.comps,compName);
-        var tLayers = comp.layers;
-        // alert(compName);
-
-        for (i=1; i<= tLayers.length; i++){
-            var layerName = tLayers[i].name;
-        
-            if (layerName == "RoomP"+f){
-                var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
-                var imageSourceType = getFileType(imageSourceName);
-
-                if (imageSourceName=="Test Photo.jpg"){ //if the source is Test Photo we can then get the location
-                
-                    return f; 
-                }
-            }
-        }
-    } 
-}
 
 
 // 05/01/2020 recognizes what kind of template we are working on and 
@@ -285,12 +213,9 @@ function soundAndDetails(x){
         // fitSoundOnAll(x);
     }
     else if (template === 'Anglo-Saxon'){
-        formatBothPhotosComp(x);
-        randomVideoAvira(x,1);
-        randomVideoAvira(x,2);
-        randomVideoAvira(x,3);
+        // formatPhotosComp(x);
         onlyHebrewText(x);
-        iconsCheckRB(x);
+        // iconsCheckAS(x);
     }
     setTheMusic(x);
 }

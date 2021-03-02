@@ -17,27 +17,27 @@ function setDurationForIntroComp(x){
 }
 
 
-function setScaleDurationMarkersForBothPhotosComp(x){
+function setScaleDurationMarkersPhotosComp(x){
     //Main function in scale.jsx
     var photosComp=x.allLayers['Photos Comp'].comp;
     var layers=photosComp.layers;
     //params
     //durations:
     var vidDur=10;
-    var picDur=5;
+    var picDur=6.5;
     var padding = 1;
     //scales:
     var scaleFactor=1.05;
     var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-    for (var i=layers.length; i>0; i--){
-        // alert(i);
+    for (var i=layers.length -1; i>2; i--){
+        // alert(i-2);
         var layer=layers[i]; //CompLayer
         // alert(layer.name);
         var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
-        var innerLayer=x.allLayers[roomPx]['RoomP'+i]; //Layer RoomPX
-        // alert(layers.length);
+        var innerLayer=innerComp.layer('RoomP'+(i-2)); //Layer RoomPX
+        // alert(innerLayer.name);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
         setCompAndLayerDuration(innerComp,dur);
@@ -54,10 +54,10 @@ function setScaleDurationMarkersForBothPhotosComp(x){
 
         //Once we're done scaling and setting durations it's time to relocate the markers
         //This procedure will be done inside sync.jsx
-
-        if (i > 1 && i != 16){
-            var layerB = layer;
-            syncOutPointToInPoint(layerB,layerA,padding);
+        if(i>3){
+        var layerB = layer;
+        var layerA = layers[i-1];
+        syncOutPointToInPoint(layerB,layerA,padding);
         }
     }
 }
@@ -80,21 +80,25 @@ function setScaleDurationMarkersForVideosComp(x){
             for (var i=layers.length - 1; i>1; i--){
                 var video_x=layers[i].name; //CompLayer
                 var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
-                var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
+
+                // this is because this fucking AEP is full of comps that have no reason to exist
+                if (i>4){
+                    var innerLayer=innerComp.layer(1); //Layer RoomPX
+                } else {
+                    var innerLayer=layers[i]; 
+                }
                 // alert(innerLayer.name);
                 var sourceType=getFileType(innerLayer.source.name);
                 var dur=durTypes[sourceType];
                 setCompAndLayerDuration(innerComp,dur);
                 
-                var newMarkerTime=layers[i].startTime+dur-1;
-                moveMarker(layers[i],newMarkerTime);
-
-                setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
-                
-                if (i > 1){
-                    var layerB = layers[i];
-                    var layerA = layers[i-1];
-                    syncOutPointToInPoint(layerB,layerA,padding);
+                // this part cuts short the video comp based on the duration of its last video
+                if (i =2){
+                    var videoCompEnd = layers[i].outPoint;
+                    var mainComp= x.allLayers['0_Main Comp'].comp;
+                    var photoCompEnd = mainComp.layer('1_Photos Comp').outPoint;
+                    var mainVideoComp = mainComp.layer('Videos Comp');
+                    mainVideoComp.outPoint= photoCompEnd + videoCompEnd;
                 }
             }
         }

@@ -30,10 +30,10 @@ function randomVideoAvira(x, aviraNumber) {
     // alert(aviraFootage);
 
     var integer=aviraFootage.length;
-    var vidLayer=x.allLayers['FootageFootage'+(aviraNumber+2)]['Footage'+(aviraNumber+2)];
+    var vidLayer=x.allLayers['Footage Comp']['Footage'+(aviraNumber+2)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
-    // alert(vidPath);
+    // alert(vidLayer);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
 }
