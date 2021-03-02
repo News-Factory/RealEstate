@@ -60,12 +60,24 @@ function topScrollingText_SpaceBetween(x){
 }
 
 function onlyHebrewText(x){
-    for (i=1; i<=3; i++){
+    for (var i=1; i<=3; i++){
         var layer=  x.allLayers['Avira Headline']['Avira'+i];
         // alert(layer.name);
         var aviraString= layer.sourceText.value.toString();
         var avira= aviraString.split(' - ')[0];
-        setText(layer, avira);
+        // setText(layer, avira);
+    }
+
+    var iconsComp= x.allLayers['Icons'].comp;
+    var iconLayers= iconsComp.layers;
+
+    for (var i=1; i <= iconLayers.length; i++); {
+        alert(i);
+        var iLayer= iconLayers[i]['IconName'+i];
+        // alert(layer.name);
+        var iconString= iLayer.sourceText.value.toString();
+        var iconText= aviraString.split(' - ')[1];
+        setText(iLayer, iconText);    
     }
     var cityTextLayer=  x.allLayers['Flat Details']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[1];
@@ -90,4 +102,21 @@ function setTheMusic(x){
     var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
     introTrackLayer.replaceSource(introAudioTrack,true);
     bodyTrackLayer.replaceSource(bodyAudioTrack,true);
+}
+
+// This function takes the price number and adds points to make it more readable  28/01/2021
+function stylePrice(x){
+    var layer=  x.allLayers['Flat Details']['Price'];
+    var priceString= layer.sourceText.value.toString();
+    var len= priceString.length;
+    var needsTo =priceString.indexOf(".");
+    // 
+    if(needsTo == -1){
+        var first=priceString.slice(0, len-6);
+        var second=priceString.slice(len-6,len-3);
+        var third=priceString.slice(len-3,len);
+        var endNumber=first+'.'+second+'.'+third;
+        // alert(endNumber);
+        setText(layer, endNumber);
+    }
 }

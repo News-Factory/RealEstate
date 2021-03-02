@@ -215,6 +215,7 @@ function soundAndDetails(x){
     else if (template === 'Anglo-Saxon'){
         // formatPhotosComp(x);
         onlyHebrewText(x);
+        stylePrice(x);
         // iconsCheckAS(x);
     }
     setTheMusic(x);
