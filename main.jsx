@@ -132,47 +132,25 @@ function iconsCheckRB(x){
     }
 }
 
-function iconsCheckTR(x){
+function iconsCheckAS(x){
     var theIcons=x.dataByType['onoff'];
-    var iconString= theIcons[0].value.toString();
-    var activeIcons= iconString.split(', ');
     // alert(activeIcons[0]);
-    var background=  x.allLayers['1_Photos Comp']['IconsBackground'];
-    // alert(background.name);
-    background.property('position').removeKey(2);
+    // var background=  x.allLayers['1_Photos Comp']['IconsBackground'];
+    // // alert(background.name);
+    // background.property('position').removeKey(2);
 
-    for(i=0; i<activeIcons.length; i++){
-        var optionLanguage = activeIcons[i].split('-');
+    for(i=1; i<=theIcons.length; i++){
+        var iconString= theIcons[i-1].value.toString();
+        // var activeIcons= iconString.split(', ');
+        var optionLanguage = iconString.split('-');
         var option=optionLanguage[1];
         // alert(option);
-        var iconLayer = x.allLayers['ICONS 003']['icon '+option];
+        var iconComp = x.allLayers['Icon Loop '+i].comp;
+        var iconLayer = iconComp.layer(option);
         // alert(iconLayer.name);
         iconLayer.enabled=true;
-        
-        switch (i){
-            case 0:
-            iconLayer.property('position').setValueAtTime(0.1, [739, 167]);
-            break;
-            case 1:
-            iconLayer.property('position').setValueAtTime(0.1, [617, 167]);
-            break;
-            case 2:
-            iconLayer.property('position').setValueAtTime(0.1, [493, 167]);
-            break;
-            case 3:
-            iconLayer.property('position').setValueAtTime(0.1, [369, 167]);
-            break;
-            case 4:
-            iconLayer.property('position').setValueAtTime(0.1, [248, 167]);
-            break;
-            case 5:
-            iconLayer.property('position').setValueAtTime(0.1, [125, 167]);
-            break;
-        }
-    }
 
-    var distance = 1510 - 110 * (activeIcons.length-1);
-    background.property('position').setValueAtTime(2.5, [distance, 540]);
+    }
 }
 
 
@@ -213,6 +191,7 @@ function soundAndDetails(x){
     }
     else if (template === 'Anglo-Saxon'){
         // formatPhotosComp(x);
+        iconsCheckAS(x);
         onlyHebrewText(x);
         stylePrice(x);
         // iconsCheckAS(x);
