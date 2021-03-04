@@ -71,7 +71,7 @@ function onlyHebrewText(x){
     for (i=1; i<= 5; i ++){
         var layer= x.allLayers['Icon Final '+i]['IconName'+i];
         var iconString= layer.sourceText.value.toString();
-        var iconText= aviraString.split(' - ')[0];
+        var iconText= iconString.split('-')[0];
         setText(layer, iconText);
     }
 
@@ -112,8 +112,12 @@ function stylePrice(x){
         var first=priceString.slice(0, len-6);
         var second=priceString.slice(len-6,len-3);
         var third=priceString.slice(len-3,len);
-        var endNumber=first+'.'+second+'.'+third;
+        if (priceString > 6){
+            var endNumber=first+'.'+second+'.'+third;
         // alert(endNumber);
+        } else {
+            var endNumber=first+'.'+second;
+        }
         setText(layer, endNumber);
     }
 }
