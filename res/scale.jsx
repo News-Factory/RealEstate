@@ -24,7 +24,7 @@ function setScaleDurationMarkersPhotosComp(x){
     //params
     //durations:
     var vidDur=10;
-    var picDur=6.5;
+    var picDur=8.5;
     var padding = 1;
     //scales:
     var scaleFactor=1.05;
@@ -47,10 +47,10 @@ function setScaleDurationMarkersPhotosComp(x){
         setScaleFromTo(innerLayer,0,dur,scaleA,scaleB);
 
         // var newStartTime=layers[i].startTime;
-        var newMarkerTime=layer.startTime+dur-1;
+        var newMarkerTime=layer.startTime+dur-3;
         moveMarker(layer,newMarkerTime);
 
-        setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.1);
+        // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.1);
 
         //Once we're done scaling and setting durations it's time to relocate the markers
         //This procedure will be done inside sync.jsx

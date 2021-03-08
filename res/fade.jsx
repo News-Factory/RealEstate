@@ -58,13 +58,13 @@ function fadeIn_fromStart(layer,duration){
 function fadeOut_fromEnd(layer,duration){
     fadeOut(layer,0,duration,0,-100);
 }
-
+ 
 function slowFadeOut(layer,endAt,duration,endVal,parts){
     var unit = duration/parts;
     var volUnit= endVal/parts;
     for (i=parts; i >=0; i--){
         var gap= unit*i;
-        var startVol= volUnit *(parts-i);
+        var startVol= volUnit *(parts-i) -10;
         var endVol= volUnit *(duration-i+1);
         fade(layer,null,endAt-gap,unit,startVol,endVol);
     }

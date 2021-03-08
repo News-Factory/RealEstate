@@ -53,7 +53,7 @@ function batchProcess(){
 
             // realExtate success activates the rendering queue and moves txt files
             if (success){                
-                renderIt(x);
+                 renderIt(x);
                 
                 var fileName=wFiles[i].name;
                 var dest=mommyFolderPath+processedFolder.name+'/'+fileName;
@@ -95,7 +95,7 @@ function realEstate(x){
     //Stage04
     // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    setScaleDurationMarkersPhotosComp(x);
+    // setScaleDurationMarkersPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
@@ -159,7 +159,7 @@ function iconsCheckAS(x){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
-    var gap = 0.2;
+    var gap = 0.5;
 
     for (var i=1; i<mainLayers.length-1; i++){
         var layer = mainLayers[i];
