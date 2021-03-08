@@ -64,7 +64,7 @@ function slowFadeOut(layer,endAt,duration,endVal,parts){
     var volUnit= endVal/parts;
     for (i=parts; i >=0; i--){
         var gap= unit*i;
-        var startVol= volUnit *(duration-i);
+        var startVol= volUnit *(parts-i);
         var endVol= volUnit *(duration-i+1);
         fade(layer,null,endAt-gap,unit,startVol,endVol);
     }
