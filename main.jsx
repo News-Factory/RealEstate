@@ -159,7 +159,7 @@ function iconsCheckAS(x){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
-    var gap = 0.5;
+    var gap = 0.3;
 
     for (var i=1; i<mainLayers.length-1; i++){
         var layer = mainLayers[i];
