@@ -2,12 +2,6 @@
 #include "clear.jsx";
 #include "style.jsx";
 
-function formatLogoRB(x){
-    var logo_Details =x.allLayers['LogoR&B']['LogoR&B'];
-    setLogoScaleAndPositionRB(logo_Details);
-}
-
-
 function formatPhotosComp(x){
     //removes controller layers, expressions, opacity
     var photosComp=x.allLayers['Photos Comp'].comp;
@@ -136,6 +130,6 @@ function fitSoundOnAll(x){
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    fadeIn(backgroundSong, introCompStart, 0.5, -100, -10);
-    slowFadeOut(backgroundSong, outroCompEnd, 2, -100, 6);
+    fadeIn(backgroundSong, introCompStart, 0.5, -40, -10);
+    slowFadeOut(backgroundSong, outroCompEnd, 5, -40, 6);
 } 

@@ -24,7 +24,7 @@ function setScaleDurationMarkersPhotosComp(x){
     //params
     //durations:
     var vidDur=10;
-    var picDur=8.5;
+    var picDur=10;
     var padding = 1;
     //scales:
     var scaleFactor=1.05;
@@ -37,33 +37,41 @@ function setScaleDurationMarkersPhotosComp(x){
         var roomPx=layer.name;
         var innerComp=x.allLayers[roomPx].comp; //'Room_Photo_X'
         var innerLayer=innerComp.layer('RoomP'+(i-2)); //Layer RoomPX
+        var controlLayer=innerComp.layer('Photo Controler');
         // alert(innerLayer.name);
         var sourceType=getFileType(innerLayer.source.name);
         var dur=durTypes[sourceType];
         setCompAndLayerDuration(innerComp,dur);
 
-        var scaleA=getLayerScale(innerLayer)['x'];
+        var scaleA=getLayerScale(controlLayer)['x'];
+        var width=innerLayer.width;
+        var height=innerLayer.height;
+
+        if (width/2 > height ){
+            scaleA*= 1.2;
+        }
+
         var scaleB=scaleA*scaleFactor;
-        setScaleFromTo(innerLayer,0,dur,scaleA,scaleB);
+        setScaleFromTo(controlLayer,0,dur,scaleA,scaleB);
 
         // var newStartTime=layers[i].startTime;
-        var newMarkerTime=layer.startTime+dur-3;
-        moveMarker(layer,newMarkerTime);
+        // var newMarkerTime=layer.startTime+dur-3;
+        // moveMarker(layer,newMarkerTime);
 
         // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.1);
 
         //Once we're done scaling and setting durations it's time to relocate the markers
         //This procedure will be done inside sync.jsx
-        if(i>3){
-        var layerB = layer;
-        var layerA = layers[i-1];
-        syncOutPointToInPoint(layerB,layerA,padding);
-        }
+        // if(i>3){
+        // var layerB = layer;
+        // var layerA = layers[i-1];
+        // syncOutPointToInPoint(layerB,layerA,padding);
+        // }
     }
 }
 
    
-// this function is the same as above but targets a ['Videos Comp'] for project 2     // 23/12/2020
+// this function is the same as above but targets a ['Videos Comp'] for project 2   // 23/12/2020
 function setScaleDurationMarkersForVideosComp(x){
     // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       

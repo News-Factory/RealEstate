@@ -39,7 +39,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -95,7 +95,7 @@ function realEstate(x){
     //Stage04
     // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    // setScaleDurationMarkersPhotosComp(x);
+    setScaleDurationMarkersPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     setScaleDurationMarkersForVideosComp(x);
@@ -209,7 +209,7 @@ function renderIt(x){
     var time=today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds();
     var dateTime=date+' '+time;
 
-    var exportName='tempName';
+    var exportName=x.projFile.name.split('.')[0];
     var exportComp=x.mainComp.duplicate();
     var resultFile = new File(x.paths['exports']+'/'+dateTime+exportName+'.mp4');
     var savePath = x.paths['saves']; //+' '+exportName+'.aep';
