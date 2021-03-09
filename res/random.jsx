@@ -1,5 +1,5 @@
 function randomIntroOutroTR(x){    // 15/01/2021
-    var mommyFolderPath='G:/Real Estate Project/';
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var introFootageFolder= new Folder(mommyFolderPath+'Footage/City/Intro');
     var outroFootageFolder= new Folder(mommyFolderPath+'Footage/City/Outro');
 
@@ -28,7 +28,7 @@ function randomIntroOutroTR(x){    // 15/01/2021
 }
 
 function randomStartVideoComp(x){   // 19/01/2021
-    var mommyFolderPath='G:/Real Estate Project/';
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var barsFootageFolder= new Folder(mommyFolderPath+'Footage/Bars');
     var beachParksFootageFolder= new Folder(mommyFolderPath+'Footage/Beach');
     var familyFootageFolder= new Folder(mommyFolderPath+'Footage/Playground');
@@ -68,7 +68,7 @@ function randomVideoCompCity(x){
     var city=cityBoth.split('-')[0];
     alert(city);
 
-    var mommyFolderPath='G:/Real Estate Project/';
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var cityFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
     var cityFootage= cityFootageFolder.getFiles();
 
@@ -98,8 +98,8 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
     var avira= aviraString.split(' - ')[1];
     // alert(avira);
-    var mommyFolderPath='D:/Real Estate Folder/';
-    var aviraFootageFolder= new Folder(mommyFolderPath+'Shutterstock/'+avira);
+    var mommyFolderPath='G:/My Drive/Real Estate Project/';
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
     var integer=aviraFootage.length;
