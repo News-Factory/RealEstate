@@ -164,8 +164,25 @@ function slicer(x){
     for (var i=1; i<mainLayers.length-1; i++){
         var layer = mainLayers[i];
         var nextLayer = mainLayers[i+1];
+        if (i == 2){
+            gap =1.5;
+            nextLayer.startTime=layer.outPoint -gap;  
+            var photoComp = x.allLayers['0_Main Comp']['1_Photos Comp'];
+            var transition = photoComp.effect(1).property('Transition Completion');
+            // alert(transition);
+            for (k=2; k > 0; k--){
+                transition.removeKey(k);
+                if (k==2){
+                    transition.setValueAtTime(layer.outPoint, 100);
+                } 
+                else {
+                    transition.setValueAtTime(layer.outPoint -gap, 0);
+                }
+            }
+        }else{
         // alert(layer.name);
-        nextLayer.startTime=layer.outPoint -gap;    
+        nextLayer.startTime=layer.outPoint -gap; 
+        }  
     } 
     // fitSoundOnPhotosComp(x);       
     // 20/01/2021  this part changes the length of the whole project that is gonna be exported 

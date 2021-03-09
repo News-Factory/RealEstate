@@ -53,20 +53,6 @@ function setScaleDurationMarkersPhotosComp(x){
 
         var scaleB=scaleA*scaleFactor;
         setScaleFromTo(controlLayer,0,dur,scaleA,scaleB);
-
-        // var newStartTime=layers[i].startTime;
-        // var newMarkerTime=layer.startTime+dur-3;
-        // moveMarker(layer,newMarkerTime);
-
-        // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.1);
-
-        //Once we're done scaling and setting durations it's time to relocate the markers
-        //This procedure will be done inside sync.jsx
-        // if(i>3){
-        // var layerB = layer;
-        // var layerA = layers[i-1];
-        // syncOutPointToInPoint(layerB,layerA,padding);
-        // }
     }
 }
 
