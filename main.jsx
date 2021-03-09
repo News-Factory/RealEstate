@@ -295,7 +295,7 @@ function soundAndDetails(x){
     }
     // fitSoundOnPhotosComp(x);
     setTheMusic(x);
-    fitSoundOnIntroOutro(x);
+    fitSoundOnAll(x);
 }
 
 function renderIt(x){

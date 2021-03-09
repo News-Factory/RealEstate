@@ -128,7 +128,7 @@ function fitSoundOnIntroOutro(x){
 function fitSoundOnAll(x){
     var introComp = x.allLayers['0_Main Comp']['Intro'];
     var outroComp = x.allLayers['0_Main Comp']['Outro'];
-    var introCompStart = introComp.inPoint; //intro inPoint
+    var introCompEnd = introComp.outPoint; //intro inPoint
     var outroCompEnd = outroComp.outPoint; //outro outPoint
 
     // select the layer for the background song
@@ -137,6 +137,6 @@ function fitSoundOnAll(x){
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
-    fadeIn(backgroundSong, introCompStart, 2, -100, 0);
-    fadeOut(backgroundSong, outroCompEnd, 2, 0, -100);
+    fadeIn(backgroundSong, introCompEnd, 0.5, -40, 0);
+    fadeOut(backgroundSong, outroCompEnd, 2, 0, -40);
 }

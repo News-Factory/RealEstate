@@ -66,7 +66,7 @@ function randomStartVideoComp(x){   // 19/01/2021
 function randomVideoCompCity(x){
     var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
-    alert(city);
+    // alert(city);
 
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var cityFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
@@ -102,7 +102,7 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
-    var integer=aviraFootage.length;
+    var integer=aviraFootage.length-1;
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
