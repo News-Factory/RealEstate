@@ -1,7 +1,7 @@
 function randomIntroOutroTR(x){    // 15/01/2021
-    var mommyFolderPath='D:/Real Estate Folder/';
-    var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
-    var outroFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Outro');
+    var mommyFolderPath='G:/Real Estate Project/';
+    var introFootageFolder= new Folder(mommyFolderPath+'Footage/City/Intro');
+    var outroFootageFolder= new Folder(mommyFolderPath+'Footage/City/Outro');
 
     var introFootage= introFootageFolder.getFiles();
     var outroFootage= outroFootageFolder.getFiles();
@@ -28,12 +28,12 @@ function randomIntroOutroTR(x){    // 15/01/2021
 }
 
 function randomStartVideoComp(x){   // 19/01/2021
-    var mommyFolderPath='D:/Real Estate Folder/';
-    var barsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
-    var beachParksFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Beach-Parks');
-    var familyFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Family');
-    var marketsFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Bars-Restaurants');
-    var shoppingFootageFolder= new Folder(mommyFolderPath+'Shutterstock/Shopping');
+    var mommyFolderPath='G:/Real Estate Project/';
+    var barsFootageFolder= new Folder(mommyFolderPath+'Footage/Bars');
+    var beachParksFootageFolder= new Folder(mommyFolderPath+'Footage/Beach');
+    var familyFootageFolder= new Folder(mommyFolderPath+'Footage/Playground');
+    var marketsFootageFolder= new Folder(mommyFolderPath+'Footage/Restaurants');
+    var shoppingFootageFolder= new Folder(mommyFolderPath+'Footage/Shopping Malls');
 
     var barsFootage= barsFootageFolder.getFiles();
     var beachParksFootage= beachParksFootageFolder.getFiles();
@@ -66,10 +66,10 @@ function randomStartVideoComp(x){   // 19/01/2021
 function randomVideoCompCity(x){
     var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
-    // alert(city);
+    alert(city);
 
-    var mommyFolderPath='D:/Real Estate Folder/';
-    var cityFootageFolder= new Folder(mommyFolderPath+'Rahaf/Edited Shutterstock/'+city);
+    var mommyFolderPath='G:/Real Estate Project/';
+    var cityFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
     var cityFootage= cityFootageFolder.getFiles();
 
     var cityInt=cityFootage.length;

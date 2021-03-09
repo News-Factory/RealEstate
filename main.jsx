@@ -307,7 +307,7 @@ function renderIt(x){
     var time=today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds();
     var dateTime=date+' '+time;
 
-    var exportName='tempName';
+    var exportName=x.projFile.name.split('.')[0];;
     var exportComp=x.mainComp.duplicate();
     var resultFile = new File(x.paths['exports']+'/'+dateTime+exportName+'.mp4');
     var savePath = x.paths['saves']; //+' '+exportName+'.aep';
