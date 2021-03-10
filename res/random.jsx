@@ -72,7 +72,7 @@ function randomVideoCompCity(x){
     var cityFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
     var cityFootage= cityFootageFolder.getFiles();
 
-    var cityInt=cityFootage.length;
+    var cityInt=cityFootage.length -1;
 
     var firstVidLayer=x.allLayers['Videos Comp']['Video_5'];
     var secondVidLayer=x.allLayers['Videos Comp']['Video_4'];
