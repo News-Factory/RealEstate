@@ -39,7 +39,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
