@@ -45,7 +45,6 @@ function batchProcess(){
             var x=defineMainProjectItems(txtFilePath); 
                 
             var success=realEstate(x);
-
             // realExtate success activates the rendering queue and moves txt files
             if (success){                
                 renderIt(x);
