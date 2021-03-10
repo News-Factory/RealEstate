@@ -1,23 +1,26 @@
 function randomIntroOutroTR(x){    // 15/01/2021
+    var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
+    var city=cityBoth.split('-')[0];
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var introFootageFolder= new Folder(mommyFolderPath+'Footage/City/Intro');
-    var outroFootageFolder= new Folder(mommyFolderPath+'Footage/City/Outro');
+    var introFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/intros/'+city);
 
     var introFootage= introFootageFolder.getFiles();
-    var outroFootage= outroFootageFolder.getFiles();
 
     var introInt=introFootage.length -1;
-    var outroInt=outroFootage.length -1;
 
     var introLayer=x.allLayers['Intro']['Video Intro'];
     var outroLayer=x.allLayers['Outro']['Video Outro'];
     // alert(introLayer.name);
 
     var randomIntro= Math.floor(Math.random()*introInt);
-    var randomOutro= Math.floor(Math.random()*outroInt);
-
+    if(randomIntro == 1){
+        var randomOutro= 2;
+    } else {
+        var randomOutro= 1;
+    }
+    // var randomOutro= Math.floor(Math.random()*outroInt);
     var videoIntroPath= introFootage[randomIntro];
-    var videoOutroPath= outroFootage[randomOutro];
+    var videoOutroPath= introFootage[randomOutro];
 
     var videoIntro= app.project.importFile(new ImportOptions(new File(videoIntroPath)));
     var videoOutro= app.project.importFile(new ImportOptions(new File(videoOutroPath)));
