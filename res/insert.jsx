@@ -138,8 +138,6 @@ function insertIconsTopTicker(x){
         }
     }
 
-    stylePrice(x);
-
     // this function moves to the left all of the information that were already 'active' in the ticker
     // in order to make space for new info layers
 
