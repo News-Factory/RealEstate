@@ -6,8 +6,8 @@ function randomIntroOutroTR(x){    // 15/01/2021
     var introFootage= introFootageFolder.getFiles();
     var outroFootage= outroFootageFolder.getFiles();
 
-    var introInt=introFootage.length;
-    var outroInt=outroFootage.length;
+    var introInt=introFootage.length -1;
+    var outroInt=outroFootage.length -1;
 
     var introLayer=x.allLayers['Intro']['Video Intro'];
     var outroLayer=x.allLayers['Outro']['Video Outro'];
