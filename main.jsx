@@ -232,13 +232,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
 function soundAndDetails(x){  
     var template = x.projFile.name.split('.')[0];
     // alert(template);
-    if (template === 'Transparent'){
-        formatLogoTR(x);
-        iconsCheckTR(x);
-        insertIconsTopTicker(x)
-        // fitSoundOnAll(x);
-    }
-    else if (template === 'Red&BlueNew'){
+    if (template === 'Red&BlueNew'){
         formatLogoRB(x);
         formatBothPhotosComp(x);
         // randomDroneShot(x);
@@ -254,6 +248,7 @@ function soundAndDetails(x){
 
 function renderIt(x){
     //save and export
+    var template = x.projFile.name.split('.')[0];
 
     // define date and hour for the export name
     var today=new Date();
@@ -261,12 +256,11 @@ function renderIt(x){
     var time=today.getHours()+"-"+today.getMinutes()+"-"+today.getSeconds();
     var dateTime=date+' '+time;
 
-    var exportName='tempName';
     var exportComp=x.mainComp.duplicate();
-    var resultFile = new File(x.paths['exports']+'/'+dateTime+exportName+'.mp4');
+    var resultFile = new File(x.paths['exports']+'/'+dateTime+template+'.mp4');
     var savePath = x.paths['saves']; //+' '+exportName+'.aep';
     // alert(savePath);
-    exportComp.name = x.paths['exports']+'/'+dateTime+exportName+'.mp4'; //paths['exports']+
+    exportComp.name = x.paths['exports']+'/'+dateTime+template+'.mp4'; //paths['exports']+
 
     exportComp.openInViewer();
     var renderQueue=app.project.renderQueue;

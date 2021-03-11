@@ -1,20 +1,6 @@
 #include "scale.jsx"  
 #include "import.jsx"  
 
-function randomDroneShot(x){    // 05/02/2021
-    var mommyFolderPath='D:/Real Estate Folder/';
-    var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
-    var introFootage= introFootageFolder.getFiles();
-    var introInt=introFootage.length;
-    var droneIntroLayer=x.allLayers['Drone Shot']['Video Drone Intro'];
-
-    var randomDrone= Math.floor(Math.random()*introInt);
-    var videoDroneIntroPath= introFootage[randomDrone];
-    var videoDroneShot= app.project.importFile(new ImportOptions(new File(videoDroneIntroPath)));
-
-    // alert(videoIntro.name);
-    droneIntroLayer.replaceSource(videoDroneShot,true);
-}
 
 function randomVideoAvira(x, aviraNumber) {
     var aviraString= x.allLayers['Avira Text Box']['Avira'+aviraNumber].sourceText.value.toString();
