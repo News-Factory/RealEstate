@@ -38,14 +38,13 @@ function randomVideoAvira(x, aviraNumber) {
     vidLayer.replaceSource(video,true);
 }
 
-function randomDroneComp(x){   // 19/01/2021
-
+function randomDroneShotAndComp(x){   // 19/01/2021
     var cityTextLayer=  x.allLayers['AddressComp']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[0];
     // alert(city);
 
-    var mommyFolderPath='G:/My Drive/Real Estate Project/Customer Photos/';
-    var cityDronesFootageFolder= new Folder(mommyFolderPath+'Drones/'+ city);
+    var mommyFolderPath='G:/My Drive/Real Estate Project/City Footage/';
+    var cityDronesFootageFolder= new Folder(mommyFolderPath+'air shots/'+ city);
     var cityDroneFootage= cityDronesFootageFolder.getFiles();
     // alert(cityDroneFootage);
 
@@ -54,7 +53,7 @@ function randomDroneComp(x){   // 19/01/2021
     cityDroneFootage.splice(index,1);
     // alert(cityDroneFootage);
 
-    var Int=cityDroneFootage.length;
+    var Int=cityDroneFootage.length -1;
     // alert(Int/2);
 
     var firstVidLayer=x.allLayers['Drone Footage']['DroneFootage1'];
@@ -64,8 +63,10 @@ function randomDroneComp(x){   // 19/01/2021
     // alert(randomFirst);
     if (randomFirst >= Int/2 && randomFirst != 0){
         var randomSecond= randomFirst-1;
+        var randomDrone= randomFirst-2;
     } else {
         var randomSecond= randomFirst+1;
+        var randomDrone= randomFirst+2;
     }
     var firstVidPath= cityDroneFootage[randomFirst];
     var secondVidPath= cityDroneFootage[randomSecond];
@@ -76,4 +77,12 @@ function randomDroneComp(x){   // 19/01/2021
     secondVidLayer.replaceSource(secondVideo,true);
     fitToComp(firstVidLayer);
     fitToComp(secondVidLayer);
+
+    var droneIntroLayer=x.allLayers['Drone Shot']['Video Drone Intro'];
+
+    var videoDroneIntroPath= cityDroneFootage[randomDrone];
+    var videoDroneShot= app.project.importFile(new ImportOptions(new File(videoDroneIntroPath)));
+
+    // alert(videoIntro.name);
+    droneIntroLayer.replaceSource(videoDroneShot,true);
 }

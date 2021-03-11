@@ -40,7 +40,7 @@
 function batchProcess(){
     // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting2');  // the normal folder is "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -146,7 +146,7 @@ function slicer(x){
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
         // alert(howMany_Pictures);
-        var gap = 1.5;
+        var gap = 1.2;
         var locTestPhoto = getLoc_TestPhoto(x);
         // alert(locTestPhoto);
 
@@ -170,9 +170,9 @@ function slicer(x){
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 // alert(mainLayers[i].outPoint);
                 nextLayer.startTime=mainLayers[i].outPoint -gap; 
-            } else if (i == 3){
+            } else if (i == 3 || i ==4 ){
                 nextLayer.startTime=layer.outPoint -2;   
-            } else if (i == mainLayers.length-3){
+            } else if (i == mainLayers.length-3){ 
                 nextLayer.startTime=layer.outPoint -2.7;  
             } else {
                 nextLayer.startTime=layer.outPoint -gap;    
@@ -241,8 +241,8 @@ function soundAndDetails(x){
     else if (template === 'Red&BlueNew'){
         formatLogoRB(x);
         formatBothPhotosComp(x);
-        randomDroneShot(x);
-        randomDroneComp(x);
+        // randomDroneShot(x);
+        randomDroneShotAndComp(x);
         randomVideoAvira(x,1);
         randomVideoAvira(x,2);
         randomVideoAvira(x,3);

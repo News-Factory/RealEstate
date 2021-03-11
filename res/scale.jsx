@@ -123,7 +123,7 @@ function setScaleDurationMarkersForVideosComp(x){
                 var newMarkerTime=layers[i].startTime+dur-1;
                 moveMarker(layers[i],newMarkerTime);
 
-                setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
+                // setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
                 
                 if (i > 1){
                     var layerB = layers[i];
