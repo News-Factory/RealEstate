@@ -25,7 +25,7 @@
     
     //    HAVE A LOOK HERE!!!!!!!
 
-    //    YOU MUST UNCOMMENT THE batchProcess() FUNCTION!!!!
+    //    YOU MUST UNCOMMENT THE batchProcess() FUNCTION TO CREATE A CSV FILE!!!!
 
 
     // var mommyFolderPath='G:/My Drive/Real Estate Project/';
