@@ -169,7 +169,7 @@ function slicer(x){
                 var neededTime = backgroundIntroSong.source.duration;
                 mainLayers[i].outPoint=neededTime + brandIntroLayer.outPoint;
                 // alert(mainLayers[i].outPoint);
-                nextLayer.startTime=mainLayers[i].outPoint -gap; 
+                nextLayer.startTime=mainLayers[i].outPoint -gap ; 
             } else if (i == 3 || i ==4 ){
                 nextLayer.startTime=layer.outPoint -2;   
             } else if (i == mainLayers.length-3){ 
