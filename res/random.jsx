@@ -44,8 +44,8 @@ function randomCityDrones(x){   // 19/01/2021
     var city= cityTextLayer.sourceText.value.toString().split('-')[0];
     // alert(city);
 
-    var mommyFolderPath='G:/My Drive/Real Estate Project/Customer Photos/';
-    var cityDronesFootageFolder= new Folder(mommyFolderPath+'Drones/'+ city);
+    var mommyFolderPath='G:/My Drive/Real Estate Project/City Footage/';
+    var cityDronesFootageFolder= new Folder(mommyFolderPath+'air shots/'+ city);
     var cityDroneFootage= cityDronesFootageFolder.getFiles();
     // alert(cityDroneFootage);
 

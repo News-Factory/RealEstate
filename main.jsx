@@ -165,7 +165,7 @@ function slicer(x){
         var layer = mainLayers[i];
         var nextLayer = mainLayers[i+1];
         if (i == 2){
-            gap =1.5;
+            gap =1.2;
             nextLayer.startTime=layer.outPoint -gap;  
             var photoComp = x.allLayers['0_Main Comp']['1_Photos Comp'];
             var transition = photoComp.effect(1).property('Transition Completion');
