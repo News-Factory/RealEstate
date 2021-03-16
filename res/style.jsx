@@ -93,3 +93,7 @@ function setTheMusic(x){
     introTrackLayer.replaceSource(introAudioTrack,true);
     bodyTrackLayer.replaceSource(bodyAudioTrack,true);
 }
+
+function stylePrice(){
+    
+}
