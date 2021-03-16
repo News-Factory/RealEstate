@@ -7,11 +7,11 @@ function randomVideoAvira(x, aviraNumber) {
     var avira= aviraString.split(' - ')[1];
     // alert(avira);
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/ISRAEL/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
     // Code down here is to take out the desktop.ini files that create a TON of issues otherwise
-    var index = aviraFootage.length -1;
+    var index = aviraFootage.length;
     aviraFootage.splice(index,1);
     // alert(aviraFootage);
 
@@ -22,6 +22,7 @@ function randomVideoAvira(x, aviraNumber) {
     // alert(vidPath);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
+    fitToComp(vidLayer);
 }
 
 function randomDroneShotAndComp(x){   // 19/01/2021
