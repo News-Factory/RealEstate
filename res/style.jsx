@@ -76,8 +76,10 @@ function onlyHebrewText(x){
     }
 
     var cityTextLayer=  x.allLayers['Flat Details']['City'];
+    var cityTextLayer2=  x.allLayers['City Headline']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[1];
     setText(cityTextLayer, city);
+    setText(cityTextLayer2, city);
 }
 
 function setTheMusic(x){
