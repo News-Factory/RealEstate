@@ -278,6 +278,7 @@ function soundAndDetails(x){
         iconsCheckRB(x)
     }
     // fitSoundOnPhotosComp(x);
+    stylePrice(x);
     setTheMusic(x);
     fitSoundOnAll(x);
 }
