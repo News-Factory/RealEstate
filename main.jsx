@@ -210,7 +210,7 @@ function soundAndDetails(x){
         // formatPhotosComp(x);
         iconsCheckAS(x);
         onlyHebrewText(x);
-        // stylePrice(x);
+        stylePrice(x);
         // iconsCheckAS(x);
     }
     setTheMusic(x);
