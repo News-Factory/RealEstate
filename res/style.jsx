@@ -68,8 +68,10 @@ function onlyHebrewText(x){
         setText(layer, avira);
     }
     var cityTextLayer=  x.allLayers['AddressComp']['City'];
+    var cityTextLayer2=  x.allLayers['Drone Text Box']['City'];
     var city= cityTextLayer.sourceText.value.toString().split('-')[1];
     setText(cityTextLayer, city);
+    setText(cityTextLayer2, city);
 }
 
 function setTheMusic(x){
