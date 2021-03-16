@@ -1,3 +1,6 @@
+
+#include "scale.jsx";
+
 function randomIntroOutroTR(x){    // 15/01/2021
     var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
@@ -6,8 +9,7 @@ function randomIntroOutroTR(x){    // 15/01/2021
 
     var introFootage= introFootageFolder.getFiles();
 
-    var introInt=introFootage.length -1;
-
+    var introInt=introFootage.length;
     var introLayer=x.allLayers['Intro']['Video Intro'];
     var outroLayer=x.allLayers['Outro']['Video Outro'];
     // alert(introLayer.name);
@@ -22,12 +24,20 @@ function randomIntroOutroTR(x){    // 15/01/2021
     var videoIntroPath= introFootage[randomIntro];
     var videoOutroPath= introFootage[randomOutro];
 
+    // this is the part of code to avoid the fucking .ini files
+    var noIni1= String(videoIntroPath).split('.')[1];
+    var noIni2= String(videoOutroPath).split('.')[1];
+
+
+
     var videoIntro= app.project.importFile(new ImportOptions(new File(videoIntroPath)));
     var videoOutro= app.project.importFile(new ImportOptions(new File(videoOutroPath)));
     // alert(videoIntro.name);
 
     introLayer.replaceSource(videoIntro,true);
+    fitToComp(introLayer);
     outroLayer.replaceSource(videoOutro,true);
+    fitToComp(outroLayer);
 }
 
 function randomStartVideoComp(x){   // 19/01/2021
@@ -63,7 +73,10 @@ function randomStartVideoComp(x){   // 19/01/2021
     // alert(videoIntro.name);
 
     firstVidLayer.replaceSource(firstVideo,true);
+    fitToComp(firstVidLayer);
     secondVidLayer.replaceSource(secondVideo,true);
+    fitToComp(secondVidLayer);
+
 }
 
 function randomVideoCompCity(x){
@@ -94,7 +107,9 @@ function randomVideoCompCity(x){
     // alert(videoIntro.name);
 
     firstVidLayer.replaceSource(firstVideo,true);
+    fitToComp(firstVidLayer);
     secondVidLayer.replaceSource(secondVideo,true);
+    fitToComp(secondVidLayer);
 }
 
 function randomVideoAvira(x, aviraNumber) {
@@ -102,7 +117,7 @@ function randomVideoAvira(x, aviraNumber) {
     var avira= aviraString.split(' - ')[1];
     // alert(avira);
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/ISRAEL/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
     var integer=aviraFootage.length-1;
@@ -111,4 +126,5 @@ function randomVideoAvira(x, aviraNumber) {
     var vidPath= aviraFootage[random];
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
+    fitToComp(vidLayer);
 }
