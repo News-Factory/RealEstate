@@ -242,6 +242,7 @@ function soundAndDetails(x){
         randomVideoAvira(x,3);
         onlyHebrewText(x);
         iconsCheckRB(x);
+        stylePrice(x);
     }
     setTheMusic(x);
 }
