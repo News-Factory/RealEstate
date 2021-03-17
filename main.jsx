@@ -39,8 +39,11 @@ function batchProcess(){
 
     var wFiles=waitingFolder.getFiles();
     for (var i=0; i<wFiles.length; i++){
+
+        var fileName=wFiles[i].name.indexOf('Transparent');
         var fileExt=wFiles[i].name.split('.')[1];
-        if (fileExt=='txt'){
+        
+        if (fileExt=='txt' && fineName !== -1){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath); 
                 
