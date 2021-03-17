@@ -5,20 +5,20 @@ function randomIntroOutroTR(x){    // 15/01/2021
     var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var introFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/intros/'+city);
+    var introFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
 
     var introFootage= introFootageFolder.getFiles();
 
-    var introInt=introFootage.length;
+    var index=introFootage.length;
     var introLayer=x.allLayers['Intro']['Video Intro'];
     var outroLayer=x.allLayers['Outro']['Video Outro'];
     // alert(introLayer.name);
 
-    var randomIntro= Math.floor(Math.random()*introInt);
-    if(randomIntro == 1){
-        var randomOutro= 2;
+    var randomIntro= Math.floor(Math.random()*index);
+    if(randomIntro <= index/2){
+        var randomOutro= randomIntro+1;
     } else {
-        var randomOutro= 1;
+        var randomOutro= randomIntro-1;
     }
     // var randomOutro= Math.floor(Math.random()*outroInt);
     var videoIntroPath= introFootage[randomIntro];
@@ -27,6 +27,22 @@ function randomIntroOutroTR(x){    // 15/01/2021
     // this is the part of code to avoid the fucking .ini files
     var noIni1= String(videoIntroPath).split('.')[1];
     var noIni2= String(videoOutroPath).split('.')[1];
+
+    if (noIni1 == 'ini'){
+        if (randomIntro > index/2){
+            var videoIntroPath= introFootage[randomIntro-2];
+        } else {
+            var videoIntroPath= introFootage[randomIntro+2];
+        }
+    }
+
+    if (noIni2 == 'ini'){
+        if (randomOutro > index/2){
+            var videoOutroPath= introFootage[randomOutro-2];
+        } else {
+            var videoOutroPath= introFootage[randomOutro2];
+        }
+    }
 
 
 
@@ -102,6 +118,25 @@ function randomVideoCompCity(x){
         var secondVidPath= cityFootage[random+1];
     }
 
+    var noIni1= String(firstVidPath).split('.')[1];
+    var noIni2= String(secondVidPath).split('.')[1];
+
+    if (noIni1 == 'ini'){
+        if (random > index/2){
+            var firstVidPath= cityDroneFootage[random-2];
+        } else {
+            var firstVidPath= cityDroneFootage[random+2];
+        }
+    }
+
+    if (noIni2 == 'ini'){
+        if (random > index/2){
+            var secondVidPath= cityDroneFootage[random-2];
+        } else {
+            var secondVidPath= cityDroneFootage[random+2];
+        }
+    }
+
     var firstVideo= app.project.importFile(new ImportOptions(new File(firstVidPath)));
     var secondVideo= app.project.importFile(new ImportOptions(new File(secondVidPath)));
     // alert(videoIntro.name);
@@ -120,9 +155,9 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/ISRAEL/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
-    var integer=aviraFootage.length;
+    var index=aviraFootage.length;
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
-    var random= Math.floor(Math.random()*integer);
+    var random= Math.floor(Math.random()*index);
     var vidPath= aviraFootage[random];
 
     var noIni1= String(vidPath).split('.')[1];
