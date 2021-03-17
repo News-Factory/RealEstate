@@ -120,10 +120,19 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/ISRAEL/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
-    var integer=aviraFootage.length-1;
+    var integer=aviraFootage.length;
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
+
+    var noIni1= String(vidPath).split('.')[1];
+    if (noIni1 == 'ini'){
+        if (random > index/2){
+            var vidPath= aviraFootage[random - 1];
+        } else {
+            var vidPath= aviraFootage[random + 1];
+        }
+    }
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
     fitToComp(vidLayer);
