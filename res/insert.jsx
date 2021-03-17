@@ -1,4 +1,5 @@
 #include "scale.jsx";
+#include "clear.jsx";
 
 function insertAll(x,found){
     if (found){
@@ -41,6 +42,7 @@ function insertAll_footage(x,found){
                 arr[i].containingComp.openInViewer();
             }
             setFootage(arr[i].layer,arr[i].file);
+            clearKeys(arr[i].layer, 'scale')
             fitToComp(arr[i].layer);
             //setDurationByType(arr[i]);
             if (x.tog.alertWhereWeAre){
