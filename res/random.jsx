@@ -19,6 +19,13 @@ function randomVideoAvira(x, aviraNumber) {
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
     var random= Math.floor(Math.random()*integer);
     var vidPath= aviraFootage[random];
+
+    // this is the part of code to avoid the fucking .ini files
+    var noIni1= String(vidPath).split('.')[1];
+    if (noIni1 == 'ini'){
+        var vidPath= aviraFootage[random + 1];
+    }
+
     // alert(vidPath);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
