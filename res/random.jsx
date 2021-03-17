@@ -5,11 +5,21 @@ function randomDroneShot(x){    // 05/02/2021
     var mommyFolderPath='D:/Real Estate Folder/';
     var introFootageFolder= new Folder(mommyFolderPath+'Shutterstock/City/Intro');
     var introFootage= introFootageFolder.getFiles();
-    var introInt=introFootage.length;
+    var index=introFootage.length;
     var droneIntroLayer=x.allLayers['Drone Shot']['Video Drone Intro'];
 
-    var randomDrone= Math.floor(Math.random()*introInt);
+    var randomDrone= Math.floor(Math.random()*index);
     var videoDroneIntroPath= introFootage[randomDrone];
+
+    var noIniD= String(videoDroneIntroPath).split('.')[1];
+    if (noIni1 == 'ini'){
+        if (randomDrone > index/2){
+            var videoDroneIntroPath= introFootage[randomDrone - 1];
+        } else {
+            var videoDroneIntroPath= introFootage[randomDrone + 1];
+        }
+    }
+
     var videoDroneShot= app.project.importFile(new ImportOptions(new File(videoDroneIntroPath)));
 
     // alert(videoIntro.name);
@@ -25,14 +35,23 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraFootage= aviraFootageFolder.getFiles();
 
     // Code down here is to take out the desktop.ini files that create a TON of issues otherwise
-    var index = aviraFootage.length -1;
+    var index = aviraFootage.length;
     aviraFootage.splice(index,1);
     // alert(aviraFootage);
 
-    var integer=aviraFootage.length;
     var vidLayer=x.allLayers['Footage Comp']['Footage'+(aviraNumber+2)];
-    var random= Math.floor(Math.random()*integer);
+    var random= Math.floor(Math.random()*index);
     var vidPath= aviraFootage[random];
+
+    var noIni1= String(vidPath).split('.')[1];
+    if (noIni1 == 'ini'){
+        if (random > index/2){
+            var vidPath= aviraFootage[random - 1];
+        } else {
+            var vidPath= aviraFootage[random + 1];
+        }
+    }
+
     // alert(vidLayer);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
