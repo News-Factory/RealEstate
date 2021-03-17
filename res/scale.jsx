@@ -207,8 +207,6 @@ function fitToComp(layer){ //meant for layer to fill all of the screen
         }     
         layer.property('Scale').setValueAtTime(0.1,[scaleValue,scaleValue]);
     }
-
-
 }
 
 function getLayerPosition(layer){

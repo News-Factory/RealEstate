@@ -15,15 +15,18 @@ function randomVideoAvira(x, aviraNumber) {
     aviraFootage.splice(index,1);
     // alert(aviraFootage);
 
-    var integer=aviraFootage.length;
     var vidLayer=x.allLayers['Videos Comp']['Video_'+(4-aviraNumber)];
-    var random= Math.floor(Math.random()*integer);
+    var random= Math.floor(Math.random()*index);
     var vidPath= aviraFootage[random];
 
     // this is the part of code to avoid the fucking .ini files
     var noIni1= String(vidPath).split('.')[1];
     if (noIni1 == 'ini'){
-        var vidPath= aviraFootage[random + 1];
+        if (random > index/2){
+            var vidPath= aviraFootage[random - 1];
+        } else {
+            var vidPath= aviraFootage[random + 1];
+        }
     }
 
     // alert(vidPath);
