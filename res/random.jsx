@@ -24,6 +24,7 @@ function randomDroneShot(x){    // 05/02/2021
 
     // alert(videoIntro.name);
     droneIntroLayer.replaceSource(videoDroneShot,true);
+    fitToComp(droneIntroLayer);
 }
 
 function randomVideoAvira(x, aviraNumber) {
@@ -55,6 +56,7 @@ function randomVideoAvira(x, aviraNumber) {
     // alert(vidLayer);
     var video= app.project.importFile(new ImportOptions(new File(vidPath)));
     vidLayer.replaceSource(video,true);
+    fitToComp(vidLayer);
 }
 
 function randomCityDrones(x){   // 19/01/2021
