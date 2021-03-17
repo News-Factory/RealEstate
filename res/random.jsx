@@ -46,27 +46,45 @@ function randomDroneShotAndComp(x){   // 19/01/2021
     // alert(cityDroneFootage);
 
     // Code down here is to take out the desktop.ini files that create a TON of issues otherwise
-    var index = cityDroneFootage.length -1;
+    var index = cityDroneFootage.length;
     cityDroneFootage.splice(index,1);
     // alert(cityDroneFootage);
-
-    var Int=cityDroneFootage.length -1;
-    // alert(Int/2);
 
     var firstVidLayer=x.allLayers['Drone Footage']['DroneFootage1'];
     var secondVidLayer=x.allLayers['Drone Footage']['DroneFootage2'];
 
-    var randomFirst= Math.floor(Math.random()*Int);
-    // alert(randomFirst);
-    if (randomFirst >= Int/2 && randomFirst != 0){
-        var randomSecond= randomFirst-1;
-        var randomDrone= randomFirst-2;
+    var random= Math.floor(Math.random()*index);
+    // alert(random);
+    if (random >= index/2 && random != 0){
+        var randomSecond= random-1;
+        var randomDrone= random-2;
     } else {
-        var randomSecond= randomFirst+1;
-        var randomDrone= randomFirst+2;
+        var randomSecond= random+1;
+        var randomDrone= random+2;
     }
-    var firstVidPath= cityDroneFootage[randomFirst];
+    var firstVidPath= cityDroneFootage[random];
     var secondVidPath= cityDroneFootage[randomSecond];
+
+    // this is the part of code to avoid the fucking .ini files
+    var noIni1= String(firstVidPath).split('.')[1];
+    var noIni2= String(secondVidPath).split('.')[1];
+
+    if (noIni1 == 'ini'){
+        if (random > index/2){
+            var firstVidPath= cityDroneFootage[random-3];
+        } else {
+            var firstVidPath= cityDroneFootage[random+3];
+        }
+    }
+
+    if (noIni2 == 'ini'){
+        if (random > index/2){
+            var secondVidPath= cityDroneFootage[randomSecond-3];
+        } else {
+            var secondVidPath= cityDroneFootage[randomSecond+3];
+        }
+    }
+
     var firstVideo= app.project.importFile(new ImportOptions(new File(firstVidPath)));
     var secondVideo= app.project.importFile(new ImportOptions(new File(secondVidPath)));
     // alert(videoIntro.name);
@@ -78,6 +96,16 @@ function randomDroneShotAndComp(x){   // 19/01/2021
     var droneIntroLayer=x.allLayers['Drone Shot']['Video Drone Intro'];
 
     var videoDroneIntroPath= cityDroneFootage[randomDrone];
+
+    var noIniD= String(videoDroneIntroPath).split('.')[1];
+    if (noIniD == 'ini'){
+        if (random > index/2){
+            var videoDroneIntroPath= cityDroneFootage[randomDrone-3];
+        } else {
+            var videoDroneIntroPath= cityDroneFootage[randomDrone+3];
+        }
+    }
+
     var videoDroneShot= app.project.importFile(new ImportOptions(new File(videoDroneIntroPath)));
 
     // alert(videoIntro.name);
