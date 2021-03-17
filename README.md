@@ -1,6 +1,7 @@
 # Real Estate / "PILOT" AE project Transparent
 
-Code (almost) fully working on the TRANSPARENT AfterEffects project in a "batch" fashion (more than one txt processed at the time) as of today 28/01/2020.
-Needs some skimming/cleaning and and expression in the project needs to be fine tuned to always center the "name" and "title" text layers.
-
+17/03/2021
+The code is fully working as of creating the video and rendering more instances of the "Transparent" template.
+It IGNORES .txt files that are not related to this specific code/template.
+Next step is to create a working panel inside After Effect.
 
