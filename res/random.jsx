@@ -88,6 +88,26 @@ function randomCityDrones(x){   // 19/01/2021
     }
     var firstVidPath= cityDroneFootage[randomFirst];
     var secondVidPath= cityDroneFootage[randomSecond];
+
+    var noIni1= String(firstVidPath).split('.')[1];
+    var noIni2= String(secondVidPath).split('.')[1];
+
+    if (noIni1 == 'ini'){
+        if (random > index/2){
+            var firstVidPath= cityDroneFootage[randomFirst-2];
+        } else {
+            var firstVidPath= cityDroneFootage[randomFirst+2];
+        }
+    }
+
+    if (noIni2 == 'ini'){
+        if (random > index/2){
+            var secondVidPath= cityDroneFootage[randomSecond-2];
+        } else {
+            var secondVidPath= cityDroneFootage[randomSecond+2];
+        }
+    }
+
     var firstVideo= app.project.importFile(new ImportOptions(new File(firstVidPath)));
     var secondVideo= app.project.importFile(new ImportOptions(new File(secondVidPath)));
     // alert(videoIntro.name);

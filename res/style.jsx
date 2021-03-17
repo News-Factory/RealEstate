@@ -105,7 +105,7 @@ function setTheMusic(x){
 
 // This function takes the price number and adds points to make it more readable  28/01/2021
 function stylePrice(x){
-    var layer=  x.allLayers['Data']['Price'];
+    var layer=  x.allLayers['Flat Details']['Price'];
     var priceString= layer.sourceText.value.toString();
     var len= priceString.length;
     var needsTo =priceString.indexOf(".");
