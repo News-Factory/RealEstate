@@ -31,7 +31,7 @@ function randomVideoAvira(x, aviraNumber) {
     var avira= aviraString.split(' - ')[1];
     // alert(avira);
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/'+avira);
+    var aviraFootageFolder= new Folder(mommyFolderPath+'Footage/ISRAEL/'+avira);
     var aviraFootage= aviraFootageFolder.getFiles();
 
     // Code down here is to take out the desktop.ini files that create a TON of issues otherwise

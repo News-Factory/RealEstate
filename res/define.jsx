@@ -7,7 +7,8 @@ function defineMainProjectItems(txtFilePath){
     x.data=defineMasterObj(txtFilePath, x.sym); //An array of objects with title, value and type
     x.dataByType=getData_byTitleValueType(x.data);
     
-    var templateName=x.dataByType['meta'][1].value;
+    var template = txtFilePath.split('/')[4];
+    var templateName = template.slice(18, template.length -4).toString();
     var projectFilePath=x.paths['projects']+'/'+templateName+'.aep';
     x.projFile=File(projectFilePath);
     alert('projFile: '+x.projFile.name);
