@@ -1,16 +1,16 @@
-#include "./res/define.jsx";
-#include "./res/trim.jsx";
-#include "./res/check.jsx";
-#include "./res/set.jsx";
-#include "./res/import.jsx";
-#include "./res/match.jsx";
-#include "./res/insert.jsx";
-#include "./res/scale.jsx";
-#include "./res/format.jsx";
-#include "./res/fade.jsx";
-#include "./res/labels.jsx";
-#include "./res/random.jsx";
-#include "./res/sheetConstruct.jsx";
+#include "./resRB/define.jsx";
+#include "./resRB/trim.jsx";
+#include "./resRB/check.jsx";
+#include "./resRB/set.jsx";
+#include "./resRB/import.jsx";
+#include "./resRB/match.jsx";
+#include "./resRB/insert.jsx";
+#include "./resRB/scale.jsx";
+#include "./resRB/format.jsx";
+#include "./resRB/fade.jsx";
+#include "./resRB/labels.jsx";
+#include "./resRB/random.jsx";
+#include "./resRB/sheetConstruct.jsx";
 
 //Stage01 Match - match the titles in the sheet to layers in the project
 //Stage02 Import files into the project
@@ -34,10 +34,10 @@
     // var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
     // var x=defineMainProjectItems(txtFilePath); 
     // sc_constructGS(x);  // this function creates the google sheet thingy
-    batchProcess();
+    batchProcessRB();
 }
 
-function batchProcess(){
+function batchProcessRB(){
     app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
