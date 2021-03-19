@@ -1,16 +1,16 @@
-#include "./res/define.jsx";
-#include "./res/trim.jsx";
-#include "./res/check.jsx";
-#include "./res/set.jsx";
-#include "./res/import.jsx";
-#include "./res/match.jsx";
-#include "./res/insert.jsx";
-#include "./res/scale.jsx";
-#include "./res/format.jsx";
-#include "./res/fade.jsx";
-#include "./res/labels.jsx";
-#include "./res/random.jsx";
-#include "./res/sheetConstruct.jsx";
+#include "./resTR/define.jsx";
+#include "./resTR/trim.jsx";
+#include "./resTR/check.jsx";
+#include "./resTR/set.jsx";
+#include "./resTR/import.jsx";
+#include "./resTR/match.jsx";
+#include "./resTR/insert.jsx";
+#include "./resTR/scale.jsx";
+#include "./resTR/format.jsx";
+#include "./resTR/fade.jsx";
+#include "./resTR/labels.jsx";
+#include "./resTR/random.jsx";
+#include "./resTR/sheetConstruct.jsx";
 
 //Stage01 Match - match the titles in the sheet to layers in the project
 //Stage02 Import files into the project
