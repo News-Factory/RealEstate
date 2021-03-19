@@ -52,7 +52,7 @@ function batchProcessRB(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath); 
                 
-            var success=realEstate(x);
+            var success=realEstateRB(x);
 
             // realExtate success activates the rendering queue and moves txt files
             if (success){                
@@ -68,7 +68,7 @@ function batchProcessRB(){
     app.endSuppressDialogs(alert);
 }
 
-function realEstate(x){
+function realEstateRB(x){
 
     app.beginUndoGroup("realEstate");
         //the next line is a general procedure to find problems in the AE project

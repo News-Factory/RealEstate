@@ -9,7 +9,7 @@
             "type": "extendscript-debug",
             "request": "launch",
             "name": "Ask for script name",
-            "program": "${workspaceFolder}/main.jsx",
+            "program": "${workspaceFolder}/mainRB.jsx",
             "stopOnEntry": false,
         }
     ]
