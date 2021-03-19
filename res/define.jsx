@@ -8,6 +8,7 @@ function defineMainProjectItems(txtFilePath){
     x.dataByType=getData_byTitleValueType(x.data);
     
     var template = txtFilePath.split('/')[4];
+    // alert(template);
     var templateName = template.slice(18, template.length -4).toString();
     var projectFilePath=x.paths['projects']+'/'+templateName+'.aep';
     x.projFile=File(projectFilePath);
