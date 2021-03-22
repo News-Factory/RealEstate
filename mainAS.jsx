@@ -120,21 +120,6 @@ function realEstateAS(x){
 }
 
 
-// new logic for turning on and off the icons in R&B  12/01/2020
-function iconsCheckRB(x){    
-    for (var i=1; i<11; i++){
-        var theIcon= x.allLayers['Apartment Icons']['Icon'+i];
-        // alert(theIcon.property("Source Text").value);
-        var approved= x.allLayers['Apartment Icons']['CM'+i];
-        // alert(approved.name);
-        if (theIcon.property("Source Text").value != ''){
-            approved.enabled=true;
-        } else {
-            approved.enabled=false;
-        }
-    }
-}
-
 function iconsCheckAS(x){
     var theIcons=x.dataByType['onoff'];
     // alert(activeIcons[0]);

@@ -131,5 +131,5 @@ function fitSoundOnAll(x){
 
     // apply the fade in / fade out
     fadeIn(backgroundSong, introCompStart, 0.5, -40, 0);
-    slowFadeOut(backgroundSong, outroCompEnd, 5, -40, 6);
+    slowFadeOut(backgroundSong, outroCompEnd, 5, -100, 5);
 } 
