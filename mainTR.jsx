@@ -6,6 +6,7 @@
 #include "./resTR/match.jsx";
 #include "./resTR/insert.jsx";
 #include "./resTR/scale.jsx";
+#include "./resTR/style.jsx";
 #include "./resTR/format.jsx";
 #include "./resTR/fade.jsx";
 #include "./resTR/labels.jsx";
