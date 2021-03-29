@@ -1,17 +1,17 @@
-#include "./resTR/define.jsx";
-#include "./resTR/trim.jsx";
-#include "./resTR/check.jsx";
-#include "./resTR/set.jsx";
-#include "./resTR/import.jsx";
-#include "./resTR/match.jsx";
-#include "./resTR/insert.jsx";
-#include "./resTR/scale.jsx";
-#include "./resTR/style.jsx";
-#include "./resTR/format.jsx";
-#include "./resTR/fade.jsx";
-#include "./resTR/labels.jsx";
-#include "./resTR/random.jsx";
-#include "./resTR/sheetConstruct.jsx";
+#include "./resEL/define.jsx";
+#include "./resEL/trim.jsx";
+#include "./resEL/check.jsx";
+#include "./resEL/set.jsx";
+#include "./resEL/import.jsx";
+#include "./resEL/match.jsx";
+#include "./resEL/insert.jsx";
+#include "./resEL/scale.jsx";
+#include "./resEL/style.jsx";
+#include "./resEL/format.jsx";
+#include "./resEL/fade.jsx";
+#include "./resEL/labels.jsx";
+#include "./resEL/random.jsx";
+#include "./resEL/sheetConstruct.jsx";
 
 //Stage01 Match - match the titles in the sheet to layers in the project
 //Stage02 Import files into the project
@@ -29,10 +29,10 @@
     // var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[0].name;
     // var x=defineMainProjectItems(txtFilePath); 
     // sc_constructGS(x);  // this function creates the google sheet thingy
-    batchProcessTR();
+    batchProcessEL();
 }
 
-function batchProcessTR(){
+function batchProcessEL(){
     app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
@@ -41,7 +41,7 @@ function batchProcessTR(){
     var wFiles=waitingFolder.getFiles();
     for (var i=0; i<wFiles.length; i++){
 
-        var fileName=wFiles[i].name.indexOf('Transparent');
+        var fileName=wFiles[i].name.indexOf('Elegant');
         var fileExt=wFiles[i].name.split('.')[1];
         
         if (fileExt=='txt' && fileName !== -1){
