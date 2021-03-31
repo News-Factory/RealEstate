@@ -44,7 +44,7 @@ function batchProcessRB(){
 
     var wFiles=waitingFolder.getFiles();
     for (var i=0; i<wFiles.length; i++){
-        var fileName=wFiles[i].name.slice(18, wFiles[i].name.length -4).toString();
+        var fileName=wFiles[i].name.slice(21, wFiles[i].name.length -4).toString();
         var fileExt=wFiles[i].name.split('.')[1];
 
         if (fileExt=='txt' && fileName == 'Red&BlueNew'){
