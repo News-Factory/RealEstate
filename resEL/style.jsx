@@ -81,14 +81,14 @@ function onlyHebrewAviraBox(x){
         var avira= aviraString.split(' - ')[0];
         setText(layer, avira);
     }
-    var anotherLayer=  x.allLayers['Avira Headline Text']['city'];
+    var anotherLayer=  x.allLayers['1_Middle Ticker']['City'];
     var city= anotherLayer.sourceText.value.toString().split('-')[1];
     setText(anotherLayer, city);
 }
 
 // This function takes the price number and adds points to make it more readable  28/01/2021
 function stylePrice(x){
-    var layer=  x.allLayers['Price']['Price'];
+    var layer=  x.allLayers['1_Middle Ticker']['Price'];
     var priceString= layer.sourceText.value.toString();
     var len= priceString.length;
     var needsTo =priceString.indexOf(".");
@@ -116,7 +116,7 @@ function setTheMusic(x){
     var mommyFolderPath='D:/Real Estate Folder/';
     var musicFolder= new Folder(mommyFolderPath+'BackgroundMusic/Waveform Edits/'+moodString);
     var audioTracks= musicFolder.getFiles();
-    var introTrackLayer=x.allLayers['Intro']['Intro Sound'];
+    var introTrackLayer=x.allLayers['0_Intro']['Intro Sound'];
     var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
     
     var introPath= audioTracks[1];

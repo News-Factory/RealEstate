@@ -1,19 +1,26 @@
 #include "get.jsx"   
 
 function setDurationForIntroComp(x){
-    var introComp=x.allLayers['Intro'].comp;
-    var layers=introComp.layers;
+    var introComp=x.allLayers['0_Intro'].comp;
 
-    for (var i=layers.length; i>0; i--){
-        var videoSource=getFileType(layers[i].source.name);
+    var soundSource=x.allLayers['0_Intro']['Intro Sound'];
+    var soundEnd = soundSource.source.duration;
+    // alert(videoEnd);
+    introComp.duration = soundEnd;
+    // alert(introComp.time);
+
+
+
+    // for (var i=layers.length; i>0; i--){
+    //     var soundSource=getFileType(layers[i].source.name);
         
-        if (videoSource == 'video' && layers.length <=3){
-            var videoEnd = layers[i].source.duration;
-            // alert(videoEnd);
-            introComp.duration = videoEnd;
-            // alert(introComp.time);
-        }
-    }
+    //     if (soundSource == 'sound'){
+    //         var soundEnd = layers[i].source.duration;
+    //         // alert(videoEnd);
+    //         introComp.duration = soundEnd;
+    //         // alert(introComp.time);
+    //     }
+    // }
 }
 
 

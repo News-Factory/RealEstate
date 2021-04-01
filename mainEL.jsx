@@ -33,9 +33,9 @@
 }
 
 function batchProcessEL(){
-    app.beginSuppressDialogs();
+    // app.beginSuppressDialogs();
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
-    var waitingFolder=new Folder(mommyFolderPath+'waiting4Csv');  // the normal folder is "waiting"
+    var waitingFolder=new Folder(mommyFolderPath+'waiting');  // the normal folder is "waiting"
     var processedFolder=new Folder(mommyFolderPath+'processed');
 
     var wFiles=waitingFolder.getFiles();
@@ -87,14 +87,14 @@ function realEstateTR(x){
     insertAll(x,found); //set.jsx
 
     //Stage04
-    setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
+    // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    setScaleDurationMarkersForPhotosComp(x);
+    // setScaleDurationMarkersForPhotosComp(x);
     
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     // setScaleDurationMarkersForVideosComp(x);
 
-    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
+    // setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
     soundAndDetails(x);
@@ -282,9 +282,15 @@ function soundAndDetails(x){
         iconsCheckRB(x)
     }
     // fitSoundOnPhotosComp(x);
+
+    randomVideoAvira(x,1);
+    randomVideoAvira(x,2);
+    randomVideoAvira(x,3);
+    onlyHebrewAviraBox(x);
+
     stylePrice(x);
-    setTheMusic(x);
-    fitSoundOnAll(x);
+    // setTheMusic(x);
+    // fitSoundOnAll(x);
 }
 
 function renderIt(x){
