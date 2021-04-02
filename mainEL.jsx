@@ -263,6 +263,7 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
 // calls the last functions needed to fix the sound composition and some other last details
 function soundAndDetails(x){  
     var template = x.projFile.name.split('.')[0];
+    var logoLayer= x.allLayers['Logo']['logo'];
     // alert(template);
     if (template === 'Transparent'){
         formatLogoTR(x);
@@ -283,6 +284,8 @@ function soundAndDetails(x){
     }
     // fitSoundOnPhotosComp(x);
 
+    setLogoScaleAndPositionEL(logoLayer);
+    
     randomVideoAvira(x,1);
     randomVideoAvira(x,2);
     randomVideoAvira(x,3);

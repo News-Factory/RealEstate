@@ -16,11 +16,12 @@ function setLogoScaleAndPositionRB(layer){
         }
     }
 
-function setLogoScaleAndPositionTR(layer){
+function setLogoScaleAndPositionEL(layer){
         var width=layer.width;
         var height=layer.height;
         // alert(height);
         // alert(width); 
+        clearKeys(layer,'scale')
         if (height < 150 && width < 250){
             layer.property('scale').setValueAtTime(0.1,[250,250,100]);
         } else if(width < 500){
@@ -34,7 +35,7 @@ function setLogoScaleAndPositionTR(layer){
         }else{
             layer.property('scale').setValueAtTime(0.1,[50,50,100]);
         }
-        layer.property('position').setValueAtTime(0.1, [290, 335]);
+        layer.property('position').setValueAtTime(0.1, [963, 480]);
     }
 
 
@@ -98,7 +99,7 @@ function stylePrice(x){
         var first=priceString.slice(0, len-6);
         var second=priceString.slice(len-6,len-3);
         var third=priceString.slice(len-3,len);
-        if (priceString > 5){
+        if (priceString < 5){
             var endNumber=second+'.'+third;
         // alert(endNumber);
         } else {
