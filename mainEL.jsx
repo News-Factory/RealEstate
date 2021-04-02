@@ -267,13 +267,8 @@ function soundAndDetails(x){
     // alert(template);
     if (template === 'Transparent'){
         formatLogoTR(x);
-        randomIntroOutroTR(x);
         // randomStartVideoComp(x);
         randomVideoCompCity(x);
-        randomVideoAvira(x,1);
-        randomVideoAvira(x,2);
-        randomVideoAvira(x,3);
-        onlyHebrewAviraBox(x);
         iconsCheckTR(x);
         insertIconsTopTicker(x)
         // fitSoundOnAll(x);
@@ -285,11 +280,13 @@ function soundAndDetails(x){
     // fitSoundOnPhotosComp(x);
 
     setLogoScaleAndPositionEL(logoLayer);
-    
+
+    randomIntroOutroEL(x);
     randomVideoAvira(x,1);
     randomVideoAvira(x,2);
     randomVideoAvira(x,3);
-    onlyHebrewAviraBox(x);
+    onlyEnglishAviraAndCity(x);
+    onlyEnglishExtras(x);
 
     stylePrice(x);
     // setTheMusic(x);

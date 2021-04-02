@@ -1,8 +1,8 @@
 
 #include "scale.jsx";
 
-function randomIntroOutroTR(x){    // 15/01/2021
-    var cityBoth= x.allLayers['Avira Headline Text']['city'].sourceText.value.toString();
+function randomIntroOutroEL(x){    // 15/01/2021
+    var cityBoth= x.allLayers['1_Middle Ticker']['City'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var introFootageFolder= new Folder(mommyFolderPath+'City Footage/air shots/'+city);
@@ -10,8 +10,8 @@ function randomIntroOutroTR(x){    // 15/01/2021
     var introFootage= introFootageFolder.getFiles();
 
     var index=introFootage.length;
-    var introLayer=x.allLayers['Intro']['Video Intro'];
-    var outroLayer=x.allLayers['Outro']['Video Outro'];
+    var introLayer=x.allLayers['Video Intro']['Video Intro'];
+    var outroLayer=x.allLayers['Video Outro']['Video Outro'];
     // alert(introLayer.name);
 
     var randomIntro= Math.floor(Math.random()*index);

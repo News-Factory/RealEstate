@@ -2,20 +2,6 @@
 /////  16/12/2020
 ///// Functions that fix details for text paddings/margins etc in R&B template
 
-function setLogoScaleAndPositionRB(layer){
-        var width=layer.width;
-        var height=layer.height;
-        // alert(height);
-
-        if (height > 1000){
-            layer.property('scale').setValueAtTime(0.2,[20,-20,100]);
-            layer.property('position').setValueAtTime(0.2, [-1062, -400]);
-        } else {
-            layer.property('scale').setValueAtTime(0.2,[60,60,100]);
-            layer.property('position').setValueAtTime(0.2, [550, 550]);
-        }
-    }
-
 function setLogoScaleAndPositionEL(layer){
         var width=layer.width;
         var height=layer.height;
@@ -74,7 +60,20 @@ function topScrollingText_SpaceBetween(x){
     }
 }
 
-function onlyHebrewAviraBox(x){
+function onlyEnglishAviraAndCity(x){
+    for (i=1; i<=3; i++){
+        var layer=  x.allLayers['Avira Text Box']['Avira'+i];
+        // alert(layer.name);
+        var aviraString= layer.sourceText.value.toString();
+        var avira= aviraString.split(' - ')[1];
+        setText(layer, avira);
+    }
+    var anotherLayer=  x.allLayers['1_Middle Ticker']['City'];
+    var city= anotherLayer.sourceText.value.toString().split('-')[0];
+    setText(anotherLayer, city);
+}
+
+function onlyHebrewAviraAndCity(x){
     for (i=1; i<=3; i++){
         var layer=  x.allLayers['Avira Text Box']['Avira'+i];
         // alert(layer.name);
@@ -85,6 +84,36 @@ function onlyHebrewAviraBox(x){
     var anotherLayer=  x.allLayers['1_Middle Ticker']['City'];
     var city= anotherLayer.sourceText.value.toString().split('-')[1];
     setText(anotherLayer, city);
+}
+
+
+function onlyEnglishExtras(x){
+    var layer = x.allLayers['1_Apartment Details']['Extras'];
+    var extraString= layer.sourceText.value.toString();
+    var allTheFeatures= extraString.split(',');
+
+    for(i=0; i<allTheFeatures.length; i++){
+        allTheFeatures[i] = allTheFeatures[i].split('-')[1];
+    }
+    allTheFeatures.unshift('');
+    var allTheExtras= allTheFeatures.join('\n > ');
+
+    setText(layer, allTheExtras);
+}
+
+
+function onlyHebrewExtras(x){
+    var layer = x.allLayers['1_Apartment Details']['Extras'];
+    var extraString= layer.sourceText.value.toString();
+    var allTheFeatures= extraString.split(',');
+
+    for(i=0; i<allTheFeatures.length; i++){
+        allTheFeatures[i] = allTheFeatures[i].split('-')[0];
+    }
+    allTheFeatures.unshift('\n');
+    var allTheExtras= allTheFeatures.join('\n > ');
+
+    setText(layer, allTheExtras);
 }
 
 // This function takes the price number and adds points to make it more readable  28/01/2021
