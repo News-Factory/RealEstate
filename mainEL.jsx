@@ -48,7 +48,7 @@ function batchProcessEL(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath); 
                 
-            var success=realEstateTR(x);
+            var success=realEstateEL(x);
             // realEstate success activates the rendering queue and moves txt files
             if (success){                
                 renderIt(x);
@@ -63,7 +63,7 @@ function batchProcessEL(){
     app.endSuppressDialogs(alert);
 }
 
-function realEstateTR(x){
+function realEstateEL(x){
 
     app.beginUndoGroup("realEstate");
         //the next line is a general procedure to find problems in the AE project
@@ -87,6 +87,8 @@ function realEstateTR(x){
     insertAll(x,found); //set.jsx
 
     //Stage04
+
+    // setTheMusic(x);
     // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
     // setScaleDurationMarkersForPhotosComp(x);
@@ -100,58 +102,10 @@ function realEstateTR(x){
     soundAndDetails(x);
     
     // Stage06
-    slicer(x);
-    //setMainCompDuration(mainComp);
-    //checkLayersMarker(x.comps);
-    //RQaddActiveItem(x);
+    // slicer(x);
 
     app.endUndoGroup();
-
    return true;
-}
-
-// new logic for turning on and off the icons in TR  13/01/2020
-function iconsCheckTR(x){
-    var theIcons=x.dataByType['onoff'];
-    var iconString= theIcons[0].value.toString();
-    var activeIcons= iconString.split(', ');
-    // alert(activeIcons[0]);
-    var background=  x.allLayers['1_Photos Comp']['IconsBackground'];
-    // alert(background.name);
-    background.property('position').removeKey(2);
-
-    for(i=0; i<activeIcons.length; i++){
-        var optionLanguage = activeIcons[i].split('-');
-        var option=optionLanguage[1];
-        // alert(option);
-        var iconLayer = x.allLayers['ICONS 003']['icon '+option];
-        // alert(iconLayer.name);
-        iconLayer.enabled=true;
-        
-        switch (i){
-            case 0:
-            iconLayer.property('position').setValueAtTime(0.1, [739, 167]);
-            break;
-            case 1:
-            iconLayer.property('position').setValueAtTime(0.1, [617, 167]);
-            break;
-            case 2:
-            iconLayer.property('position').setValueAtTime(0.1, [493, 167]);
-            break;
-            case 3:
-            iconLayer.property('position').setValueAtTime(0.1, [369, 167]);
-            break;
-            case 4:
-            iconLayer.property('position').setValueAtTime(0.1, [248, 167]);
-            break;
-            case 5:
-            iconLayer.property('position').setValueAtTime(0.1, [125, 167]);
-            break;
-        }
-    }
-
-    var distance = 1510 - 110 * (activeIcons.length-1);
-    background.property('position').setValueAtTime(2.5, [distance, 540]);
 }
 
 //ARRANGE slicer003
@@ -281,6 +235,8 @@ function soundAndDetails(x){
 
     setLogoScaleAndPositionEL(logoLayer);
 
+    duplicateWebsiteString(x);
+    duplicatePhoneString(x);
     randomIntroOutroEL(x);
     randomVideoAvira(x,1);
     randomVideoAvira(x,2);
@@ -289,7 +245,7 @@ function soundAndDetails(x){
     onlyEnglishExtras(x);
 
     stylePrice(x);
-    // setTheMusic(x);
+    
     // fitSoundOnAll(x);
 }
 
