@@ -1,15 +1,15 @@
 ﻿#include 'get.jsx';
 
 function defineMainProjectItems(txtFilePath){
+    var template = txtFilePath.split('/')[4];
+    var templateName = template.slice(18, template.length -4).toString();
+    // alert(template);
     var x = {};
-    x.paths=definePaths(true); //TRUE is script is in News Factory
+    x.paths=definePaths(true,templateName); //TRUE is script is in News Factory
     x.sym=defineSymbols();
     x.data=defineMasterObj(txtFilePath, x.sym); //An array of objects with title, value and type
     x.dataByType=getData_byTitleValueType(x.data);
     
-    var template = txtFilePath.split('/')[4];
-    // alert(template);
-    var templateName = template.slice(18, template.length -4).toString();
     var projectFilePath=x.paths['projects']+'/'+templateName+'.aep';
     x.projFile=File(projectFilePath);
     alert('projFile: '+x.projFile.name);
@@ -37,7 +37,7 @@ function defineMainProjectItems(txtFilePath){
     return x;
 }
 
-function definePaths(newsfactoryBoolean){
+function definePaths(newsfactoryBoolean, template){
     var paths={};
     if(newsfactoryBoolean){
         //News factory paths:
@@ -51,7 +51,7 @@ function definePaths(newsfactoryBoolean){
         //paths['processedFolder']=paths['realEstate']+'processed';
         paths['projects']=paths['realEstate']+'projects';
         paths['saved']=paths['realEstate']+'saved';
-        paths['exports']=paths['realEstate']+'exportsNew/Transparent';
+        paths['exports']=paths['realEstate']+'exportsNew/'+template;
     }
     return paths;
 }
