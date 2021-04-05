@@ -102,7 +102,7 @@ function realEstateEL(x){
     soundAndDetails(x);
     
     // Stage06
-    // slicer(x);
+    slicer(x);
 
     app.endUndoGroup();
    return true;
@@ -121,11 +121,11 @@ function slicer(x){
 
     if (x.photoComp) {//if naming was done correctly start
 
-        var pcLayer=x.allLayers['Photos Comp'].comp;
+        var pcLayer=x.allLayers['Photo Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
         var introDuration = mainLayers[5].startTime;
-        var gap = 1.5;
+        var gap = 2;
         var locTestPhoto = getLoc_TestPhoto(x);
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
@@ -136,25 +136,21 @@ function slicer(x){
             pcLayer.outPoint = lastPic.outPoint + introDuration;     
             // alert(lastPic.inPoint);
         } else {
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_10'];
+            var lastPic = x.allLayers['Photo Comp']['Room_Photo_10'];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             pcLayer.outPoint = lastPic.inPoint + introDuration; 
         } 
         mainLayers[4].outPoint=neededTime;
 
-        for (var i=4; i<7; i++){
+        for (var i=5; i<8; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
-            if (i==1 || i==2){
-                nextLayer.startTime=layer.outPoint -gap;
-            }else{
-                nextLayer.startTime=layer.outPoint;    
-            }
+            nextLayer.startTime=layer.outPoint-gap;    
         } 
 
-        fitSoundOnPhotosComp(x);
         setDurationForOutroComp(x);
+        fitSoundOnAll(x);
         
         // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
         var veryEnd=x.allLayers['0_Main Comp']['0_Outro'].outPoint;
@@ -172,24 +168,20 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
-    for (var j=0; j<howMany_Pictures; j++){
+    for (var j=1; j<howMany_Pictures; j++){
         var compName = "Room_Photo_"+j;
         var comp = getByName(x.comps,compName);
-        var tLayers = comp.layers;
         // alert(compName);
+        var layerName = comp.layer(1);
+        if (layerName == "RoomP"+j){
+            var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
+            var imageSourceType = getFileType(imageSourceName);
 
-        for (i=1; i<= tLayers.length; i++){
-            var layerName = tLayers[i].name;
-
-            if (layerName == "RoomP"+j){
-                var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
-                var imageSourceType = getFileType(imageSourceName);
-
-                if (imageSourceName=="test picture.jpg"){ //if the source is Test Photo we can then get the location
-                    return locTestPhoto; 
-                }
+            if (imageSourceName=="test picture.jpg"){ //if the source is Test Photo we can then get the location
+                return locTestPhoto; 
             }
         }
+
     } 
 }
 
@@ -200,10 +192,8 @@ function soundAndDetails(x){
     var template = x.projFile.name.split('.')[0];
     var logoLayer= x.allLayers['Logo']['logo'];
     // alert(template);
-    // fitSoundOnPhotosComp(x);
 
     setLogoScaleAndPositionEL(logoLayer);
-
     duplicateWebsiteString(x);
     duplicatePhoneString(x);
     randomIntroOutroEL(x);
@@ -212,10 +202,7 @@ function soundAndDetails(x){
     randomVideoAvira(x,3);
     onlyEnglishAviraAndCity(x);
     onlyEnglishExtras(x);
-
     stylePrice(x);
-    
-    // fitSoundOnAll(x);
 }
 
 function renderIt(x){

@@ -56,12 +56,12 @@ function formatPhotosComp(x){
 // sets the right fade in/out for the music going on Photos Comp  08/12/2020
 function fitSoundOnPhotosComp(x){
     // Select 1_Photos Comp start and end points
-    var introSong= x.allLayers['Intro']['Intro Sound'];
+    var introSong= x.allLayers['0_Intro']['Intro Sound'];
     var startIn= introSong.source.duration;
     // var photoComp= x.allLayers['0_Main Comp']['1_Photos Comp'];
     var videoComp= x.allLayers['0_Main Comp']['1_Videos Comp'];
     var detailComp=x.allLayers['0_Main Comp']['Details'];
-    var outroComp=x.allLayers['0_Main Comp']['Outro'];
+    var outroComp=x.allLayers['0_Main Comp']['0_Outro'];
 
     // var photoCompStart = photoComp.inPoint; //inPoint
 
@@ -84,7 +84,7 @@ function fitSoundOnPhotosComp(x){
     // fadeIn(backgroundSong, startIn, 0.1, -60, 0);
     // xFadeOut(backgroundSong, detailCompEnd, 2, -10, -60);
     if(detailComp){
-        fadeOut(backgroundSong, detailCompEnd, 1, 0, -100);  
+        fadeOut(backgroundSong, detailCompEnd, 1, 0, -40);  
     } else {
         slowFadeOut(backgroundSong, outroCompEnd, 5, -40, 5);
     }
@@ -126,10 +126,10 @@ function fitSoundOnIntroOutro(x){
 }
 
 function fitSoundOnAll(x){
-    var introComp = x.allLayers['0_Main Comp']['Intro'];
-    var outroComp = x.allLayers['0_Main Comp']['Outro'];
+    var introComp = x.allLayers['0_Main Comp']['0_Intro'];
+    var outroComp = x.allLayers['0_Main Comp']['0_Outro'];
     var introCompEnd = introComp.outPoint; //intro inPoint
-    var outroCompEnd = outroComp.outPoint; //outro outPoint
+    var outroCompStart = outroComp.inPoint; //outro outPoint
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
@@ -138,5 +138,5 @@ function fitSoundOnAll(x){
 
     // apply the fade in / fade out
     fadeIn(backgroundSong, introCompEnd, 0.5, -40, 0);
-    fadeOut(backgroundSong, outroCompEnd, 2, 0, -40);
+    fadeOut(backgroundSong, outroCompStart, 2, 0, -40);
 }

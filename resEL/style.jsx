@@ -166,9 +166,9 @@ function setTheMusic(x){
     var outroTrackLayer=x.allLayers['0_Outro']['Outro Sound'];
     var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
     
-    var introPath= audioTracks[1];
-    var outroPath= audioTracks[2];
-    var bodyPath= audioTracks[0];
+    var introPath= audioTracks[2];
+    var outroPath= audioTracks[0];
+    var bodyPath= audioTracks[1];
     // alert(introPath);
     var introAudioTrack= app.project.importFile(new ImportOptions(new File(introPath)));
     var outroAudioTrack= app.project.importFile(new ImportOptions(new File(outroPath)));
