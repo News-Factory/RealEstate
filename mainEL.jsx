@@ -140,7 +140,7 @@ function slicer(x){
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
             pcLayer.outPoint = lastPic.inPoint + introDuration; 
         } 
-        mainLayers[4].outPoint=neededTime;
+        mainLayers[5].outPoint=neededTime;
 
         for (var i=5; i<8; i++){
             var layer = mainLayers[i];
