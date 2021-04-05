@@ -8,17 +8,6 @@ function setDurationForIntroComp(x){
     // alert(videoEnd);
     introComp.duration = soundEnd;
     // alert(introComp.time);
-
-    // for (var i=layers.length; i>0; i--){
-    //     var soundSource=getFileType(layers[i].source.name);
-        
-    //     if (soundSource == 'sound'){
-    //         var soundEnd = layers[i].source.duration;
-    //         // alert(videoEnd);
-    //         introComp.duration = soundEnd;
-    //         // alert(introComp.time);
-    //     }
-    // }
 }
 
 

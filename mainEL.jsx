@@ -89,20 +89,16 @@ function realEstateEL(x){
     //Stage04
 
     setTheMusic(x);
-    // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
-    // setScaleDurationMarkersForPhotosComp(x);
-    
-    // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
-    // setScaleDurationMarkersForVideosComp(x);
+    // Stage05
+    slicer(x);
 
-    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
+    setDurationForIntroComp(x);  // defines the lenght of the intro comp based on music
+    setDurationForOutroComp(x);  // defines the lenght of the outro comp based on the music
     
-    //Stage05
+    //Stage06
     soundAndDetails(x);
     
-    // Stage06
-    slicer(x);
 
     app.endUndoGroup();
    return true;
@@ -148,9 +144,6 @@ function slicer(x){
             // alert(layer.name);
             nextLayer.startTime=layer.outPoint-gap;    
         } 
-
-        setDurationForOutroComp(x);
-        fitSoundOnAll(x);
         
         // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
         var veryEnd=x.allLayers['0_Main Comp']['0_Outro'].outPoint;
@@ -203,6 +196,8 @@ function soundAndDetails(x){
     onlyEnglishAviraAndCity(x);
     onlyEnglishExtras(x);
     stylePrice(x);
+
+    fitSoundOnPhotoAndVideoComp(x);
 }
 
 function renderIt(x){
