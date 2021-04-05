@@ -9,8 +9,6 @@ function setDurationForIntroComp(x){
     introComp.duration = soundEnd;
     // alert(introComp.time);
 
-
-
     // for (var i=layers.length; i>0; i--){
     //     var soundSource=getFileType(layers[i].source.name);
         
@@ -26,7 +24,7 @@ function setDurationForIntroComp(x){
 
 function setScaleDurationMarkersForPhotosComp(x){
     //Main function in scale.jsx
-    var photosComp=x.allLayers['Photos Comp'].comp;
+    var photosComp=x.allLayers['1_Photos Comp'].comp;
     var layers=photosComp.layers;
     //params
     //durations:
@@ -123,19 +121,24 @@ function setScaleDurationMarkersForVideosComp(x){
 }
 
 function setDurationForOutroComp(x){
-    var outroComp=x.allLayers['Outro'].comp;
-    var layers=outroComp.layers;
+    var outroComp=x.allLayers['0_Outro'].comp;
+    
+    var soundSource=x.allLayers['0_Outro']['Outro Sound'];
+    var soundEnd = soundSource.source.duration;
+    // alert(videoEnd);
+    outroComp.duration = soundEnd;
+    // alert(introComp.time);
 
-    for (var i=layers.length; i>0; i--){
-        var videoSource=getFileType(layers[i].source.name);
+    // for (var i=layers.length; i>0; i--){
+    //     var videoSource=getFileType(layers[i].source.name);
         
-        if (videoSource == 'video' && layers.length <=3){
-            var videoEnd = layers[i].source.duration;
-            // alert(videoEnd);
-            outroComp.duration = videoEnd;
-            // alert(introComp.time);
-        }
-    }
+    //     if (videoSource == 'video' && layers.length <=3){
+    //         var videoEnd = layers[i].source.duration;
+    //         // alert(videoEnd);
+    //         outroComp.duration = videoEnd;
+    //         // alert(introComp.time);
+    //     }
+    // }
 }
 
 function setDurationDefByFileType(videoDur,restDur){

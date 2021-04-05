@@ -163,14 +163,18 @@ function setTheMusic(x){
     var musicFolder= new Folder(mommyFolderPath+'BackgroundMusic/Waveform Edits/'+moodString);
     var audioTracks= musicFolder.getFiles();
     var introTrackLayer=x.allLayers['0_Intro']['Intro Sound'];
+    var outroTrackLayer=x.allLayers['0_Outro']['Outro Sound'];
     var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
     
     var introPath= audioTracks[1];
+    var outroPath= audioTracks[2];
     var bodyPath= audioTracks[0];
     // alert(introPath);
     var introAudioTrack= app.project.importFile(new ImportOptions(new File(introPath)));
+    var outroAudioTrack= app.project.importFile(new ImportOptions(new File(outroPath)));
     var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
     introTrackLayer.replaceSource(introAudioTrack,true);
+    outroTrackLayer.replaceSource(outroAudioTrack,true);
     bodyTrackLayer.replaceSource(bodyAudioTrack,true);
 }
 
