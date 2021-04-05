@@ -88,7 +88,7 @@ function realEstateEL(x){
 
     //Stage04
 
-    // setTheMusic(x);
+    setTheMusic(x);
     // setDurationForIntroComp(x);  // 29/12/2020  defines the lenght of the intro comp 
 
     // setScaleDurationMarkersForPhotosComp(x);
@@ -96,7 +96,7 @@ function realEstateEL(x){
     // "twin" function of the one above to change duration of footages in [Videos Comp]  18/12/2020
     // setScaleDurationMarkersForVideosComp(x);
 
-    // setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
+    setDurationForOutroComp(x);  // 30/12/2020  defines the lenght of the outro comp 
     
     //Stage05
     soundAndDetails(x);
@@ -113,44 +113,36 @@ function realEstateEL(x){
 //Four functions to supplement the slicer
 function slicer(x){
     var mainLayers = x.mainComp.layers;
-    // alert(mainLayers.length);
 
-    // 22/01/2021
     // these variables are added because the function needs to set the length of the
     // intro comp based on the music in the intro
-    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
+    var backgroundIntroSong = x.allLayers['0_Intro']['Intro Sound'];
     var neededTime = backgroundIntroSong.source.duration;
 
     if (x.photoComp) {//if naming was done correctly start
-        
+
         var pcLayer=x.allLayers['Photos Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        var introDuration = mainLayers[2].startTime;
+        var introDuration = mainLayers[5].startTime;
         var gap = 1.5;
         var locTestPhoto = getLoc_TestPhoto(x);
-        // alert(locTestPhoto);
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
         ///// depending if the AE project has test pictures or not 23/12/2020
         if(locTestPhoto){
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_'+locTestPhoto];
-            pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            // alert(lastPic.name);
-            pcLayer.outPoint = lastPic.inPoint + introDuration;     
+            var lastPic = x.allLayers['Photo Comp']['Room_Photo_'+locTestPhoto];
+            pcLayer = getByName(mainLayers,"1_Photo Comp");  
+            pcLayer.outPoint = lastPic.outPoint + introDuration;     
             // alert(lastPic.inPoint);
         } else {
-            var lastPic = x.allLayers['Photos Comp']['Room_Photo_21'];
-            var introDuration = mainLayers[2].startTime;
+            var lastPic = x.allLayers['Photos Comp']['Room_Photo_10'];
             pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.outPoint + introDuration; 
-            // alert(lastPic.outPoint);
+            pcLayer.outPoint = lastPic.inPoint + introDuration; 
         } 
+        mainLayers[4].outPoint=neededTime;
 
-        adjustIntroForMusic(x);
-        mainLayers[1].outPoint=neededTime;
-
-        for (var i=1; i<4; i++){
+        for (var i=4; i<7; i++){
             var layer = mainLayers[i];
             var nextLayer = mainLayers[i+1];
             // alert(layer.name);
@@ -162,9 +154,10 @@ function slicer(x){
         } 
 
         fitSoundOnPhotosComp(x);
+        setDurationForOutroComp(x);
         
         // 20/01/2021  this part changes the length of the whole project that is gonna be exported 
-        var veryEnd=x.allLayers['0_Main Comp']['Outro'].outPoint;
+        var veryEnd=x.allLayers['0_Main Comp']['0_Outro'].outPoint;
         var main= x.allLayers['0_Main Comp'].comp;
         main.workAreaDuration = veryEnd;
    
@@ -173,39 +166,27 @@ function slicer(x){
     }
 }
 
-// END ARRANGE SCLICER003    
-
-///// modified on 9/12/2020 to take into account the double length of the video layer
-
 function getLoc_TestPhoto(x){//get the layer number where test photo is at
 
-    var template = x.projFile.name.split('.')[0];
-    var fixForm = 0;   // needed to use the google Form files folders 08/01/2020
-
-    if (template == 'Transparent'){
-        fixForm = 20;
-    }
-
-    var pcLayer=x.allLayers['Photos Comp'].comp;
+    var pcLayer=x.allLayers['Photo Comp'].comp;
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
-    for (var j=howMany_Pictures; j>1; j--){
-        var f =j+fixForm;
-        var compName = "Room_Photo_"+f;
+    for (var j=0; j<howMany_Pictures; j++){
+        var compName = "Room_Photo_"+j;
         var comp = getByName(x.comps,compName);
         var tLayers = comp.layers;
         // alert(compName);
 
         for (i=1; i<= tLayers.length; i++){
             var layerName = tLayers[i].name;
-        
-            if (layerName == "RoomP"+f){
+
+            if (layerName == "RoomP"+j){
                 var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
                 var imageSourceType = getFileType(imageSourceName);
 
-                if (imageSourceName=="Test Photo.jpg"){ //if the source is Test Photo we can then get the location
-                    return f; 
+                if (imageSourceName=="test picture.jpg"){ //if the source is Test Photo we can then get the location
+                    return locTestPhoto; 
                 }
             }
         }
@@ -219,18 +200,6 @@ function soundAndDetails(x){
     var template = x.projFile.name.split('.')[0];
     var logoLayer= x.allLayers['Logo']['logo'];
     // alert(template);
-    if (template === 'Transparent'){
-        formatLogoTR(x);
-        // randomStartVideoComp(x);
-        randomVideoCompCity(x);
-        iconsCheckTR(x);
-        insertIconsTopTicker(x)
-        // fitSoundOnAll(x);
-    }
-    else if (template === 'Red&Blue'){
-        formatPhotosComp(x);
-        iconsCheckRB(x)
-    }
     // fitSoundOnPhotosComp(x);
 
     setLogoScaleAndPositionEL(logoLayer);
@@ -279,10 +248,8 @@ function renderIt(x){
 
 function adjustIntroForMusic(x){
     var mainLayers = x.mainComp.layers;
-    var introComp = mainLayers[1];
-    var backgroundIntroSong = x.allLayers['Intro']['Intro Sound'];
-    var introBox = x.allLayers['Intro']['Intro Box'];
-    var introMask = x.allLayers['Intro']['Cyan Solid'];
+    var introComp = mainLayers('0_Intro');
+    var backgroundIntroSong = x.allLayers['0_Intro']['Intro Sound'];
     var neededTime = backgroundIntroSong.source.duration;
     var gap = 0.2;
     // alert(neededTime);
