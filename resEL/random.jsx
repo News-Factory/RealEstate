@@ -63,7 +63,7 @@ function randomVideoAvira(x, aviraNumber) {
     var aviraFootage= aviraFootageFolder.getFiles();
 
     var index=aviraFootage.length;
-    var vidLayer=x.allLayers['1_Videos Comp']['Video_'+(aviraNumber)];
+    var vidLayer=x.allLayers['Video Comp']['Video_'+(aviraNumber)];
     var random= Math.floor(Math.random()*index);
     var vidPath= aviraFootage[random];
 

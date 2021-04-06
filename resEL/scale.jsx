@@ -75,35 +75,35 @@ function setScaleDurationMarkersForPhotosComp(x){
 function setScaleDurationMarkersForVideosComp(x){
     // looping through the comps to check for a ['Video Comp']
     for (c=0; c < x.comps.length; c++){       
-        if(x.comps[c].name == 'Videos Comp'){
-            var VideosComp=x.allLayers['Videos Comp'].comp;
+        if(x.comps[c].name == '1_Videos Comp'){
+            var VideosComp=x.allLayers['Video Comp'].comp;
             var layers=VideosComp.layers;
             
             //durations:
-            var vidDur=6.2;
+            var vidDur=7;
             var picDur=7;
             var padding = 1.9;
             var durTypes=setDurationDefByFileType(vidDur,picDur); //types=['video','text','pic','sound'];
 
-            for (var i=layers.length; i>0; i--){
-                var video_x=layers[i].name; //CompLayer
-                var innerComp=x.allLayers[video_x].comp; //'Room_Photo_X'
-                var innerLayer=x.allLayers[video_x]['Footage'+i]; //Layer RoomPX
+            for (var i=1; i<=layers.length; i++){
+                // var video_x=layers[i].name; //CompLayer
+                var innerLayer=layers[i]; //'Video_X'
+
                 // alert(innerLayer.name);
                 var sourceType=getFileType(innerLayer.source.name);
                 var dur=durTypes[sourceType];
-                setCompAndLayerDuration(innerComp,dur);
+                innerLayer.outPoint = dur*i;
                 
-                var newMarkerTime=layers[i].startTime+dur-1;
+                var newMarkerTime=layers[i].startTime+dur;
                 moveMarker(layers[i],newMarkerTime);
 
                 setFadeOut(layers[i],newMarkerTime,newMarkerTime+0.65);
                 
-                if (i > 1){
-                    var layerB = layers[i];
-                    var layerA = layers[i-1];
-                    syncOutPointToInPoint(layerB,layerA,padding);
-                }
+                // if (i > 1){
+                //     var layerB = layers[i];
+                //     var layerA = layers[i-1];
+                //     syncOutPointToInPoint(layerB,layerA,padding);
+                // }
             }
         }
     }      

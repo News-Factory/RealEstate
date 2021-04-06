@@ -97,11 +97,11 @@ function realEstateEL(x){
 
     setDurationForIntroComp(x);  // defines the lenght of the intro comp based on music
     setDurationForOutroComp(x);  // defines the lenght of the outro comp based on the music
+    setScaleDurationMarkersForVideosComp(x);
     
     //Stage06
     soundAndDetails(x);
     
-
     app.endUndoGroup();
    return true;
 }

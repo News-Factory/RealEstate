@@ -134,6 +134,8 @@ function fitSoundOnPhotoAndVideoComp(x){
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
     backgroundSong.startTime = introCompEnd;
+    var backgroundMusic= x.allLayers['Sound Comp']['BackgroundMusic'];
+    backgroundMusic.outPoint= backgroundMusic.source.duration;
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
