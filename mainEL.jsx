@@ -30,7 +30,9 @@
     // var x=defineMainProjectItems(txtFilePath); 
     // sc_constructGS(x);  // this function creates the google sheet thingy
     batchProcessEL();
+
 }
+
 
 function batchProcessEL(){
     // app.beginSuppressDialogs();
@@ -120,23 +122,22 @@ function slicer(x){
         var pcLayer=x.allLayers['Photo Comp'].comp;
         var photoLayers = pcLayer.layers;
         var howMany_Pictures = photoLayers.length;
-        var introDuration = mainLayers[5].startTime;
+        var introDuration = mainLayers[5].outPoint;
         var gap = 2;
         var locTestPhoto = getLoc_TestPhoto(x);
+
+        mainLayers[5].outPoint=neededTime;
 
         ///// This if statement arranges the layers in [0_Main Comp] in different ways
         ///// depending if the AE project has test pictures or not 23/12/2020
         if(locTestPhoto){
-            var lastPic = x.allLayers['Photo Comp']['Room_Photo_'+locTestPhoto];
-            pcLayer = getByName(mainLayers,"1_Photo Comp");  
-            pcLayer.outPoint = lastPic.outPoint + introDuration;     
+            var lastPic = x.allLayers['Photo Comp']['Room_Photo_'+(locTestPhoto)];         
+            mainLayers[6].outPoint = lastPic.inPoint + introDuration -gap;     
             // alert(lastPic.inPoint);
         } else {
             var lastPic = x.allLayers['Photo Comp']['Room_Photo_10'];
-            pcLayer = getByName(mainLayers,"1_Photos Comp");  
-            pcLayer.outPoint = lastPic.inPoint + introDuration; 
+            mainLayers[6].outPoint = lastPic.inPoint + introDuration; 
         } 
-        mainLayers[5].outPoint=neededTime;
 
         for (var i=5; i<8; i++){
             var layer = mainLayers[i];
@@ -161,20 +162,20 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
     var photoLayers = pcLayer.layers;
     var howMany_Pictures = photoLayers.length;
 
-    for (var j=1; j<howMany_Pictures; j++){
+    for (var j=1; j<=howMany_Pictures; j++){
         var compName = "Room_Photo_"+j;
         var comp = getByName(x.comps,compName);
         // alert(compName);
         var layerName = comp.layer(1);
-        if (layerName == "RoomP"+j){
-            var imageSourceName = tLayers[i].source.name;  // check every layer for the image with the source
+        if (layerName.name == "RoomP"+j){
+            var imageSourceName = layerName.source.name;  // check every layer for the image with the source
             var imageSourceType = getFileType(imageSourceName);
 
             if (imageSourceName=="test picture.jpg"){ //if the source is Test Photo we can then get the location
-                return locTestPhoto; 
+                // alert('I found it!')
+                return j; 
             }
         }
-
     } 
 }
 
@@ -198,6 +199,7 @@ function soundAndDetails(x){
     stylePrice(x);
 
     fitSoundOnPhotoAndVideoComp(x);
+    cameraMover(x);
 }
 
 function renderIt(x){

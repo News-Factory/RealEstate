@@ -145,10 +145,47 @@ function setTheMusic(x){
 }
 
 function cameraMover(x){
-    var cameraLayer = x.allLayers['0_main Comp']['Camera Controller'];
-    var introLayer = x.allLayers['0_main Comp']['0_Intro'];
-    var photoLayer = x.allLayers['0_main Comp']['1_Photos Comp'];
-    var videoLayer = x.allLayers['0_main Comp']['1_Videos Comp'];
+    var introLayer = x.allLayers['0_Main Comp']['0_Intro'];
+    var introEnd = introLayer.outPoint;
+    var photoLayer = x.allLayers['0_Main Comp']['1_Photos Comp'];
+    var photoEnd = photoLayer.outPoint;
+    var videoLayer = x.allLayers['0_Main Comp']['1_Videos Comp'];
+    var videoEnd = videoLayer.outPoint;
 
-    
+    var cameraLayer = x.allLayers['0_Main Comp']['Camera Controller'];
+
+    var cameraPos = cameraLayer.property('position');
+    var cameraYrotation = cameraLayer.property('Y Rotation');
+
+    var gap=2;
+    var gap2= 1
+    var keyNumber=4;
+
+    for (k=8; k > keyNumber; k--){
+        var position = cameraPos.keyValue(k);
+        // this is a shape object, the vertices attributes is an array of 4 objects
+        var rotationValue= cameraYrotation.keyValue(k-4); 
+        // alert(k, rotationValue);
+        cameraPos.removeKey(k);
+        cameraYrotation.removeKey(k-4);
+
+        switch (k){
+            case 5:
+                cameraPos.setValueAtTime(photoEnd - gap, position);
+                cameraYrotation.setValueAtTime(photoEnd - gap, 0);
+            break;
+            case 6:
+                cameraPos.setValueAtTime(photoEnd +gap2, position);
+                cameraYrotation.setValueAtTime(photoEnd +gap2, 90);
+                break;
+            case 7:
+                cameraPos.setValueAtTime(videoEnd - gap, position);
+                cameraYrotation.setValueAtTime(videoEnd - gap, 90);
+            break;
+            case 8:
+                cameraPos.setValueAtTime(videoEnd +gap2, position);
+                cameraYrotation.setValueAtTime(videoEnd +gap2, 0);
+            break;
+        }
+    }
 }
