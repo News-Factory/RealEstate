@@ -2,7 +2,7 @@
 
 function defineMainProjectItems(txtFilePath){
     var template = txtFilePath.split('/')[4];
-    var templateName = template.slice(20, template.length -4).toString();
+    var templateName = template.slice(18, template.length -4).toString();
     // alert(template);
     var x = {};
     x.paths=definePaths(true,templateName); //TRUE is script is in News Factory

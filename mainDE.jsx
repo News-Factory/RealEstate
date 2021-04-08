@@ -30,7 +30,6 @@
     // var x=defineMainProjectItems(txtFilePath); 
     // sc_constructGS(x);  // this function creates the google sheet thingy
     batchProcessDE();
-
 }
 
 
@@ -50,7 +49,7 @@ function batchProcessDE(){
             var txtFilePath=mommyFolderPath+waitingFolder.name+'/'+wFiles[i].name;
             var x=defineMainProjectItems(txtFilePath); 
                 
-            var success=realEstateEL(x);
+            var success=realEstateDE(x);
             // realEstate success activates the rendering queue and moves txt files
             if (success){                
                 renderIt(x);
@@ -65,7 +64,7 @@ function batchProcessDE(){
     app.endSuppressDialogs(alert);
 }
 
-function realEstateEL(x){
+function realEstateDE(x){
 
     app.beginUndoGroup("realEstate");
         //the next line is a general procedure to find problems in the AE project
