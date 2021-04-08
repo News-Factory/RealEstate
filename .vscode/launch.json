@@ -9,7 +9,7 @@
             "type": "extendscript-debug",
             "request": "launch",
             "name": "Ask for script name",
-            "program": "${workspaceFolder}/mainEL.jsx",
+            "program": "${workspaceFolder}/mainDE.jsx",
             "stopOnEntry": false,
         }
     ]
