@@ -92,11 +92,11 @@ function realEstateDE(x){
     setTheMusic(x);
 
     // Stage05
-    slicer(x);
+    // slicer(x);
 
-    setDurationForIntroComp(x);  // defines the lenght of the intro comp based on music
-    setDurationForOutroComp(x);  // defines the lenght of the outro comp based on the music
-    setScaleDurationMarkersForVideosComp(x);
+    // setDurationForIntroComp(x);  // defines the lenght of the intro comp based on music
+    // setDurationForOutroComp(x);  // defines the lenght of the outro comp based on the music
+    // setScaleDurationMarkersForVideosComp(x);
     
     //Stage06
     soundAndDetails(x);
@@ -183,22 +183,22 @@ function getLoc_TestPhoto(x){//get the layer number where test photo is at
 // calls the last functions needed to fix the sound composition and some other last details
 function soundAndDetails(x){  
     var template = x.projFile.name.split('.')[0];
-    var logoLayer= x.allLayers['Logo']['logo'];
+    var logoLayer= x.allLayers['YOUR LOGO']['logo'];
     // alert(template);
 
-    setLogoScaleAndPositionEL(logoLayer);
-    duplicateWebsiteString(x);
-    duplicatePhoneString(x);
-    randomIntroOutroEL(x);
-    randomVideoAvira(x,1);
-    randomVideoAvira(x,2);
-    randomVideoAvira(x,3);
-    onlyEnglishAviraAndCity(x);
+    setLogoScaleAndPositionDE(logoLayer);
+    // duplicateWebsiteString(x);
+    // duplicatePhoneString(x);
+    // randomIntroOutroDE(x);
+    // randomVideoAvira(x,1);
+    // randomVideoAvira(x,2);
+    // randomVideoAvira(x,3);
+    // onlyEnglishAviraAndCity(x);
     onlyEnglishExtras(x);
     stylePrice(x);
 
-    fitSoundOnPhotoAndVideoComp(x);
-    cameraMover(x);
+    // fitSoundOnPhotoAndVideoComp(x);
+
 }
 
 function renderIt(x){

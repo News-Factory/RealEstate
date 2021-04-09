@@ -2,7 +2,7 @@
 /////  16/12/2020
 ///// Functions that fix details for text paddings/margins etc in R&B template
 
-function setLogoScaleAndPositionEL(layer){
+function setLogoScaleAndPositionDE(layer){
     var width=layer.width;
     var height=layer.height;
     // alert(height);
@@ -21,7 +21,7 @@ function setLogoScaleAndPositionEL(layer){
     }else{
         layer.property('scale').setValueAtTime(0.1,[50,50,100]);
     }
-    layer.property('position').setValueAtTime(0.1, [963, 525]);
+    layer.property('position').setValueAtTime(0.1, [500, 200]);
 }
 
 
@@ -70,17 +70,16 @@ function onlyHebrewAviraAndCity(x){
 
 
 function onlyEnglishExtras(x){
-    var layer = x.allLayers['1_Apartment Details']['Extras'];
-    var extraString= layer.sourceText.value.toString();
-    var allTheFeatures= extraString.split(',');
+    for (i=1; i<=6; i++){
+        var textHolder = 'TEXTHOLDER'+(i+6);
+        var extra = 'Extra'+i;
+    
+        var layer = x.allLayers[textHolder][extra];
+        var extraString= layer.sourceText.value.toString();
+        var feature= extraString.split('-')[1];
 
-    for(i=0; i<allTheFeatures.length; i++){
-        allTheFeatures[i] = allTheFeatures[i].split('-')[1];
+        setText(layer, feature);
     }
-    allTheFeatures.unshift('');
-    var allTheExtras= allTheFeatures.join('\n > ');
-
-    setText(layer, allTheExtras);
 }
 
 
@@ -100,7 +99,7 @@ function onlyHebrewExtras(x){
 
 // This function takes the price number and adds points to make it more readable  28/01/2021
 function stylePrice(x){
-    var layer=  x.allLayers['1_Middle Ticker']['Price'];
+    var layer=  x.allLayers['TEXTHOLDER1']['Price'];
     var priceString= layer.sourceText.value.toString();
     var len= priceString.length;
     var needsTo =priceString.indexOf(".");
@@ -128,64 +127,10 @@ function setTheMusic(x){
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
     var musicFolder= new Folder(mommyFolderPath+'BackgroundMusic/Waveform Edits/'+moodString);
     var audioTracks= musicFolder.getFiles();
-    var introTrackLayer=x.allLayers['0_Intro']['Intro Sound'];
-    var outroTrackLayer=x.allLayers['0_Outro']['Outro Sound'];
     var bodyTrackLayer=x.allLayers['Sound Comp']['BackgroundMusic'];
-    
-    var introPath= audioTracks[2];
-    var outroPath= audioTracks[0];
+
     var bodyPath= audioTracks[1];
     // alert(introPath);
-    var introAudioTrack= app.project.importFile(new ImportOptions(new File(introPath)));
-    var outroAudioTrack= app.project.importFile(new ImportOptions(new File(outroPath)));
     var bodyAudioTrack= app.project.importFile(new ImportOptions(new File(bodyPath)));
-    introTrackLayer.replaceSource(introAudioTrack,true);
-    outroTrackLayer.replaceSource(outroAudioTrack,true);
     bodyTrackLayer.replaceSource(bodyAudioTrack,true);
-}
-
-function cameraMover(x){
-    var introLayer = x.allLayers['0_Main Comp']['0_Intro'];
-    var introEnd = introLayer.outPoint;
-    var photoLayer = x.allLayers['0_Main Comp']['1_Photos Comp'];
-    var photoEnd = photoLayer.outPoint;
-    var videoLayer = x.allLayers['0_Main Comp']['1_Videos Comp'];
-    var videoEnd = videoLayer.outPoint;
-
-    var cameraLayer = x.allLayers['0_Main Comp']['Camera Controller'];
-
-    var cameraPos = cameraLayer.property('position');
-    var cameraYrotation = cameraLayer.property('Y Rotation');
-
-    var gap=2;
-    var gap2= 1
-    var keyNumber=4;
-
-    for (k=8; k > keyNumber; k--){
-        var position = cameraPos.keyValue(k);
-        // this is a shape object, the vertices attributes is an array of 4 objects
-        var rotationValue= cameraYrotation.keyValue(k-4); 
-        // alert(k, rotationValue);
-        cameraPos.removeKey(k);
-        cameraYrotation.removeKey(k-4);
-
-        switch (k){
-            case 5:
-                cameraPos.setValueAtTime(photoEnd - gap, position);
-                cameraYrotation.setValueAtTime(photoEnd - gap, 0);
-            break;
-            case 6:
-                cameraPos.setValueAtTime(photoEnd +gap2, position);
-                cameraYrotation.setValueAtTime(photoEnd +gap2, 90);
-                break;
-            case 7:
-                cameraPos.setValueAtTime(videoEnd - gap, position);
-                cameraYrotation.setValueAtTime(videoEnd - gap, 90);
-            break;
-            case 8:
-                cameraPos.setValueAtTime(videoEnd +gap2, position);
-                cameraYrotation.setValueAtTime(videoEnd +gap2, 0);
-            break;
-        }
-    }
 }

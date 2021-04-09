@@ -1,7 +1,7 @@
 
 #include "scale.jsx";
 
-function randomIntroOutroEL(x){    // 15/01/2021
+function randomIntroOutroDE(x){    // 15/01/2021
     var cityBoth= x.allLayers['1_Middle Ticker']['City'].sourceText.value.toString();
     var city=cityBoth.split('-')[0];
     var mommyFolderPath='G:/My Drive/Real Estate Project/';
