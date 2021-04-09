@@ -128,8 +128,7 @@ function soundAndDetails(x){
     onlyEnglishExtras(x);
     stylePrice(x);
 
-    // fitSoundOnPhotoAndVideoComp(x);
-
+    fitSoundOnAll(x);
 }
 
 function renderIt(x){

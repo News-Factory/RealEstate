@@ -125,21 +125,20 @@ function fitSoundOnIntroOutro(x){
     // fadeOut(backgroundOutro, outroCompEnd, 0.2, 0, -60);
 }
 
-function fitSoundOnPhotoAndVideoComp(x){
-    var introComp = x.allLayers['0_Main Comp']['0_Intro'];
-    var outroComp = x.allLayers['0_Main Comp']['0_Outro'];
-    var introCompEnd = introComp.outPoint; //intro inPoint
-    var outroCompStart = outroComp.inPoint; //outro outPoint
+function fitSoundOnAll(x){
+    var introComp = x.allLayers['0_Main Comp'].comp;
+    var introLayer = introComp.layers[2];
+    var outroComp = x.allLayers['0_Main Comp'].comp;
+    var outroLayer= outroComp.layers[3];
+    var introCompStart = introLayer.inPoint; //intro inPoint
+    var outroCompEnd = outroLayer.outPoint; //outro outPoint
 
     // select the layer for the background song
     var backgroundSong = x.allLayers['0_Main Comp']['Sound Comp'];
-    backgroundSong.startTime = introCompEnd;
-    var backgroundMusic= x.allLayers['Sound Comp']['BackgroundMusic'];
-    backgroundMusic.outPoint= backgroundMusic.source.duration;
     // clear the eventual keyframes on the layer
     clearKeys(backgroundSong, 'Audio Levels');
 
     // apply the fade in / fade out
     fadeIn(backgroundSong, 0, 0.1, -40, 0);
-    slowFadeOut(backgroundSong, outroCompStart, 2, -50, 5);
+    slowFadeOut(backgroundSong, outroCompEnd, 2, -50, 5);
 }
